@@ -1,0 +1,30 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+// Message containing information about a golf swing's point of address.
+message AddressInfo {
+
+    // Time stamp at the moment of impact.
+    double time = 1;
+
+    // Yaw of the club face when looking straight-on to the face of the club.
+    float face_lean = 2;
+
+    // Angle of shaft tilt toward or away from target.
+    // was ShaftLean
+    float shaft_lean = 3;
+
+    // Dynamic Loft of the club at address.
+    float dynamic_loft = 4;
+
+    // Club Lie Unright -Flat.
+    float lie = 5;
+
+    // Club Square Open.
+    float square_open = 6;
+
+    // Spin Loft.
+    float spin_loft = 7;
+
+}

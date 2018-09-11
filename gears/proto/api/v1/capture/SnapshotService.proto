@@ -1,0 +1,176 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1.capture;
+
+import "google/protobuf/empty.proto";
+import "gears/proto/server/Filters.proto";
+import "gears/proto/server/capture/Snapshot.proto";
+
+// Rpc service for working with capture snapshots
+service SnapshotService {
+
+    // Gets a list of capture snapshots.
+    rpc List(ListSnapshotsRequest) returns (ListSnapshotsResponse) {}
+
+    // Gets a snapshot by id.
+    rpc Get(GetSnapshotRequest) returns (GetSnapshotResponse) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // Start desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+    // Creates a new snapshot.
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Create(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
+
+    // Deletes an existing snapshot.
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Delete(DeleteSnapshotRequest) returns (google.protobuf.Empty) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // End desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+}
+
+// Message used to request a list of snapshots.
+message ListSnapshotsRequest {
+
+    // The page of the snapshot result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of snapshots per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of snapshots.
+    ListSnapshotsFilters filters = 3;
+
+}
+
+// Filters that can be used when listing snapshots.
+message ListSnapshotsFilters {
+
+    // Filter snapshots by when they were created.
+    .gears.proto.server.TimestampRange created_at = 1;
+
+    // Get only snapshots that are in the capture ids provided.
+    //
+    // Each capture id must be a valid uuid or it will be discarded.
+    //
+    // If no capture ids are provided no filtering by capture id will occur.
+    repeated string capture_ids = 2;
+
+    // Get only snapshots that are in the player ids provided.
+    //
+    // Each player id must be a valid uuid or it will be discarded.
+    //
+    // If no player ids are provided no filtering by player id will occur.
+    repeated string player_ids = 3;
+
+    // Get only snapshots that are in the installation ids provided.
+    //
+    // If no installation ids are provided no filtering by installation id will occur.
+    repeated int32 installation_ids = 4;
+
+    // Get only snapshots that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering by organization id will occur.
+    repeated int32 organization_ids = 5;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.SnapshotService].List rpc call
+message ListSnapshotsResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListSnapshotsRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListSnapshotsRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of snapshots accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of snapshots.
+    //
+    // This will only be present if [gears.proto.api.v1.capture.ListSnapshotsRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.capture.ListSnapshotsRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListSnapshotsFilters filters = 4;
+
+    // The snapshots that were retrieved for the provided:
+    //   - [gears.proto.api.v1.capture.ListSnapshotsResponse].page
+    //   - [gears.proto.api.v1.capture.ListSnapshotsResponse].filters
+    //
+    // The number of snapshots returned will always be less than or
+    // equal to [gears.proto.api.v1.capture.ListSnapshotsResponse].per_page
+    //
+    // Since the image that a snapshot represents can be large the snapshot objects
+    // will always use the url to the image and not the image it self.
+    repeated .gears.proto.server.capture.Snapshot snapshots = 5;
+
+}
+
+// Message used get a single snapshot by its primary id.
+message GetSnapshotRequest {
+
+    // Id of the snapshot you want to get.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // If true then content of the snapshot's image will be provided
+    // instead of a url to the snapshot's image.
+    bool use_file = 2;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.SnapshotService].Get rpc call.
+message GetSnapshotResponse {
+
+    // The snapshot requested
+    .gears.proto.server.capture.Snapshot snapshot = 1;
+
+}
+
+////////////////////////////////////////////////////////////////////
+// Start desktop application only messages.
+////////////////////////////////////////////////////////////////////
+
+message CreateSnapshotRequest {
+
+    .gears.proto.server.capture.Snapshot snapshot = 1;
+}
+
+message CreateSnapshotResponse {
+
+    .gears.proto.server.capture.Snapshot snapshot = 1;
+
+}
+
+message DeleteSnapshotRequest {
+
+    string id = 1;
+
+}
+
+////////////////////////////////////////////////////////////////////
+// End desktop application only messages.
+////////////////////////////////////////////////////////////////////

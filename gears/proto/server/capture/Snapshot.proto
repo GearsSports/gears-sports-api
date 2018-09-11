@@ -1,0 +1,31 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server.capture;
+
+import "google/protobuf/timestamp.proto";
+
+// Message containing data about a capture snapshot.
+message Snapshot {
+
+    // Id of the snapshot.
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // Id of capture that this snapshot belongs to.
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 2;
+
+    // When this snapshot was created.
+    .google.protobuf.Timestamp created_at = 3;
+
+    oneof snapshot_data {
+
+        // The content of the snapshot's image.
+        // When creating a snapshot this field must be provided
+        bytes file = 4;
+
+        // Url to where the snapshot's image can be found.
+        string url = 5;
+    }
+
+}

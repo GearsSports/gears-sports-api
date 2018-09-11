@@ -1,0 +1,67 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.actor;
+
+import "gears/proto/Matrix.proto";
+import "gears/proto/Transform.proto";
+import "gears/proto/actor/HandPose.proto";
+
+// Represents the pose of an actor
+message Pose {
+
+    // id_high and id_low combine to form an identifier that tells us which
+    // actor this pose belongs to
+    uint64 id_high = 1;
+    uint64 id_low = 2;
+
+    // Used to scale actor for this pose
+    float height_scale = 3;
+
+    // How the left hand is positioned
+    .gears.proto.actor.HandPose left_hand_pose = 4;
+
+    // How the right hand is positioned
+    .gears.proto.actor.HandPose right_hand_pose = 5;
+
+    // Matrix that is applied to position the left upper arm
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix left_upper_arm = 6;
+
+    // Matrix that is applied to position the left forearm
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix left_forearm = 7;
+
+    // Matrix that is applied to position the left hand
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix left_hand = 8;
+
+    // Matrix that is applied to position the right upper arm
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix right_upper_arm = 9;
+
+    // Matrix that is applied to position the right forearm
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix right_forearm = 10;
+
+    // Matrix that is applied to position the right hand
+    // This matrix is from before the attempt is made to constrain the hands to a golf club.
+    .gears.proto.Matrix right_hand = 11;
+
+    // Internal data
+    // ::SkeletonSolver::CPose::m_IDs
+    repeated int32 ids = 12;
+
+    // Internal data
+    // ::SkeletonSolver::CPose::m_IDtoIndex
+    repeated int32 id_to_index = 13;
+
+    // Internal data
+    // ::SkeletonSolver::CPose::m_IDtoParentIDs
+    repeated int32 id_to_parent_ids = 14;
+
+    // Internal data
+    // Transforms applied to produce the this pose
+    // ::SkeletonSolver::CPose::m_Transforms
+    repeated .gears.proto.Transform transforms = 15;
+
+}

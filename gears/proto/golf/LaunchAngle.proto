@@ -1,0 +1,19 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed
+enum LaunchAngle {
+
+    // Added because protobuf requires the first element to be zero
+    // If this value is encountered then something has likely gone wrong.
+    LAUNCH_ANGLE_UNKNOWN = 0;
+
+    LAUNCH_ANGLE_LOW = 1;
+    LAUNCH_ANGLE_LOW_TO_MID = 2;
+    LAUNCH_ANGLE_MID = 3;
+    LAUNCH_ANGLE_MID_TO_HIGH = 4;
+    LAUNCH_ANGLE_HIGH = 5;
+    LAUNCH_ANGLE_FLIGHTED = 6;
+}

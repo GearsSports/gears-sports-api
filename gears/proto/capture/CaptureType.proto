@@ -1,0 +1,21 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+// Defines the different types of captures.
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed.
+enum CaptureType {
+
+    // Added because protobuf requires the first element to be zero.
+    //
+    // If this value is encountered then something has likely gone wrong.
+    INVALID_CAPTURE_TYPE = 0;
+
+    // represents a manual capture.
+    MANUAL = 1;
+
+    // represents a golf capture.
+    GOLF = 2;
+}

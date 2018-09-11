@@ -1,0 +1,32 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1;
+
+// Service that allows api users to authenticate
+service AuthService {
+
+    // Request an access token that will be needed to consume other rpc methods
+    rpc Token(TokenRequest) returns (TokenResponse) {}
+
+}
+
+// Contains the information needed to get an access token
+message TokenRequest {
+
+    // A value provided by customer service
+    string client_id = 1;
+
+    // A value provided by customer service
+    string client_secret = 2;
+
+}
+
+message TokenResponse {
+
+    // The access token that you will need to provide to call other api methods
+    string access_token = 1;
+
+    // The number of seconds before the access_token expires
+    int32 expires_in = 2;
+
+}

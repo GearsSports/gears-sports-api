@@ -1,0 +1,155 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+// ported from ::CBodyAngles
+message BodyAngles {
+
+    // was m_bValid
+    bool valid = 1;
+
+    // was fShoulderLineAngle
+    float shoulder_line_angle = 2;
+
+    // was fHipLineAngle
+    float hip_line_angle = 3;
+
+    // was fKneeLineAngle
+    float knee_line_angle = 4;
+
+    // was fToeLineAngle
+    float toe_line_angle = 5;
+
+    // was fSpineLineAngle
+    float spine_line_angle = 6;
+
+    // was fHipKinematicSequence
+    float hip_kinematic_sequence = 7;
+
+    // was fTorsoKinematicSequence
+    float torso_kinematic_sequence = 8;
+
+    // was fArmKinematicSequence
+    float arm_kinematic_sequence = 9;
+
+    // was fClubKinematicSequence
+    float club_kinematic_sequence = 10;
+
+    // was fWristCockAngle
+    float wrist_cock_angle = 11;
+
+    // was fLeftWristFlexion
+    float left_wrist_flexion = 12;
+
+    // was fRightWristFlexion
+    float right_wrist_flexion = 13;
+
+    // was fLeftWristPronation
+    float left_wrist_pronation = 14;
+
+    // was fRightWristPronation
+    float right_wrist_pronation = 15;
+
+    // was fLeftAnkleAngle
+    float left_ankle_angle = 16;
+
+    // was fRightAnkleAngle
+    float right_ankle_angle = 17;
+
+    // was fLeftKneeAngle
+    float left_knee_angle = 18;
+
+    // was fRightKneeAngle
+    float right_knee_angle = 19;
+
+    // was fLeftHipAngle
+    float left_hip_angle = 20;
+
+    // was fRightHipAngle
+    float right_hip_angle = 21;
+
+    // was fLeftElbowAngle
+    float left_elbow_angle = 22;
+
+    // was fRightElbowAngle
+    float right_elbow_angle = 23;
+
+    // was fHipFrontalBend
+    float hip_frontal_bend = 24;
+
+    // was fTorsoFrontalBend
+    float torso_frontal_bend = 25;
+
+    // was fHipLateralTilt
+    float hip_lateral_tilt = 26;
+
+    // was fTorsoLateralTilt
+    float torso_lateral_tilt = 27;
+
+    // was fXFactor
+    float x_factor = 28;
+
+    // was fHipSway
+    float hip_sway = 29;
+
+    // was fTorsoSway
+    float torso_sway = 30;
+
+    // was fHipThrust
+    float hip_thrust = 31;
+
+    // was fTorsoThrust
+    float torso_thrust = 32;
+
+    // was fHipLift
+    float hip_lift = 33;
+
+    // was fTorsoLift
+    float torso_lift = 34;
+
+    // was fHipTurn
+    float hip_turn = 35;
+
+    // was fTorsoTurn
+    float torso_turn = 36;
+
+    // was fHipBend
+    float hip_bend = 37;
+
+    // was fTorsoBend
+    float torso_bend = 38;
+
+    // was fHipSideBend
+    float hip_side_bend = 39;
+
+    // was fTorsoSideBend
+    float torso_side_bend = 40;
+
+    // was fLeadShoulderAdduction
+    float lead_shoulder_adduction = 41;
+
+    // was fLeadWristSetAngle
+    float lead_wrist_set_angle = 42;
+
+    // was fLeadWristReleaseVelocity
+    float lead_wrist_release_velocity = 43;
+
+    // was fLeadWristRadial
+    float lead_wrist_radial = 44;
+
+    // was fLeadWristExtension
+    float lead_wrist_extension = 45;
+
+    // was fLeadWristSpination
+    float lead_wrist_spination = 46;
+
+    // was fTrailWristRadial
+    float trail_wrist_radial = 47;
+
+    // was fTrailWristExtension
+    float trail_wrist_extension = 48;
+
+    // was fTrailWristSpination
+    float trail_wrist_spination = 49;
+
+}

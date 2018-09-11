@@ -1,0 +1,41 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1;
+
+import "google/protobuf/empty.proto";
+import "gears/proto/server/Organization.proto";
+
+// Service for working with organizations
+service OrganizationService {
+
+    // Gets a list of organizations you have access to if any.
+    rpc List(google.protobuf.Empty) returns (ListOrganizationsResponse) {}
+
+    // Gets an organization by its primary id.
+    rpc Get(GetOrganizationRequest) returns (GetOrganizationResponse) {}
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.OrganizationService].List rpc call.
+message ListOrganizationsResponse {
+
+    // The organizations that you have access to.
+    repeated .gears.proto.server.Organization organizations = 1;
+
+}
+
+// Message used get a single organization by its primary id.
+message GetOrganizationRequest {
+
+    // Id of the organization you want to get.
+    int32 id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.OrganizationService].Get rpc call.
+message GetOrganizationResponse {
+
+    // The organization requested.
+    .gears.proto.server.Organization organization = 1;
+
+}

@@ -1,0 +1,59 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.player;
+
+import "google/protobuf/timestamp.proto";
+import "gears/proto/player/Gender.proto";
+import "gears/proto/player/Handed.proto";
+import "gears/proto/app/GraphicsPackage.proto";
+
+// Message hold data about a player.
+message Player {
+
+    // Id of the player.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // The players email.
+    string email = 2;
+
+    // The players first name.
+    string first_name = 3;
+
+    // The players middle name.
+    string middle_name = 4;
+
+    // The players last name.
+    string last_name = 5;
+
+    // Internal
+    bool allow_capture = 6;
+
+    // The players gender.
+    .gears.proto.player.Gender gender = 7;
+
+    // The players handedness.
+    .gears.proto.player.Handed handedness = 8;
+
+    .gears.proto.app.GraphicsPackage graphics_package = 9;
+
+    // The install id of the installation that created the player.
+    // If this player was converted from a legacy player this will be the
+    // install id of the installation that performed the conversion.
+    int32 install_id = 10;
+
+    // The git commit hash when the player was created.
+    // If this player was converted from a legacy player this will be the
+    // git commit hash from when the player was converted.
+    string git_hash = 11;
+
+    // When the player was created.
+    // If this player was converted from a legacy player this will be the
+    // time that the player was converted.
+    .google.protobuf.Timestamp created_at = 12;
+
+    // When the player was last updated.
+    .google.protobuf.Timestamp updated_at = 13;
+
+}

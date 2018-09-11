@@ -1,0 +1,31 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+// Message representing a position in 3 dimentions using single percision floating point values.
+// Generally x, y, and z are in meters.
+message Vector3 {
+
+    // Position on x axis.
+    float x = 1;
+
+    // Position on y axis.
+    float y = 2;
+
+    // Position on z axis.
+    float z = 3;
+}
+
+// Message representing a position in 3 dimentions using double percision floating point values.
+// Generally x, y, and z are in meters.
+message Vector3d {
+
+    // Position on x axis.
+    double x = 1;
+
+    // Position on y axis.
+    double y = 2;
+
+    // Position on z axis.
+    double z = 3;
+}

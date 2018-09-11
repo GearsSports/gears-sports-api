@@ -1,0 +1,12 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.app;
+
+// Defines all supported graphics packages
+enum GraphicsPackage {
+
+    GEARS       = 0;
+    COBRA       = 1;
+    NIKE        = 2;
+    TAYLORMADE  = 3;
+}

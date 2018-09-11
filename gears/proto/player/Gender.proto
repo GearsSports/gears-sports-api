@@ -1,0 +1,20 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.player;
+
+// ported from Core.eGender
+// WARNING: this enum is used in persisted and should not
+// have the names or values of it's elements changed
+enum Gender {
+
+    // Added because protobuf requires the first element to be zero
+    // If this value is encountered then something has likely gone wrong.
+    GENDER_UNKNOWN = 0;
+
+    // was eMale = 1
+    MALE = 1;
+
+    // was eFemale
+    FEMALE = 2;
+
+}

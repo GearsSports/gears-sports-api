@@ -1,0 +1,100 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1;
+
+import "gears/proto/server/Installation.proto";
+
+// Service for working with Installations
+service InstallationService {
+
+    // Gets a list of Installations you have access to if any.
+    rpc List(ListInstallationsRequest) returns (ListInstallationsResponse) {}
+
+    // Gets an Installation by its primary id.
+    rpc Get(GetInstallationRequest) returns (GetInstallationResponse) {}
+
+}
+
+// Message used to request a list of installations.
+message ListInstallationsRequest {
+
+    // The page of the installation result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of installations per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of installations.
+    ListInstallationsFilters filters = 3;
+
+}
+
+// Filters that can be used when listing installations.
+message ListInstallationsFilters {
+
+    // Get only installations that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering will occur.
+    repeated int32 organization_ids = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.InstallationService].List rpc call
+message ListInstallationsResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListInstallationsRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListInstallationsRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of installations accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of installations.
+    //
+    // This will only be present if [gears.proto.api.v1.ListInstallationsRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.ListInstallationsRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListInstallationsFilters filters = 4;
+
+    // The installations that were retrieved for the provided:
+    //   - [gears.proto.api.v1.ListInstallationsRequest].page
+    //   - [gears.proto.api.v1.ListInstallationsRequest].filters
+    //
+    // The number of installations returned will always be less than or
+    // equal to [gears.proto.api.v1.ListInstallationsRequest].per_page
+    repeated .gears.proto.server.Installation installations = 5;
+
+}
+
+// Message used get a single installation by its primary id.
+message GetInstallationRequest {
+
+    // Id of the installation you want to get.
+    int32 id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.InstallationService].Get rpc call.
+message GetInstallationResponse {
+
+    // The installation requested.
+    .gears.proto.server.Installation installation = 1;
+
+}

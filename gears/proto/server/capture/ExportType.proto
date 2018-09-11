@@ -1,0 +1,44 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server.capture;
+
+// Enumerates the types of exports that can be generated for a capture.
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed
+enum ExportType {
+
+    // Added because protobuf requires the first element to be zero.
+    // If this value is encountered then something has likely gone wrong.
+    EXPORT_TYPE_UNKNOWN = 0;
+
+    // A video of a capture from the front perspective.
+    EXPORT_TYPE_VIDEO_FRONT = 1;
+
+    // A video of a capture from the left perspective.
+    EXPORT_TYPE_VIDEO_LEFT = 2;
+
+    // A video of a capture from the right perspective.
+    EXPORT_TYPE_VIDEO_RIGHT = 3;
+
+    // A video of a capture from the back perspective.
+    EXPORT_TYPE_VIDEO_BACK = 4;
+
+    // A video of a capture from the top perspective.
+    EXPORT_TYPE_VIDEO_TOP = 5;
+
+    // A video of a capture from the bottom perspective.
+    EXPORT_TYPE_VIDEO_BOTTOM = 6;
+
+    // A video of a capture from the user perspective.
+    //
+    // This is the default perspective seen in the gears desktop application.
+    EXPORT_TYPE_VIDEO_USER = 7;
+
+    // Exports c3d data for a capture.
+    EXPORT_TYPE_C3D = 8;
+
+    // Exports the csv summary for a capture.
+    EXPORT_TYPE_CSV_SUMMARY = 9;
+
+}

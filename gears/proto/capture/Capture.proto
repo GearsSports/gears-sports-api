@@ -1,0 +1,55 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+import "gears/proto/actor/Actor.proto";
+import "gears/proto/golf/Capture.proto";
+import "gears/proto/player/Player.proto";
+import "google/protobuf/timestamp.proto";
+import "gears/proto/capture/Frame.proto";
+import "gears/proto/manual/Capture.proto";
+import "gears/proto/capture/CaptureType.proto";
+
+// Message that holds all data needed to replay a capture.
+message Capture {
+
+    // Id of the capture.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id        = 1;
+
+    // Id of the installation where this capture was created.
+    int32 install_id = 2;
+
+    // The frames per seconds of the capture.
+    uint32 fps       = 3;
+
+    // A string representing the version that the desktop application
+    // was at when this capture was created.
+    string git_hash  = 4;
+
+    // When this capture was created.
+    .google.protobuf.Timestamp created_at = 5;
+
+    // The type of this capture.
+    .gears.proto.capture.CaptureType type = 6;
+
+    // The player that this capture belongs to.
+    .gears.proto.player.Player player = 7;
+
+    // The capture type specific data that exists once per capture.
+    oneof capture_data
+    {
+        // Data specific to a manual capture that exists once per capture.
+        gears.proto.manual.Capture manual = 8;
+
+        // Data specific to a golf capture that exists once per capture.
+        gears.proto.golf.Capture golf = 9;
+    }
+
+    // The actors that exist in this capture.
+    repeated .gears.proto.actor.Actor actors = 14;
+
+    // The frame data for this capture.
+    repeated Frame frames = 15;
+}

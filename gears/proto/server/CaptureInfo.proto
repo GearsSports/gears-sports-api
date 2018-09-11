@@ -1,0 +1,71 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server;
+
+import "google/protobuf/timestamp.proto";
+import "gears/proto/capture/CaptureType.proto";
+
+// Message containing information about a capture.
+// The fields in this message represent the data that
+// exists for every capture regardless of capture type.
+message CaptureInfo {
+
+    // Id of the capture.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // Id of the player that this capture belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string player_id = 2;
+
+    // Type of capture.
+    .gears.proto.capture.CaptureType type = 3;
+
+    // If this capture has been marked as a favorite or not.
+    bool favorite = 4;
+
+    // If this capture has at least one actor or not.
+    bool full_body = 5;
+
+    // Time from the first frame in the capture.
+    float start_time = 6;
+
+    // Time from the last frame in the capture.
+    float end_time = 7;
+
+    // The frames per seconds of the capture.
+    uint32 fps = 8;
+
+    // The number of frames that the capture has.
+    uint32 num_frames = 9;
+
+    // The number
+    int32 number = 10;
+
+    // Allows for giving the capture a custom name.
+    string name = 11;
+
+    // Notes on the capture.
+    string notes = 12;
+
+    // A string representing the version that the desktop application
+    // was at when this capture was created.
+    string git_hash  = 13;
+
+    // When this capture was created.
+    .google.protobuf.Timestamp created_at = 14;
+
+    // When this capture was last updated.
+    .google.protobuf.Timestamp updated_at = 15;
+
+    // When the server side processing for this capture was completed.
+    .google.protobuf.Timestamp processed_at = 16;
+
+    // Url that can be used to download the full capture object.
+    // The file that this url points to will be a serialized instance
+    // of [gears.proto.capture.Capture]
+    string url = 17;
+
+}

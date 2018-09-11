@@ -1,0 +1,16 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.actor;
+
+// Represents a fitted skeleton
+message Actor {
+
+    // The type of skeleton
+    int32 skeleton_type = 1;
+
+    // Binary representation of fitted skeleton.
+    // Since we use an external library to represent an actor we use that
+    // libraries serialization functionality to persist the data.  This means
+    // that this data can not be accessed outside our application.
+    bytes skeleton_definition = 2;
+}

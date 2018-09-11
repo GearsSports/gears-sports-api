@@ -1,0 +1,39 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.manual;
+
+// holds body metrics for a manual capture
+message BodyAngles {
+
+    bool valid = 1;
+    float shoulder_angle = 2;
+    float hip_angle = 3;
+    float knee_angle = 4;
+    float toe_angle = 5;
+    float spine_angle = 6;
+    float hip_frontal_bend = 7;
+    float torso_frontal_bend = 8;
+    float hip_lateral_tilt = 9;
+    float torso_lateral_tilt = 10;
+    float left_thigh_angle = 11;
+    float right_thigh_angle = 12;
+    float left_elbow_angle = 13;
+    float right_elbow_angle = 14;
+    float left_knee_angle = 15;
+    float right_knee_angle = 16;
+    float left_foot_angle = 17;
+    float right_foot_angle = 18;
+    float pelvis_lift = 19;
+    float pelvis_sway = 20;
+    float pelvis_thrust = 21;
+    float pelvis_turn = 22;
+    float pelvis_bend = 23;
+    float pelvis_side_bend = 24;
+    float ribcage_lift = 25;
+    float ribcage_sway = 26;
+    float ribcage_thrust = 27;
+    float ribcage_turn = 28;
+    float ribcage_bend = 29;
+    float ribcage_side_bend = 30;
+
+}

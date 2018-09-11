@@ -1,0 +1,85 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+import "gears/proto/Vector3.proto";
+import "gears/proto/golf/ClubType.proto";
+import "google/protobuf/timestamp.proto";
+import "gears/proto/player/Gender.proto";
+import "gears/proto/golf/ClubModel.proto";
+import "gears/proto/golf/ShaftFlex.proto";
+import "gears/proto/golf/LaunchAngle.proto";
+
+// Message holding data of a calibrated golf club.
+message Club {
+
+    // Id of the club.
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 15;
+
+    // The install id of the installation that created the club.
+    // If this club was converted from a legacy club this will be the
+    // install id of the installation that performed the conversion.
+    int32 install_id = 16;
+
+    // The Uuid of the capture that this club has been attached to.
+    //
+    // If this club is not attached to a capture then this field will be empty.
+    //
+    // If not empty this value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 37;
+
+    // The git commit hash when the club was created.
+    // If this club was converted from a legacy club this will be the
+    // git commit hash from when the club was converted.
+    string git_hash = 17;
+
+    // When the club was created.
+    // If this club was converted from a legacy club this will be the
+    // time that the club was converted.
+    .google.protobuf.Timestamp created_at = 18;
+
+    // When the club was last updated.
+    .google.protobuf.Timestamp updated_at = 19;
+
+    // When the club was last calibrated.
+    .google.protobuf.Timestamp calibrated_at = 20;
+
+    // properties that are set only by a successful calibration
+    bool valid = 1;
+    bool left_handed = 2;
+    bool butt_marker_present = 3;
+
+    .gears.proto.golf.ClubType type = 4;
+    .gears.proto.golf.ClubModel model = 5;
+
+    float weight = 6;
+    float roll_radius = 7;
+    float bulge_radius = 8;
+    float static_lie = 35;
+    float static_loft = 36;
+
+    .gears.proto.Vector3 shaft_base = 10;
+    .gears.proto.Vector3 shaft_grip = 11;
+    .gears.proto.Vector3 butt_marker = 12;
+
+    repeated .gears.proto.Vector3 grip_markers = 13;
+    repeated .gears.proto.Vector3 head_markers = 14;
+
+    // ui properties
+    string club_name = 9;
+    string shaft_name = 21;
+    string manufacturer = 24;
+    ShaftFlex shaft_flex = 22;
+    LaunchAngle launch_angle = 23;
+    .gears.proto.player.Gender gender = 34;
+    float length = 25;
+    float lie = 26;
+    float loft = 27;
+    float roll = 33;
+    float bulge = 28;
+    float torque = 29;
+    float shaft_weight = 30;
+    int32 swing_weight = 31;
+    float total_weight = 32;
+}

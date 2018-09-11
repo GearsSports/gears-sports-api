@@ -1,0 +1,29 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// Message holding information about an installation of the gears sports desktop application.
+message Installation {
+
+    // Primary id of the installation
+    int32 id = 1;
+
+    // Id of the organization that this installation belongs to.
+    //
+    // Note: An installation does not have to belong to an organization so
+    // this field may be empty.
+    .google.protobuf.Int32Value organization_id = 2;
+
+    // Name of the installation
+    string name = 3;
+
+    // When the installation was created
+    .google.protobuf.Timestamp created_at = 4;
+
+    // When the installation was last updated
+    .google.protobuf.Timestamp updated_at = 5;
+
+}

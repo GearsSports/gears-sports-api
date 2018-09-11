@@ -1,0 +1,22 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+// Message that holds data about a matrix.
+// This proto object is intended to be used to store instances
+// of ::CMatrix
+//
+// In practice we currently only use this to represent a 4x4 matrix
+// so there should always be 16 elements in the values list.
+// The values are mapped to a 4x4 matrix like so:
+// +--                                            --+
+// | values[0] , values[1] , values[2] , values[3]  |
+// | values[4] , values[5] , values[6] , values[7]  |
+// | values[8] , values[9] , values[10], values[11] |
+// | values[12], values[13], values[14], values[15] |
+// +--                                            --+
+message Matrix {
+
+    // The values in the matrix.
+    repeated float values = 1;
+}

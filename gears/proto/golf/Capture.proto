@@ -1,0 +1,92 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+import "gears/proto/Vector3.proto";
+import "gears/proto/golf/Club.proto";
+import "gears/proto/golf/Frame.proto";
+import "gears/proto/golf/StrikeInfo.proto";
+import "gears/proto/golf/AddressInfo.proto";
+
+// Hold golf specific data that exist once per capture.
+message Capture {
+
+    // If this is a club only capture or not.
+    bool club_only = 1;
+
+    // was CSwingStream::m_fStartTime
+    float start_time = 2;
+
+    // was CSwingStream::m_fTransitionTime
+    float transition_time = 3;
+
+    // was CSwingStream::m_fImpactTime
+    float impact_time = 4;
+
+    // was CSwingStream::m_fEndTime
+    float end_time = 5;
+
+    // was CSwingStream::m_fMidBackSwingTime
+    float mid_back_swing_time = 6;
+
+    // was CSwingStream::m_fMidDownSwingTime
+    float mid_down_swing_time = 7;
+
+    // was CSwingStream::m_fMidFollowSwingTime
+    float mid_follow_swing_time = 8;
+
+    // was CSwingStream::m_iTransitionIndex
+    int32 transition_index = 9;
+
+    // was CSwingStream::m_iTransitionIndex
+    int32 impact_index = 10;
+
+    // was CSwingStream::m_fBallSpeed
+    float ball_speed = 11;
+
+    // was CSwingStream::m_fLaunchAngle
+    float launch_angle = 12;
+
+    // was CSwingStream::m_fDevAngle
+    float dev_angle = 13;
+
+    // was CSwingStream::m_fBackSpin
+    float back_spin = 14;
+
+    // was CSwingStream::m_fCarry
+    float carry = 15;
+
+    // was CSwingStream::m_vStrike
+    .gears.proto.Vector3 strike = 16;
+
+    // was CSwingStream::m_vHead
+    .gears.proto.Vector3 head = 17;
+
+    // was CSwingStream::m_vFace
+    .gears.proto.Vector3 face = 18;
+
+    // was CSwingStream::m_vLie
+    .gears.proto.Vector3 lie = 19;
+
+    // was CGolfSession::m_pGolfBall.m_vPos
+    .gears.proto.Vector3 ball_position = 20;
+
+    // was CGolfSession::m_pGolfClub
+    .gears.proto.golf.Club club = 21;
+
+    // was CSwingStream::m_pStrikeInfo
+    .gears.proto.golf.StrikeInfo strike_info = 22;
+
+    // replaces m_ImpactBodyAngles
+    .gears.proto.golf.Frame impact_frame = 23;
+
+    // was CSwingStream::m_pAddressInfo
+    .gears.proto.golf.AddressInfo address_info = 24;
+
+    // was CSwingStream::m_TrajDist
+    repeated float traj_dist = 25;
+
+    // was CSwingStream::m_TrajHeight
+    repeated float traj_height = 26;
+
+}

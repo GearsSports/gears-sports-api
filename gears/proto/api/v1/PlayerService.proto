@@ -1,0 +1,238 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1;
+
+import "google/protobuf/empty.proto";
+import "gears/proto/player/Gender.proto";
+import "gears/proto/player/Handed.proto";
+import "gears/proto/player/Player.proto";
+import "gears/proto/server/Filters.proto";
+import "gears/proto/api/error_details.proto";
+import "gears/proto/app/GraphicsPackage.proto";
+
+// Rpc service for working with Players.
+service PlayerService {
+
+    // Gets a list of players.
+    rpc List(ListPlayersRequest) returns (ListPlayersResponse) {}
+
+    // Gets a player by id.
+    rpc Get(GetPlayerRequest) returns (GetPlayerResponse) {}
+
+    // Updates an existing player.
+    rpc Update(UpdatePlayerRequest) returns (UpdatePlayerResponse) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // Start desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+    // Creates a new player.
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Create(CreatePlayerRequest) returns (CreatePlayerResponse) {}
+
+    // Deletes an existing player
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Delete(DeletePlayerRequest) returns (google.protobuf.Empty) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // End desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+}
+
+// Message used to request a list of players.
+message ListPlayersRequest {
+
+    // The page of the player result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of players per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of players.
+    ListPlayersFilters filters = 3;
+}
+
+// Filters that can be used when listing players.
+message ListPlayersFilters {
+
+    // Filter players by gender.
+    //
+    // This filter will only be applied if the provided gender does NOT
+    // equal [gears.proto.player.Gender].GENDER_UNKNOWN.
+    .gears.proto.player.Gender gender = 1;
+
+    // Filter players by handedness.
+    //
+    // This filter will only be applied if the provided handedness does
+    // NOT equal [gears.proto.player.Handed].UNKNOWN_HANDEDNESS.
+    .gears.proto.player.Handed handedness = 2;
+
+    // Filter players by their graphics packages.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.app.GraphicsPackage graphics_packages = 3;
+
+    // Filter players by when they were created.
+    .gears.proto.server.TimestampRange created_at = 4;
+
+    // Filter players by when they were last updated.
+    .gears.proto.server.TimestampRange updated_at = 5;
+
+    // Filter players by their email containing the provided value.
+    // The comparison is case-sensitive.
+    // If no value is provided then this filter will not be applied.
+    string email = 6;
+
+    // Filter players by their first name containing the provided value.
+    // The comparison is case-sensitive.
+    // If no value is provided then this filter will not be applied.
+    string first_name = 7;
+
+    // Filter players by their middle name containing the provided value.
+    // The comparison is case-sensitive.
+    // If no value is provided then this filter will not be applied.
+    string middle_name = 8;
+
+    // Filter players by their last name containing the provided value.
+    // The comparison is case-sensitive.
+    // If no value is provided then this filter will not be applied.
+    string last_name = 9;
+
+    // Get only players that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering by organization id will occur.
+    repeated int32 organization_ids = 10;
+
+    // Get only players that are in the installation ids provided.
+    //
+    // If no installation ids are provided no filtering by installation id will occur.
+    repeated int32 installation_ids = 11;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.PlayerService].List rpc call
+message ListPlayersResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListPlayersRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListPlayersRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of players accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of players.
+    //
+    // This will only be present if [gears.proto.api.v1.ListPlayersRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.ListPlayersRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListPlayersFilters filters = 4;
+
+    // The players that were retrieved for the provided:
+    //   - [gears.proto.api.v1.ListPlayersRequest].page
+    //   - [gears.proto.api.v1.ListPlayersRequest].filters
+    //
+    // The number of players returned will always be less than or
+    // equal to [gears.proto.api.v1.ListPlayersResponse].per_page
+    repeated .gears.proto.player.Player players = 5;
+
+}
+
+// Message used get a single player by its primary id.
+message GetPlayerRequest {
+
+    // Id of the player you want to get.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.PlayerService].Get rpc call.
+message GetPlayerResponse {
+
+    // The player requested.
+    .gears.proto.player.Player player = 1;
+
+}
+
+// Message used to update an existing player.
+message UpdatePlayerRequest {
+
+    // Id of the player you want to update.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // The data to update the player with.
+    //
+    // Only the following fields are availiable for update:
+    //   - [gears.proto.player.Player].email
+    //   - [gears.proto.player.Player].first_name
+    //   - [gears.proto.player.Player].middle_name
+    //   - [gears.proto.player.Player].last_name
+    //   - [gears.proto.player.Player].gender
+    //   - [gears.proto.player.Player].handedness
+    //   - [gears.proto.player.Player].graphics_package
+    .gears.proto.player.Player player = 2;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.PlayerService].Update rpc call.
+message UpdatePlayerResponse {
+
+    // Validation errors that occured during the update attempt.
+    .gears.proto.api.BadRequest error = 1;
+
+    // The player as it exists after the update.
+    //
+    // This field will only be present if there were not errors during the update attempt.
+    .gears.proto.player.Player player = 2;
+
+}
+
+////////////////////////////////////////////////////////////////////
+// Start desktop application only messages.
+////////////////////////////////////////////////////////////////////
+
+message CreatePlayerRequest {
+
+    .gears.proto.player.Player player = 1;
+
+}
+
+message CreatePlayerResponse {
+
+    .gears.proto.api.BadRequest error = 1;
+    .gears.proto.player.Player player = 2;
+
+}
+
+message DeletePlayerRequest {
+
+    string id = 1;
+
+}
+
+////////////////////////////////////////////////////////////////////
+// End desktop application only messages.
+////////////////////////////////////////////////////////////////////

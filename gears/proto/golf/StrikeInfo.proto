@@ -1,0 +1,154 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+import "gears/proto/Vector3.proto";
+
+// ported from ::cStrikeInfo
+message StrikeInfo {
+
+    // Location the ball hit on the club face (in meters)
+    // was StrikeX
+    float strike_x = 1;
+
+    // Location the ball hit on the club face (in meters)
+    // was StrikeY
+    float strike_y = 2;
+
+    // Location the ball hit on the club face (in meters) using quadratic extrapolation
+    // was QuadraticStrikeX
+    float quadratic_strike_x = 3;
+
+    // Location the ball hit on the club face (in meters) using quadratic extrapolation
+    // was QuadraticStrikeY
+    float quadratic_strike_y = 4;
+
+    // Speed of club at ball strike  (miles/hour)
+    // was StrikeSpeed
+    float strike_speed = 5;
+
+    // speed of the face of the club at the impact location (miles/hour)
+    // was StrikeSpeedAtImpactPoint
+    float strike_speed_at_impact_point = 6;
+
+    // speed boost from shaft deflection at impact location (miles/hour)
+    // was ShaftKickAtImpactPoint
+    float shaft_kick_at_impact_point = 7;
+
+    // speed of the tip of the club  (miles/hour)
+    // was StrikeTipSpeed
+    float strike_tip_speed = 8;
+
+    // speed of the heel of the club (miles/hour)
+    // was StrikeHeelSpeed
+    float strike_heel_speed = 9;
+
+    // Second Speed Calc (miles/hour)
+    // was StrikeSpeedRef
+    float strike_speed_ref = 10;
+
+    // Speed after impact (miles/hour)
+    // was PostStrikeSpeed
+    float post_strike_speed = 11;
+
+    // Speed of grip at ball strike  (miles/hour)
+    // was GripSpeed
+    float grip_speed = 12;
+
+    // Time stamp at the moment of impact
+    // was StrikeTimeStamp
+    double strike_time_stamp = 13;
+
+    // Time when the upswing transitions to downswing
+    // was UpSwingTimeStamp
+    double up_swing_time_stamp = 14;
+
+    // club path
+    // was StrikeVector
+    .gears.proto.Vector3d strike_vector = 15;
+
+    // face
+    // was FaceVector
+    .gears.proto.Vector3d face_vector = 16;
+
+    // The lowest point in the swing after transition. It is measured by its
+    // distance from impact location.
+    // was LowPoint
+    float low_point = 17;
+
+    // Yaw of the club face when looking straight-on to the face of the club
+    // was FaceLean
+    float face_lean = 18;
+
+    // Angle of shaft tilt toward or away from target
+    // was ShaftLean
+    float shaft_lean = 19;
+
+    // Club path In -Out
+    // was PathInOut
+    float path_in_out = 20;
+
+    // Club path Up -Down
+    // was PathUpDown
+    float path_up_down = 21;
+
+    // Club Square -Open
+    // was SquareOpen
+    float square_open = 22;
+
+    // Club Square - Open at center of club face
+    // was SquareOpenAtCenterOfFace
+    float square_open_at_center_of_face = 23;
+
+    // Club Face Up -Down
+    // was DynamicLoft
+    float dynamic_loft = 24;
+
+    // Dynamic Loft at center of club face
+    // was DynamicLoftAtCenterOfFace
+    float dynamic_loft_at_center_of_face = 25;
+
+    // Club Lie Unright -Flat
+    // was Lie
+    float lie = 26;
+
+    // Shaft Deflection in meters
+    // was ShaftDeflection
+    float shaft_deflection = 27;
+
+    // Shaft Deflection in the club path (+ leading, - lagging)
+    // was ClubPathDeflection
+    float club_path_deflection = 28;
+
+    // Shaft Deflection Droop in meters
+    // was ClubPathDeflectionDroop
+    float club_path_deflection_droop = 29;
+
+    // Upward loft of club face relative to club shaft
+    // was ClubStaticLoft
+    float club_static_loft = 30;
+
+    // Face Angle To Club Path (in degrees)
+    // was FaceToPath
+    float face_to_path = 31;
+
+    // Angle measured between club path & face vector
+    // was DPlane
+    float d_plane = 32;
+
+    // Angle measured between angle of attack and club loft.
+    // was SpinLoft
+    float spin_loft = 33;
+
+    // Vertical Swing Plane ( VSP ). The VSP is the angle between the club head
+    // plane and horizontal, at the lowest point of the swing arc.
+    // was VerticalSwingPlane
+    float vertical_swing_plane = 34;
+
+    // Horizontal Swing Plane ( HSP ). The HSP is the angle between the club head
+    // plane and target line, at the lowest point of the swing arc.
+    // ( Left and Right of target line )
+    // was HorizontalSwingPlane
+    float horizontal_swing_plane = 35;
+
+}

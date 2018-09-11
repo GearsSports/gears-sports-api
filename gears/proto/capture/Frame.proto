@@ -1,0 +1,36 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+import "gears/proto/golf/Frame.proto";
+import "gears/proto/manual/Frame.proto";
+import "gears/proto/actor/Pose.proto";
+import "gears/proto/capture/MarkerFrame.proto";
+
+// Message that holds data from a single frame in a capture.
+message Frame {
+
+    // Seconds from the start of the capture that this frame occures.
+    float time = 1;
+
+    // Frame data that is specific to a capture type.
+    oneof frame_data {
+
+        // Frame data specific to a manual capture.
+        gears.proto.manual.Frame manual = 2;
+
+        // Frame data specific to a golf capture.
+        gears.proto.golf.Frame golf = 3;
+    }
+
+    // All markers observed for this frame.
+    // This will contain both labeled and un-labeled markers.
+    // Holds what was in ::gears::stream::MarkerStream
+    .gears.proto.capture.MarkerFrame markers = 14;
+
+    // The pose of any actors for this frame.
+    // This list will be empty if the capture does not have at least 1 actor.
+    // Holds what was in ::CMotionFrame
+    repeated .gears.proto.actor.Pose actors = 15;
+
+}

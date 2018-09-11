@@ -1,0 +1,122 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+import "gears/proto/Marker.proto";
+import "gears/proto/Vector3.proto";
+import "gears/proto/Quaternion.proto";
+import "gears/proto/golf/BodyAngles.proto";
+
+// hold golf specific data that exist once per frame
+// largely ported from ::CSwingFrame
+message Frame {
+
+    // was m_bInterpolated
+    bool interpolated = 1;
+
+    // was m_bGripTracked
+    bool grip_tracked = 2;
+
+    // was m_bHeadTracked
+    bool head_tracked = 3;
+
+    // was m_fShaftPathDeflection
+    float shaft_path_deflection = 4;
+
+    // was m_fShaftFaceDeflection
+    float shaft_face_deflection = 5;
+
+    // was m_fShaftPathDroop
+    float shaft_path_droop = 6;
+
+    // was m_fShaftFaceDroop
+    float shaft_face_droop = 7;
+
+    // was m_fClubHeadSpeed
+    float club_head_speed = 8;
+
+    // was m_fGripSpeed
+    float grip_speed = 9;
+
+    // was m_fTorque
+    float torque = 10;
+
+    // was m_fGripRoll
+    float grip_roll = 11;
+
+    // was m_fClosureRate
+    float closure_rate = 12;
+
+    // was m_fShaftKick
+    float shaft_kick = 13;
+
+    // was m_fHipAngularSpeed
+    float hip_angular_speed = 14;
+
+    // was m_fTorsoAngularSpeed
+    float torso_angular_speed = 15;
+
+    // was m_fLeadArmAngularSpeed
+    float lead_arm_angular_speed = 16;
+
+    // was m_fClubAngularSpeed
+    float club_angular_speed = 17;
+
+    // was m_qHead
+    .gears.proto.Quaternion head = 18;
+
+    // was m_qGrip
+    .gears.proto.Quaternion grip = 19;
+
+    // was m_vHeadPathDir
+    .gears.proto.Vector3 head_path_dir = 20;
+
+    // was m_vGrip
+    .gears.proto.Vector3 grip_vector = 21;
+
+    // was m_vShaftBase
+    .gears.proto.Vector3 shaft_base = 22;
+
+    // was m_vShaftGrip
+    .gears.proto.Vector3 shaft_grip = 23;
+
+    // was m_vShaftGripBase
+    .gears.proto.Vector3 shaft_grip_base = 24;
+
+    // was m_vShaftGripGrip
+    .gears.proto.Vector3 shaft_grip_grip = 25;
+
+    // was m_vHead1
+    .gears.proto.Vector3 head1 = 26;
+
+    // was m_vHead2
+    .gears.proto.Vector3 head2 = 27;
+
+    // was m_vHead3
+    .gears.proto.Vector3 head3 = 28;
+
+    // was m_vHead4
+    .gears.proto.Vector3 head4 = 29;
+
+    // was m_vVisualPathBase
+    .gears.proto.Vector3 visual_path_base = 30;
+
+    // was m_vVisualPathGrip
+    .gears.proto.Vector3 visual_path_grip = 31;
+
+    // was m_vVisualHandPath
+    .gears.proto.Vector3 visual_hand_path = 32;
+
+    // was CBodyAngles m_BodyAngles
+    .gears.proto.golf.BodyAngles body_angles = 33;
+
+    // was CVector3 m_GripMarkers[4]
+    repeated .gears.proto.Marker grip_markers = 34;
+
+    // was CVector3 m_HeadMarkers[3]
+    repeated .gears.proto.Marker head_markers = 35;
+
+    // was m_fTaylormadeClosureRate
+    float taylormade_closure_rate = 36;
+
+}

@@ -1,0 +1,53 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+// Defines all possible golf club models
+// ported from ::CGolfClub::eModel
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed
+enum ClubModel {
+
+    // if this is the specified model then the model
+    // will be selected by application level logic
+    DEFAULT = 0;
+
+    // was eCallaway
+    CALLAWAY = 1;
+
+    // was eNike
+    NIKE = 2;
+
+    // was ePing
+    PING = 3;
+
+    // was eTaylormadeR9
+    TAYLORMADE_R9 = 4;
+
+    // was eTaylormadeR11
+    TAYLORMADE_R11 = 5;
+
+    // was eTitleist
+    TITLEIST = 6;
+
+    // was eHockey
+    HOCKEY = 7;
+
+    // was eBaseballBat
+    BASEBALL_BAT = 8;
+
+    // was eCobra
+    COBRA = 9;
+
+    // was eCobraBlue
+    COBRA_BLUE = 10;
+
+    // was eCobraBlack
+    COBRA_BLACK = 11;
+
+    // was eCobraOrange
+    COBRA_ORANGE = 12;
+
+    // was eCobraRed
+    COBRA_RED = 13;
+}

@@ -1,0 +1,63 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+// Message containing information about a single observed marker.
+//
+// represents an instance of ::Core::cTMarker<float>.
+//
+// The fields id_high and id_low combine to form an the id of the marker.
+//   - This id is unique within each frame.
+//   - This id is used to identify a marker between frames.  Meaning that
+//     if you are looking at two frames from a capture and find a marker in
+//     each frame with the same id then you know that you have the position
+//     of the same physical marker from each frame.
+//
+// The fields entity_id_high and entity_id_low combine to form the id of the
+// tracked entity(actor, golf club, ext...) that this marker belongs to.
+//   - If both entity_id_high and entity_id_low are zero then the marker is
+//     not labeled, meaning that the system determined that the marker did
+//     NOT belong to any entity that was being tracked for the capture.
+message Marker {
+
+    // Marker position in meters on x axis.
+    float x = 1;
+
+    // Marker position in meters on y axis.
+    float y = 2;
+
+    // Marker position in meters on z axis.
+    float z = 3;
+
+    // result of marker.ID.HighBits()
+    uint64 id_high = 4;
+
+    // result of marker.ID.LowBits()
+    uint64 id_low = 5;
+
+    // result of marker.Label.EntityID().HighBits()
+    uint64 entity_id_high = 6;
+
+    // result of marker.Label.EntityID().LowBits()
+    uint64 entity_id_low = 7;
+
+    // This field holds an identifier that is specific to the type
+    // entity that the system determined this marker belongs to.
+    // For example if the marker belongs to a skeleton and this marker
+    // happened to be the left waist marker then this will be an identifier
+    // that tells our system that.
+    // result of marker.Label.MemberID()
+    uint32 member_id = 8;
+
+    // Residual in mm/ray
+    float residual = 9;
+
+    // Diameter in meters
+    float size = 10;
+
+    // Synthetic markers created in pipeline such as virtual finger tip markers
+    bool synthetic = 11;
+
+    // Selection state
+    bool selected = 12;
+}

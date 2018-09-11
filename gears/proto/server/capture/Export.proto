@@ -1,0 +1,48 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server.capture;
+
+import "google/protobuf/timestamp.proto";
+import "gears/proto/server/capture/ExportType.proto";
+
+// Information about an export generated from a capture.
+message Export {
+
+    // Id of the export.
+    int32 id = 1;
+
+    // Uuid of the capture that the export belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 2;
+
+    // The type of export.
+    .gears.proto.server.capture.ExportType type = 3;
+
+    // When processing of this export was started.
+    .google.protobuf.Timestamp started_at = 4;
+
+    // When processing of this export was finished.
+    // If an export has a 'started_at' but not a 'completed_at'
+    // then the export has either not finished processing or
+    // something went wrong while processing the export.
+    .google.protobuf.Timestamp completed_at = 5;
+
+    // When this export object was created.
+    .google.protobuf.Timestamp created_at = 6;
+
+    // When this export object was last updated.
+    .google.protobuf.Timestamp updated_at = 7;
+
+    // The export data will either be the content of the export
+    // or a url to where the content can be found.
+    oneof export_data {
+
+        // The content of the export.
+        bytes file = 8;
+
+        // Url to where the export content can be found.
+        string url = 9;
+    }
+
+}

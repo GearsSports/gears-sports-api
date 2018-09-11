@@ -1,0 +1,12 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.manual;
+
+// hold manual specific data that exist once per capture
+message Capture {
+
+    float start_time = 1;
+
+    float end_time = 2;
+
+}

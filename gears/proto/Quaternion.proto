@@ -1,0 +1,11 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+// Message holding a standard quaternion
+message Quaternion {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+    float w = 4;
+}

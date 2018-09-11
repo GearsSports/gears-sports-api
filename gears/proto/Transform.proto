@@ -1,0 +1,20 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+import "gears/proto/Matrix.proto";
+import "gears/proto/Vector3.proto";
+import "gears/proto/Quaternion.proto";
+
+// Ported from ::SkeletonSolver::CTransform
+message Transform {
+
+    // was m_vPos
+    Vector3 pos = 1;
+
+    // was m_qRot
+    Quaternion rot = 2;
+
+    // was m_mTrans
+    Matrix trans = 3;
+}

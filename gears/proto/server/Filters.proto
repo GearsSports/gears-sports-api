@@ -1,0 +1,21 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.server;
+
+import "google/protobuf/timestamp.proto";
+
+// A message used to filter a rpc List method.
+//
+// The fields start and end are not required, but at least one
+// must be provided or this filter will be ignored.
+message TimestampRange {
+
+    // Filter by a [google.protobuf.Timestamp] that is greater that
+    // or equal to the value in this field.
+    .google.protobuf.Timestamp start = 1;
+
+    // Filter by a [google.protobuf.Timestamp] that is less that
+    // or equal to the value in this field.
+    .google.protobuf.Timestamp end = 2;
+
+}

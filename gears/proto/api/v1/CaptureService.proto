@@ -1,0 +1,252 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.api.v1;
+
+import "google/protobuf/empty.proto";
+import "gears/proto/golf/Club.proto";
+import "google/protobuf/wrappers.proto";
+import "gears/proto/server/Filters.proto";
+import "gears/proto/capture/Capture.proto";
+import "gears/proto/api/error_details.proto";
+import "gears/proto/server/CaptureInfo.proto";
+import "gears/proto/capture/CaptureType.proto";
+
+// Rpc service for working with Captures
+service CaptureService {
+
+    // Gets a list of captures.
+    rpc List(ListCapturesRequest) returns (ListCapturesResponse) {}
+
+    // Gets a capture by id.
+    rpc Get(GetCaptureRequest) returns (GetCaptureResponse) {}
+
+    // Updates an existing capture.
+    rpc Update(UpdateCaptureRequest) returns (UpdateCaptureResponse) {}
+
+    // Gets the golf club associated with a capture.
+    //
+    // If the post processing of a new capture has not been completed then the golf
+    //   club for a given capture may not be availiable yet.
+    //
+    // This rpc will return a status code of NOT_FOUND if the capture
+    //   for the provided id does not have a golf club.
+    //
+    // This rpc will return a status code of INVALID_ARGUMENT if the capture
+    //   for the provided id is NOT a golf capture.
+    rpc GetGolfClub(GetGolfClubRequest) returns (GetGolfClubResponse) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // Start desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+    // Creates a new capture.
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Create(CreateCaptureRequest) returns (CreateCaptureResponse) {}
+
+    // Deletes an existing capture
+    //
+    // This rpc method is only availiable to the desktop application.
+    rpc Delete(DeleteCaptureRequest) returns (google.protobuf.Empty) {}
+
+    ////////////////////////////////////////////////////////////////////
+    // End desktop application only methods.
+    ////////////////////////////////////////////////////////////////////
+
+}
+
+// Message used to request a list of captures
+message ListCapturesRequest {
+
+    // The page of the capture result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of captures per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of captures.
+    ListCapturesFilters filters = 3;
+
+}
+
+// Filters that can be used when listing captures.
+message ListCapturesFilters {
+
+    // Filter captures by the provided capture types.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.capture.CaptureType capture_types = 1;
+
+    // Filter captures by if they have been marked as a favorite capture or not.
+    //
+    // If this field is not set then the filter will not be applied.
+    .google.protobuf.BoolValue favorite = 2;
+
+    // Filter captures by if they are a full body capture or not.
+    //
+    // If this field is not set then the filter will not be applied.
+    .google.protobuf.BoolValue full_body = 3;
+
+    // Filter captures by if our servers have completed the post processing for the capture or not.
+    //
+    // If this field is not set then the filter will not be applied.
+    .google.protobuf.BoolValue processing_complete = 4;
+
+    // Filter captures by when they were created.
+    .gears.proto.server.TimestampRange created_at = 5;
+
+    // Filter captures by when they were last updated.
+    .gears.proto.server.TimestampRange updated_at = 6;
+
+    // Get only captures that are in the player ids provided.
+    //
+    // Each player id must be a valid uuid or it will be discarded.
+    //
+    // If no player ids are provided no filtering by player id will occur.
+    repeated string player_ids = 7;
+
+    // Get only captures that are in the installation ids provided.
+    //
+    // If no installation ids are provided no filtering by installation id will occur.
+    repeated int32 installation_ids = 8;
+
+    // Get only captures that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering by organization id will occur.
+    repeated int32 organization_ids = 9;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].List rpc call
+message ListCapturesResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListCapturesRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListCapturesRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of captures accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of captures.
+    //
+    // This will only be present if [gears.proto.api.v1.ListCapturesRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.ListCapturesRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListCapturesFilters filters = 4;
+
+    // The captures that were retrieved for the provided:
+    //   - [gears.proto.api.v1.ListCapturesResponse].page
+    //   - [gears.proto.api.v1.ListCapturesResponse].filters
+    //
+    // The number of captures returned will always be less than or
+    // equal to [gears.proto.api.v1.ListCapturesResponse].per_page
+    repeated .gears.proto.server.CaptureInfo captures = 5;
+
+}
+
+// Message used get a single capture by its primary id.
+message GetCaptureRequest {
+
+    // Id of the capture you want to get.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].Get rpc call.
+message GetCaptureResponse {
+
+    // The capture info that was requested.
+    .gears.proto.server.CaptureInfo capture = 1;
+}
+
+// Message used to update an existing capture.
+message UpdateCaptureRequest {
+
+    // Id of the capture you want to update.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // The data to update the capture with.
+    //
+    // Only the following fields are availiable for update:
+    //   - [gears.proto.server.CaptureInfo].name
+    //   - [gears.proto.server.CaptureInfo].notes
+    //   - [gears.proto.server.CaptureInfo].favorite
+    .gears.proto.server.CaptureInfo capture = 2;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].Update rpc call.
+message UpdateCaptureResponse {
+
+    // Validation errors that occured during the update attempt.
+    .gears.proto.api.BadRequest error = 1;
+
+    // The capture as it exists after the update.
+    //
+    // This field will only be present if there were not errors during the update attempt.
+    .gears.proto.server.CaptureInfo capture = 2;
+
+}
+
+// Message used to get the golf club of a golf capture.
+message GetGolfClubRequest {
+
+    // The id of the capture for which you want to get its golf club.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].GetGolfClub rpc call.
+message GetGolfClubResponse {
+
+    // The golf club used by the capture.
+    .gears.proto.golf.Club club = 1;
+
+}
+
+////////////////////////////////////////////////////////////////////
+// Start desktop application only messages.
+////////////////////////////////////////////////////////////////////
+
+message CreateCaptureRequest {
+
+    .gears.proto.capture.Capture capture = 1;
+
+}
+
+message CreateCaptureResponse {
+
+    .gears.proto.server.CaptureInfo capture = 1;
+
+}
+
+message DeleteCaptureRequest {
+
+    string id = 1;
+}
+
+////////////////////////////////////////////////////////////////////
+// End desktop application only messages.
+////////////////////////////////////////////////////////////////////

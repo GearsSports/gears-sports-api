@@ -1,0 +1,12 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.manual;
+
+import "gears/proto/manual/BodyAngles.proto";
+
+// Hold manual capture specific data that exist once per frame.
+message Frame {
+
+    .gears.proto.manual.BodyAngles body_angles = 1;
+
+}

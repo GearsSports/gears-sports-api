@@ -1,0 +1,25 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+import "gears/proto/Marker.proto";
+
+// Messages that holds marker data for a capture frame.
+message MarkerFrame {
+
+    // Id of the marker frame.
+    int32 frame_id = 1;
+
+    // If the frame has been processed by ::MoCapCore::cTrajectorizer::TrackMarkers()
+    bool is_trajectorized = 2;
+
+    // If the frame has had its markers labeled.
+    // WARNING: this property being true does not mean that any of the markers in the frame actually have
+    // a valid label, just that the processing to label the markers has been done.
+    bool is_labeled = 3;
+
+    // The markers in this frame.
+    // This list will contain both labeled and un-labeled markers.
+    repeated .gears.proto.Marker markers = 4;
+
+}
