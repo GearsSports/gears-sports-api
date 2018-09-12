@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto;
+
+message Vector2 {
+    float x = 1;
+    float y = 2;
+}
