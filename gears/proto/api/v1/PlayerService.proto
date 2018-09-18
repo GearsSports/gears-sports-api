@@ -2,7 +2,6 @@ syntax = "proto3";
 option cc_enable_arenas = true;
 package gears.proto.api.v1;
 
-import "google/protobuf/empty.proto";
 import "gears/proto/player/Gender.proto";
 import "gears/proto/player/Handed.proto";
 import "gears/proto/player/Player.proto";
@@ -21,24 +20,6 @@ service PlayerService {
 
     // Updates an existing player.
     rpc Update(UpdatePlayerRequest) returns (UpdatePlayerResponse) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // Start desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
-
-    // Creates a new player.
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Create(CreatePlayerRequest) returns (CreatePlayerResponse) {}
-
-    // Deletes an existing player
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Delete(DeletePlayerRequest) returns (google.protobuf.Empty) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // End desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
 
 }
 
@@ -209,30 +190,3 @@ message UpdatePlayerResponse {
     .gears.proto.player.Player player = 2;
 
 }
-
-////////////////////////////////////////////////////////////////////
-// Start desktop application only messages.
-////////////////////////////////////////////////////////////////////
-
-message CreatePlayerRequest {
-
-    .gears.proto.player.Player player = 1;
-
-}
-
-message CreatePlayerResponse {
-
-    .gears.proto.api.BadRequest error = 1;
-    .gears.proto.player.Player player = 2;
-
-}
-
-message DeletePlayerRequest {
-
-    string id = 1;
-
-}
-
-////////////////////////////////////////////////////////////////////
-// End desktop application only messages.
-////////////////////////////////////////////////////////////////////

@@ -2,11 +2,9 @@ syntax = "proto3";
 option cc_enable_arenas = true;
 package gears.proto.api.v1;
 
-import "google/protobuf/empty.proto";
 import "gears/proto/golf/Club.proto";
 import "google/protobuf/wrappers.proto";
 import "gears/proto/server/Filters.proto";
-import "gears/proto/capture/Capture.proto";
 import "gears/proto/api/error_details.proto";
 import "gears/proto/server/CaptureInfo.proto";
 import "gears/proto/capture/CaptureType.proto";
@@ -34,24 +32,6 @@ service CaptureService {
     // This rpc will return a status code of INVALID_ARGUMENT if the capture
     //   for the provided id is NOT a golf capture.
     rpc GetGolfClub(GetGolfClubRequest) returns (GetGolfClubResponse) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // Start desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
-
-    // Creates a new capture.
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Create(CreateCaptureRequest) returns (CreateCaptureResponse) {}
-
-    // Deletes an existing capture
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Delete(DeleteCaptureRequest) returns (google.protobuf.Empty) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // End desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
 
 }
 
@@ -92,6 +72,8 @@ message ListCapturesFilters {
     .google.protobuf.BoolValue full_body = 3;
 
     // Filter captures by if our servers have completed the post processing for the capture or not.
+    // During normal operation post processing should be completed within a few minutes of a new
+    // capture being uploaded.
     //
     // If this field is not set then the filter will not be applied.
     .google.protobuf.BoolValue processing_complete = 4;
@@ -225,28 +207,3 @@ message GetGolfClubResponse {
     .gears.proto.golf.Club club = 1;
 
 }
-
-////////////////////////////////////////////////////////////////////
-// Start desktop application only messages.
-////////////////////////////////////////////////////////////////////
-
-message CreateCaptureRequest {
-
-    .gears.proto.capture.Capture capture = 1;
-
-}
-
-message CreateCaptureResponse {
-
-    .gears.proto.server.CaptureInfo capture = 1;
-
-}
-
-message DeleteCaptureRequest {
-
-    string id = 1;
-}
-
-////////////////////////////////////////////////////////////////////
-// End desktop application only messages.
-////////////////////////////////////////////////////////////////////

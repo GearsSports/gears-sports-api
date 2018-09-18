@@ -2,7 +2,6 @@ syntax = "proto3";
 option cc_enable_arenas = true;
 package gears.proto.api.v1.capture;
 
-import "google/protobuf/empty.proto";
 import "gears/proto/server/Filters.proto";
 import "gears/proto/server/capture/Snapshot.proto";
 
@@ -14,24 +13,6 @@ service SnapshotService {
 
     // Gets a snapshot by id.
     rpc Get(GetSnapshotRequest) returns (GetSnapshotResponse) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // Start desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
-
-    // Creates a new snapshot.
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Create(CreateSnapshotRequest) returns (CreateSnapshotResponse) {}
-
-    // Deletes an existing snapshot.
-    //
-    // This rpc method is only availiable to the desktop application.
-    rpc Delete(DeleteSnapshotRequest) returns (google.protobuf.Empty) {}
-
-    ////////////////////////////////////////////////////////////////////
-    // End desktop application only methods.
-    ////////////////////////////////////////////////////////////////////
 
 }
 
@@ -149,28 +130,3 @@ message GetSnapshotResponse {
     .gears.proto.server.capture.Snapshot snapshot = 1;
 
 }
-
-////////////////////////////////////////////////////////////////////
-// Start desktop application only messages.
-////////////////////////////////////////////////////////////////////
-
-message CreateSnapshotRequest {
-
-    .gears.proto.server.capture.Snapshot snapshot = 1;
-}
-
-message CreateSnapshotResponse {
-
-    .gears.proto.server.capture.Snapshot snapshot = 1;
-
-}
-
-message DeleteSnapshotRequest {
-
-    string id = 1;
-
-}
-
-////////////////////////////////////////////////////////////////////
-// End desktop application only messages.
-////////////////////////////////////////////////////////////////////
