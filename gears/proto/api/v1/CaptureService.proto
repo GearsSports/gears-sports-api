@@ -5,6 +5,7 @@ package gears.proto.api.v1;
 import "gears/proto/golf/Club.proto";
 import "google/protobuf/wrappers.proto";
 import "gears/proto/server/Filters.proto";
+import "gears/proto/capture/Summary.proto";
 import "gears/proto/api/error_details.proto";
 import "gears/proto/server/CaptureInfo.proto";
 import "gears/proto/capture/CaptureType.proto";
@@ -32,6 +33,13 @@ service CaptureService {
     // This rpc will return a status code of INVALID_ARGUMENT if the capture
     //   for the provided id is NOT a golf capture.
     rpc GetGolfClub(GetGolfClubRequest) returns (GetGolfClubResponse) {}
+
+    // Gets the summary for a capture
+    //
+    // If the post processing of a new capture has not been completed then the summary
+    //   for a given capture may not be availiable yet and a status code of
+    //   NOT_FOUND will be returned.
+    rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {}
 
 }
 
@@ -205,5 +213,22 @@ message GetGolfClubResponse {
 
     // The golf club used by the capture.
     .gears.proto.golf.Club club = 1;
+
+}
+
+// Message used to get the summary of a capture.
+message GetSummaryRequest {
+
+    // The id of the capture for which you want to get its summary.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].GetSummary rpc call.
+message GetSummaryResponse {
+
+    // The summary for the capture.
+    .gears.proto.capture.Summary summary = 1;
 
 }

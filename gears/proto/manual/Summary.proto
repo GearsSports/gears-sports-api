@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.manual;
+
+// Manual capture specific summary data.
+// This message is a placeholder as there is no actual summary for a manual capture yet.
+message Summary {
+
+}

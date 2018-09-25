@@ -1,0 +1,36 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "gears/proto/golf/Summary.proto";
+import "gears/proto/manual/Summary.proto";
+
+// A summary of a capture.
+//
+// The content of the summary is dependant on the type of capture.
+message Summary {
+
+    // Id of the capture that this summary belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 1;
+
+    // When the capture was created.
+    google.protobuf.Timestamp created_at = 2;
+
+    // The duration of the capture.
+    google.protobuf.Duration duration = 3;
+
+    // The identifiers 4-15 are reserved for the addition of future.
+
+    oneof summary_data {
+
+        // Capture specific summary data for a manual capture.
+        gears.proto.manual.Summary manual = 16;
+
+        // Capture specific summary data for a golf capture.
+        gears.proto.golf.Summary golf = 17;
+    }
+}

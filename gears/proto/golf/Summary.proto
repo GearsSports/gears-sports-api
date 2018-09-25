@@ -1,0 +1,63 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.golf;
+
+import "gears/proto/Vector3.proto";
+import "gears/proto/golf/BodyAngles.proto";
+
+// Golf capture specific summary data.
+message Summary {
+
+    // Location the ball hit on the club face along the x axis (in meters).
+    float strike_x = 1;
+
+    // Location the ball hit on the club face along the y axis (in meters)
+    float strike_y = 2;
+
+    float path_in_out = 3;
+    float path_up_down = 4;
+    float face_to_path = 5;
+    float spin_loft = 6;
+    float closure_rate = 7;
+    float taylormade_closure_rate = 8;
+    float low_point = 9;
+    float impact_speed = 10;
+    float head_speed = 11;
+    float ratio_to_grip = 12;
+    float face_center_loft = 13;
+    float address_loft = 14;
+    float loft = 15;
+    float loft_difference = 16;
+    float address_lie = 17;
+    float lie = 18;
+    float lie_difference = 19;
+    float face_center_face = 20;
+    float face_address = 21;
+    float face = 22;
+    float face_difference = 23;
+    float grip_speed = 24;
+    float grip_roll = 25;
+    float shaft_kick = 26;
+    float torque = 27;
+    float path_deflection = 28;
+    float path_deflection_droop = 29;
+    float path_deflection_ratio = 30;
+    float shaft_lean_address = 31;
+    float shaft_lean_impact = 32;
+    float shaft_lean_difference = 33;
+    float carry = 34;
+    float ball_speed = 35;
+    float launch_angle = 36;
+    float relative_angle = 37;
+    float back_spin = 38;
+    float smash_factor = 39;
+
+    // Position of golf ball.
+    .gears.proto.Vector3 ball_position = 100;
+
+    // Body metrics at point of impact.
+    //
+    // This will only exist for full body captures.
+    .gears.proto.golf.BodyAngles body_angles = 101;
+
+}
