@@ -41,4 +41,9 @@ enum ExportType {
     // Exports the csv summary for a capture.
     EXPORT_TYPE_CSV_SUMMARY = 9;
 
+    // Minimal data needed to display graphs extracted from a capture.
+    // Only golf captures and fullbody manual captures will have this export.
+    // The file for this export contains a serialized [gears.proto.capture.GraphFrameCollection].
+    EXPORT_TYPE_GRAPH_DATA = 10;
+
 }

@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+import "gears/proto/golf/Frame.proto";
+import "gears/proto/manual/Frame.proto";
+
+// Message that holds graph data from a single frame in a capture.
+//
+// This is a stripped down version of [gears.proto.capture.Frame] that
+// contains only the data needed to display our graphs.
+message GraphFrame {
+
+    // Seconds from the start of the capture that this frame occures.
+    float time = 1;
+
+    // Frame data that is specific to a capture type.
+    oneof frame_data {
+
+        // Frame data specific to a manual capture.
+        gears.proto.manual.Frame manual = 2;
+
+        // Frame data specific to a golf capture.
+        gears.proto.golf.Frame golf = 3;
+    }
+}
+
+// Message to hold a collection of graph frames.
+message GraphFrameCollection {
+
+    // Id of the capture that these graph frames belong to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 1;
+
+    // A list of graph frames.
+    repeated GraphFrame frames = 2;
+}
