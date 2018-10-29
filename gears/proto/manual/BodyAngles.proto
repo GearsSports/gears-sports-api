@@ -36,4 +36,67 @@ message BodyAngles {
     float ribcage_bend = 29;
     float ribcage_side_bend = 30;
 
+    // Left hip abduction in radians
+    float left_hip_abduction = 31;
+
+    // Left ankle eversion in radians
+    float left_ankle_eversion = 32;
+
+    // Left shoulder flexion in radians
+    float left_shoulder_flexion = 33;
+
+    // Left shoulder abduction in radians
+    float left_shoulder_abduction = 34;
+
+    // Right hip abduction in radians
+    float right_hip_abduction = 35;
+
+    // Right ankle eversion in radians
+    float right_ankle_eversion = 36;
+
+    // Right shoulder flexion in radians
+    float right_shoulder_flexion = 37;
+
+    // Right shoulder abduction in radians
+    float right_shoulder_abduction = 38;
+
+    // Trunk lateral tilt in radians
+    float trunk_lateral_tilt = 39;
+
+    // Trunk flexion in radians
+    float trunk_flexion = 40;
+
+    // Left hip rotation in radians
+    float left_hip_rotation = 41;
+
+    // Left ankle rotation in radians
+    float left_ankle_rotation = 42;
+
+    // Left shoulder rotation in radians
+    float left_shoulder_rotation = 43;
+
+    // Left wrist rotation in radians
+    float left_wrist_rotation = 44;
+
+    // Right hip rotation in radians
+    float right_hip_rotation = 45;
+
+    // Right ankle rotation in radians
+    float right_ankle_rotation = 46;
+
+    // Right shoulder rotation in radians
+    float right_shoulder_rotation = 47;
+
+    // Right wrist rotation in radians
+    float right_wrist_rotation = 48;
+
+    // Neck flexion in radians
+    float neck_flexion = 49;
+
+    // Neck flexion in radians
+    float neck_lateral_tilt = 50;
+
+    // Neck flexion in radians
+    float neck_rotation = 51;
+
 }
