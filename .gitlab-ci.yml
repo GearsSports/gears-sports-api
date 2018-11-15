@@ -10,7 +10,7 @@ variables:
 before_script:
     - "cd examples/csharp/GearsSportsApi"
     - "dotnet restore"
-    - "generate_protos.bat"
+    - "./generate_protos.bat"
 
 build:
     stage: build
