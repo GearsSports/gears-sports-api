@@ -17,7 +17,7 @@ namespace BuildProtoFiles
 
             var userDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             Console.WriteLine("userDir = '{0}', exists = {1}", userDir, Directory.Exists(userDir));
-            string[] pathParts = { ".nuget", "packages", "grpc.tools", "1.6.1", "tools" };
+            string[] pathParts = { ".nuget", "packages", "grpc.tools", "1.16.0", "tools" };
             var grpcTools = userDir;
             Console.WriteLine("grpcTools = '{0}', exists = {1}", grpcTools, Directory.Exists(grpcTools));
             foreach (var pathPart in pathParts)
