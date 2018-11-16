@@ -20,5 +20,7 @@ build:
 test:
     stage: test
     script: 
+        - "dotnet build GearsSportsApi/GearsSportsApi.csproj"
+        - "dotnet build $test/$test.csproj"
         - "cd $test"
         - "dotnet test"
