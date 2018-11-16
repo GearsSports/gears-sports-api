@@ -17,7 +17,30 @@ namespace BuildProtoFiles
 
             var userDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             Console.WriteLine("userDir = '{0}', exists = {1}", userDir, Directory.Exists(userDir));
-            var grpcTools = Path.Combine(userDir, ".nuget", "packages", "grpc.tools", "1.6.1", "tools");
+            string[] pathParts = { ".nuget", "packages", "grpc.tools", "1.6.1", "tools" };
+            var grpcTools = userDir;
+            Console.WriteLine("grpcTools = '{0}', exists = {1}", grpcTools, Directory.Exists(grpcTools));
+            foreach (var pathPart in pathParts)
+            {
+                grpcTools = Path.Combine(grpcTools, pathPart);
+                var exists = Directory.Exists(grpcTools);
+                Console.WriteLine("grpcTools = '{0}', exists = {1}", grpcTools, exists);
+                if (!exists)
+                {
+                    Console.WriteLine("adding pathPart {0} failed", pathPart);
+                    var parentDir = Path.GetDirectoryName(grpcTools);
+                    var existingFolders = Directory.GetDirectories(parentDir);
+                    Console.WriteLine("{0} directories", existingFolders.Length);
+                    for (var i = 0; i < existingFolders.Length; i++)
+                    {
+                        var folder = existingFolders[i];
+                        Console.WriteLine("  - folder[{0}] = '{1}'", i, folder);
+                    }
+
+                    break;
+                }
+            }
+//            var grpcTools = Path.Combine(userDir, ".nuget", "packages", "grpc.tools", "1.6.1", "tools");
 
             var exeSuffix = string.Empty;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
