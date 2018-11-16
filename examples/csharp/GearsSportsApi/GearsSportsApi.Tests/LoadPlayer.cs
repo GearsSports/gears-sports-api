@@ -16,7 +16,7 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void FromFile()
         {
-            var filename = "Data\\Rickie Fowler\\PlayerInfo.bin";
+            var filename = Path.Combine("Data", "Rickie Fowler", "PlayerInfo.bin");
             Assert.IsTrue(File.Exists(filename), "The file {0} does not exist", filename);
 
             Player player;

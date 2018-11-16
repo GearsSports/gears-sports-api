@@ -29,7 +29,7 @@ namespace GearsSportsApi.Tests
                 "devrpc.gearssports.com",
                 443,
                 new SslCredentials(
-                    File.ReadAllText("Data\\public.pem")
+                    File.ReadAllText(Path.Combine("Data", "public.pem"))
                 )
             );
         }

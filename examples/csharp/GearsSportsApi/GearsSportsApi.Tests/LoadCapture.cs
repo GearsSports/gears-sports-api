@@ -16,7 +16,7 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void FromFile()
         {
-            var filename = "Data\\Rickie Fowler\\2013-10-07\\31 Capture.gpcap";
+            var filename = Path.Combine("Data", "Rickie Fowler", "2013-10-07", "31 Capture.gpcap");
             Assert.IsTrue(File.Exists(filename), "The file {0} does not exist", filename);
 
             Capture capture;
