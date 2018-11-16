@@ -2,16 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.Tools" Version="1.16.0" />
     <PackageReference Include="System.Diagnostics.Process" Version="4.3.0" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="$(TargetPath) $(ProjectDir) $(UserProfile)" />
-  </Target>
 
 </Project>

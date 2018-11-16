@@ -10,11 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GearsSportsApi", "GearsSpor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GearsSportsApi.Tests", "GearsSportsApi.Tests\GearsSportsApi.Tests.csproj", "{7304112C-2D44-4616-8095-4BA5F549F85A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C118C0C5-125E-4698-89EF-BE01B8B73C19}"
-	ProjectSection(SolutionItems) = preProject
-		generate_protos.bat = generate_protos.bat
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildProtoFiles", "BuildProtoFiles\BuildProtoFiles.csproj", "{1C04F9E4-EFF2-4F0A-8FEB-7F7A6D0531C7}"
 EndProject
 Global

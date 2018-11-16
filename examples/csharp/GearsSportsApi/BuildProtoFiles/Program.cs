@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace BuildProtoFiles
@@ -64,9 +65,12 @@ namespace BuildProtoFiles
             Console.WriteLine("outDir = '{0}', exists = {1}", outDir, Directory.Exists(outDir));
             foreach (var protoFile in Directory.EnumerateFiles(protoFilesDir, "*.proto", SearchOption.AllDirectories))
             {
-                var path = protoFile.Replace(rootDir, "").Substring(1);
-                var outFolder = Path.Combine(outDir, path);
-                outFolder = Path.GetDirectoryName(outFolder);
+                var outFolder = protoFile.Replace(rootDir + Path.DirectorySeparatorChar, "")
+                                    .Split(Path.DirectorySeparatorChar)
+                                    .Where(o => !o.EndsWith(".proto"))
+                                    .Select(FirstLetterToUpper)
+                                    .Aggregate(outDir, Path.Combine);
+
                 if (!Directory.Exists(outFolder))
                     Directory.CreateDirectory(outFolder);
                 var cmd = new List<string>
@@ -111,6 +115,17 @@ namespace BuildProtoFiles
         private static string GetSuffix()
         {
             return IntPtr.Size == 8 ? "x64" : "x86";
+        }
+
+        public static string FirstLetterToUpper(string str)
+        {
+            if (str == null)
+                return null;
+
+            if (str.Length > 1)
+                return char.ToUpper(str[0]) + str.Substring(1);
+
+            return str.ToUpper();
         }
     }
 }
