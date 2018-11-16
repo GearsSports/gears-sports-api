@@ -17,8 +17,9 @@ namespace BuildProtoFiles
             {
                 Console.WriteLine("arg[{0}] = '{1}'", i, args[i]);
             }
-
-            var grpcTools = Path.Combine(args[1], ".nuget", "packages", "Grpc.Tools", "1.6.1", "tools");
+            var userDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            Console.WriteLine("userDir = '{0}', exists = {1}", userDir, Directory.Exists(userDir));
+            var grpcTools = Path.Combine(userDir, ".nuget", "packages", "Grpc.Tools", "1.6.1", "tools");
 
             var exeSuffix = string.Empty;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
