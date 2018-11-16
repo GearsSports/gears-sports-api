@@ -11,15 +11,13 @@ namespace BuildProtoFiles
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Console.WriteLine("{0} args provided", args.Length);
             for (int i = 0; i < args.Length; i++)
-            {
                 Console.WriteLine("arg[{0}] = '{1}'", i, args[i]);
-            }
+
             var userDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             Console.WriteLine("userDir = '{0}', exists = {1}", userDir, Directory.Exists(userDir));
-            var grpcTools = Path.Combine(userDir, ".nuget", "packages", "Grpc.Tools", "1.6.1", "tools");
+            var grpcTools = Path.Combine(userDir, ".nuget", "packages", "grpc.tools", "1.6.1", "tools");
 
             var exeSuffix = string.Empty;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
