@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Authors>Gears Sports</Authors>
+
+    <Description>Tests that provide examples of the gears public api usage.</Description>
   </PropertyGroup>
 
   <ItemGroup>

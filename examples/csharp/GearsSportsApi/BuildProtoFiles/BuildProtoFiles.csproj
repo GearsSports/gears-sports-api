@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>Gears Sports</Authors>
+    <Description>Generates c# code from .proto files.</Description>
   </PropertyGroup>
 
   <ItemGroup>

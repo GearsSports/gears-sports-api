@@ -50,8 +50,8 @@ namespace GearsSportsApi.Tests
             var client = new AuthService.AuthServiceClient(Channel);
             var request = new TokenRequest
             {
-                ClientId = "Add your client id here",
-                ClientSecret = "Add your client secret here"
+                ClientId = "grpc-example-user",
+                ClientSecret = "put your client secret here"
             };
             return client.Token(request);
         }
