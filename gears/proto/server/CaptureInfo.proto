@@ -4,6 +4,7 @@ package gears.proto.server;
 
 import "google/protobuf/timestamp.proto";
 import "gears/proto/capture/CaptureType.proto";
+import "gears/proto/capture/CaptureSubType.proto";
 
 // Message containing information about a capture.
 // The fields in this message represent the data that
@@ -22,6 +23,9 @@ message CaptureInfo {
 
     // Type of capture.
     .gears.proto.capture.CaptureType type = 3;
+
+    // The sub-type of this capture.
+    .gears.proto.capture.CaptureSubType sub_type = 18;
 
     // If this capture has been marked as a favorite or not.
     bool favorite = 4;
