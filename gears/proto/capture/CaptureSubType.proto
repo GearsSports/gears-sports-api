@@ -1,0 +1,228 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+package gears.proto.capture;
+
+// Defines the different sub-types of captures.
+//
+// A capture sub-type is used to group like captures.
+//
+// If two captures have the same capture type but different
+// capture sub-types then both will use the same data structures
+// but are expected to be different physical motions.
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed.
+enum CaptureSubType {
+
+    // Added because protobuf requires the first element to be zero.
+    //
+    // If this value is encountered then you are looking at a capture that
+    // happened before the capture sub-type field was added or something
+    // has gone wrong.
+    CAPTURE_SUB_TYPE_UNKNOWN = 0;
+
+    // Represents a golf capture where a driver was used.
+    // Valid for captures of type: [gears.proto.capture.CaptureType].GOLF
+    CAPTURE_SUB_TYPE_GOLF_DRIVER = 1;
+
+    // Represents a golf capture where an iron was used.
+    // Valid for captures of type: [gears.proto.capture.CaptureType].GOLF
+    CAPTURE_SUB_TYPE_GOLF_IRON = 2;
+
+    // Represents a golf capture where a wedge was used.
+    // Valid for captures of type: [gears.proto.capture.CaptureType].GOLF
+    CAPTURE_SUB_TYPE_GOLF_WEDGE = 3;
+
+    // Represents a golf capture where a putter was used.
+    // Valid for captures of type: [gears.proto.capture.CaptureType].GOLF
+    CAPTURE_SUB_TYPE_GOLF_PUTTER = 4;
+
+    // Represents a golf capture where we were not able to identify the club type.
+    // Encountering this element set as the capture sub-type on a golf capture indicates
+    // somthing went wrong.  It is here so that we can differentiate between an unset
+    // capture sub-type and a golf capture that may be invalid.
+    // Valid for captures of type: [gears.proto.capture.CaptureType].GOLF
+    CAPTURE_SUB_TYPE_GOLF_CLUB_UNKNOWN = 5;
+
+    // Represents a generic manual capture.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    CAPTURE_SUB_TYPE_MANUAL = 6;
+
+    // Represents the full active range of motion of the torso relative to the pelvis
+    // in all planes of motion.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Torso flexion (frontal bend).
+    //   - Torso lateral tilt.
+    //   - Torso rotation.
+    CAPTURE_SUB_TYPE_TORSO_RANGE_OF_MOTION = 7;
+
+    // Represents the full active range of motion of the left and right hip joint (thigh)
+    // relative to the pelvis in all planes of motion.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion.
+    //   - Hip abduction.
+    //   - Hip rotation.
+    CAPTURE_SUB_TYPE_HIPS_RANGE_OF_MOTION = 8;
+
+    // Represents the full active range of motion of the shoulder relative to the torso
+    // in all planes of motion.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right shoulder flexion.
+    //   - Shoulder abduction.
+    //   - Shoulder rotation.
+    CAPTURE_SUB_TYPE_SHOULDERS_RANGE_OF_MOTION = 9;
+
+    // Represents the movement by which the subject begins with feet slightly wider than
+    // shoulder-width apart and reaching both arms straight above their head. The movement
+    // is then a squat to a maximum pelvic depth while keeping both arms extended straight up.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Left and right shoulder flexion, abduction
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_OVERHEAD_DEEP_SQUAT = 10;
+
+    // Represents the movement by which the subject begins standing atop a platform, then
+    // steps or hops off the platform, and upon landing, performs a maximum vertical jump
+    // immediately.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Left and right shoulder flexion, abduction
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_DROP_VERTICAL_JUMP = 11;
+
+    // Represents the movement by which the subject balances on their left leg and attempts
+    // to squat down as low as possible while remaining balanced on their left leg.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_SINGLE_LEG_SQUAT_LEFT = 12;
+
+    // Represents the movement by which the subject balances on their right leg, and attempts
+    // to squat down as low as possible while remaining balanced on their right leg.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_SINGLE_LEG_SQUAT_RIGHT = 13;
+
+    // Represents the movement by which the subject balances on their left leg and attempts to
+    // jump to the right as far as possible and land on their right leg.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Left and right shoulder flexion, abduction
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_LATERAL_JUMP_LEFT = 14;
+
+    // Represents the movement by which the subject balances on their right leg and attempts to
+    // jump to the left as far as possible and land on their left leg.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Left and right shoulder flexion, abduction
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_LATERAL_JUMP_RIGHT = 15;
+
+    // Represents the movement by which the subject begins standing normally, steps forward with
+    // their left foot and lowers their pelvis until the right knee touches the ground, then
+    // returns to starting position.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_FORWARD_LUNGE_LEFT = 16;
+
+    // Represents the movement by which the subject begins standing normally, steps forward with
+    // their right foot and lowers their pelvis until the left knee touches the ground, then
+    // returns to starting position.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_FORWARD_LUNGE_RIGHT = 17;
+
+    // Represents the movement by which the subject is prone (face down) with only their feet and
+    // forearms in contact with the ground. They will perform a maximum static hold up to 1 minute.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right knee flexion
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_FRONT_PLANK_HOLD = 18;
+
+}

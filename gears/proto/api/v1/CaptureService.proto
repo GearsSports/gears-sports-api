@@ -9,6 +9,7 @@ import "gears/proto/capture/Summary.proto";
 import "gears/proto/api/error_details.proto";
 import "gears/proto/server/CaptureInfo.proto";
 import "gears/proto/capture/CaptureType.proto";
+import "gears/proto/capture/CaptureSubType.proto";
 
 // Rpc service for working with Captures
 service CaptureService {
@@ -68,6 +69,11 @@ message ListCapturesFilters {
     //
     // If no items are added to this list then this filter will not be applied.
     repeated .gears.proto.capture.CaptureType capture_types = 1;
+
+    // Filter captures by the provided capture sub-types.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.capture.CaptureSubType capture_sub_types = 10;
 
     // Filter captures by if they have been marked as a favorite capture or not.
     //
