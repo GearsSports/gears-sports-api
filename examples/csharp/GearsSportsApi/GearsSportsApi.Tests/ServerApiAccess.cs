@@ -47,12 +47,29 @@ namespace GearsSportsApi.Tests
         /// <returns>Response from AuthService.Token grpc method.</returns>
         private TokenResponse GetAuthToken()
         {
+            // We expect credentialsFile to contain the json representation of a TokenRequest object.
+            var credentialsFile = Path.Combine("Data", "TokenRequest.json");
+            Assert.IsTrue(File.Exists(credentialsFile), "The file {0} does not exist", credentialsFile);
+            var credentials = File.ReadAllText(credentialsFile).Trim();
+            var request = TokenRequest.Parser.ParseJson(credentials);
+
+            // Assert that the loaded data is not what has been committed in git as
+            // we don't commit valid api credentials.
+            Assert.AreNotEqual(
+                "Add your client id here.",
+                request.ClientId,
+                "You have not updated the client id in {0}",
+                credentialsFile
+            );
+            Assert.AreNotEqual(
+                "Add your client secret here.",
+                request.ClientSecret,
+                "You have not updated the client secret in {0}",
+                credentialsFile
+            );
+
+            // Create client and call method to authenticate with our servers.
             var client = new AuthService.AuthServiceClient(Channel);
-            var request = new TokenRequest
-            {
-                ClientId = "grpc-example-user",
-                ClientSecret = "put your client secret here"
-            };
             return client.Token(request);
         }
 

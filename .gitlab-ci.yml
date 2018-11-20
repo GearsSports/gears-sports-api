@@ -1,26 +1,15 @@
-image: microsoft/dotnet:latest
-
 stages:
-    - build
     - test
 
-variables:
-    test: "GearsSportsApi.Tests"
-
-before_script:
-    - "cd examples/csharp/GearsSportsApi"
-    - "dotnet restore"
-
-build:
-    stage: build
-    script:
-        - "dotnet build GearsSportsApi/GearsSportsApi.csproj"
-        - "dotnet build $test/$test.csproj"
-
-test:
+test_csharp:
+    image: microsoft/dotnet:latest
     stage: test
-    script: 
-        - "dotnet build GearsSportsApi/GearsSportsApi.csproj"
-        - "dotnet build $test/$test.csproj"
-        - "cd $test"
-        - "dotnet test"
+    script:
+        - cd examples/csharp/GearsSportsApi
+        - dotnet restore
+        - dotnet build GearsSportsApi/GearsSportsApi.csproj
+        - cd GearsSportsApi.Tests
+        - echo "{\"clientId\":\"$GRPC_CLIENT_ID\",\"clientSecret\":\"$GRPC_CLIENT_SECRET\"}" > Data/TokenRequest.json
+        - cat Data/TokenRequest.json
+        - dotnet build GearsSportsApi.Tests.csproj
+        - dotnet test
