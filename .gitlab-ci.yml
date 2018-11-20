@@ -18,6 +18,7 @@ test_python:
     image: python:3.6
     stage: test
     script:
+        - python -V
         - cd examples/python/gears_sports_api
         - pip install -r requirements.txt
         - echo "{\"clientId\":\"$GRPC_CLIENT_ID\",\"clientSecret\":\"$GRPC_CLIENT_SECRET\"}" > test_data/TokenRequest.json
