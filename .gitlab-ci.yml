@@ -1,0 +1,26 @@
+image: microsoft/dotnet:latest
+
+stages:
+    - build
+    - test
+
+variables:
+    test: "GearsSportsApi.Tests"
+
+before_script:
+    - "cd examples/csharp/GearsSportsApi"
+    - "dotnet restore"
+
+build:
+    stage: build
+    script:
+        - "dotnet build GearsSportsApi/GearsSportsApi.csproj"
+        - "dotnet build $test/$test.csproj"
+
+test:
+    stage: test
+    script: 
+        - "dotnet build GearsSportsApi/GearsSportsApi.csproj"
+        - "dotnet build $test/$test.csproj"
+        - "cd $test"
+        - "dotnet test"
