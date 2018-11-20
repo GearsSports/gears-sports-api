@@ -22,5 +22,6 @@ test_python:
         - cd examples/python/gears_sports_api
         - pip install -r requirements.txt
         - echo "{\"clientId\":\"$GRPC_CLIENT_ID\",\"clientSecret\":\"$GRPC_CLIENT_SECRET\"}" > test_data/TokenRequest.json
+        - cat test_data/TokenRequest.json
         - python build.py
         - python -m unittest discover -s . --verbose
