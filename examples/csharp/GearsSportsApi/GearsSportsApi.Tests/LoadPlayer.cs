@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Gears.Proto.Player;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,7 +17,7 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void FromFile()
         {
-            var filename = Path.Combine("Data", "Rickie Fowler", "PlayerInfo.bin");
+            var filename = "PlayerInfo.bin";
             Assert.IsTrue(File.Exists(filename), "The file {0} does not exist", filename);
 
             Player player;
@@ -26,16 +27,15 @@ namespace GearsSportsApi.Tests
             }
 
             Assert.IsNotNull(player);
-            Assert.AreEqual("777dcf9b-d40f-4260-8009-016ffce2650c", player.Id);
-            Assert.AreEqual(
-                "{ \"id\": \"777dcf9b-d40f-4260-8009-016ffce2650c\", \"email\": " +
-                "\"rickie.fowler@cobrapuma.com\", \"firstName\": \"Rickie\", " +
-                "\"lastName\": \"Fowler\", \"gender\": \"MALE\", \"handedness\": " +
-                "\"RIGHT_HANDED\", \"installId\": 3, \"gitHash\": \"deadbeef\", " +
-                "\"createdAt\": \"2018-03-16T21:14:09Z\", \"updatedAt\": " +
-                "\"2018-03-16T21:14:09Z\" }",
-                player.ToString()
-            );
+            Assert.AreEqual(Guid.Parse("777dcf9b-d40f-4260-8009-016ffce2650c"), Guid.Parse(player.Id));
+            Assert.AreEqual(string.Empty, player.Email);
+            Assert.AreEqual("Rickie", player.FirstName);
+            Assert.AreEqual(string.Empty, player.MiddleName);
+            Assert.AreEqual("Fowler", player.LastName);
+            Assert.AreEqual(Gender.Male, player.Gender);
+            Assert.AreEqual(Handed.RightHanded, player.Handedness);
+            Assert.IsNotNull(player.CreatedAt);
+            Assert.IsNotNull(player.UpdatedAt);
         }
     }
 }

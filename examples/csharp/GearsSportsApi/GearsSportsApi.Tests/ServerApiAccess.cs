@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Gears.Proto.Api.V1;
+using Gears.Proto.Server;
 using Grpc.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -28,12 +29,16 @@ namespace GearsSportsApi.Tests
             return new Channel(
                 "devrpc.gearssports.com",
                 443,
+                // Both our sandbox and production environments require a secure channel.
                 new SslCredentials(
-                    File.ReadAllText(Path.Combine("Data", "public.pem"))
+                    File.ReadAllText("public.pem")
                 )
             );
         }
 
+        /// <summary>
+        ///     Since the channel can be used for multiple requests we don't clean it up until we are done with all tests.
+        /// </summary>
         [AssemblyCleanup]
         public static void AssemblyCleanup()
         {
@@ -48,10 +53,10 @@ namespace GearsSportsApi.Tests
         private TokenResponse GetAuthToken()
         {
             // We expect credentialsFile to contain the json representation of a TokenRequest object.
-            var credentialsFile = Path.Combine("Data", "TokenRequest.json");
+            var credentialsFile = "TokenRequest.json";
             Assert.IsTrue(File.Exists(credentialsFile), "The file {0} does not exist", credentialsFile);
             var credentials = File.ReadAllText(credentialsFile).Trim();
-            var request = TokenRequest.Parser.ParseJson(credentials);
+            TokenRequest request = TokenRequest.Parser.ParseJson(credentials);
 
             // Assert that the loaded data is not what has been committed in git as
             // we don't commit valid api credentials.
@@ -69,7 +74,7 @@ namespace GearsSportsApi.Tests
             );
 
             // Create client and call method to authenticate with our servers.
-            var client = new AuthService.AuthServiceClient(Channel);
+            AuthService.AuthServiceClient client = new AuthService.AuthServiceClient(Channel);
             return client.Token(request);
         }
 
@@ -79,9 +84,14 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void Authenticate()
         {
-            var response = GetAuthToken();
+            TokenResponse response = GetAuthToken();
             Assert.IsNotNull(response);
+
+            // This is the auth token that you will need to access the other methods in our api.
             Assert.IsFalse(string.IsNullOrWhiteSpace(response.AccessToken));
+
+            // An auth token can be used until it expires. The field response.ExpiresIn
+            // represents the number of seconds the token is good for.
             Assert.IsTrue(response.ExpiresIn > 0, "response.ExpiresIn > 0");
         }
 
@@ -91,14 +101,27 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void ListCaptures()
         {
+            // Note that the authorization header must be added.
             var headers = new Metadata { { "authorization", "Bearer " + GetAuthToken().AccessToken } };
             var client = new CaptureService.CaptureServiceClient(Channel);
             var request = new ListCapturesRequest { PerPage = 2 };
-            var response = client.List(request, headers);
+            // see request.Filters for filtering options.
+            ListCapturesResponse response = client.List(request, headers);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Page > 0, "response.Page > 0");
             Assert.AreEqual(request.PerPage, response.PerPage);
             Assert.IsTrue(response.TotalCount >= response.Captures.Count, "response.TotalCount >= response.Captures.Count");
+            foreach (CaptureInfo captureInfo in response.Captures)
+            {
+                Assert.IsNotNull(captureInfo);
+                Assert.IsTrue(Guid.TryParse(captureInfo.Id, out var captureId));
+                Assert.AreNotEqual(Guid.Empty, captureId);
+
+                // A CaptureInfo instance only contains basic info about a capture.
+                // If you want the full capture object you can download it using the url in captureInfo.Url.
+                // The url in captureInfo.Url should not be stored as it will expire a few minutes after it is generated.
+                Assert.IsFalse(string.IsNullOrWhiteSpace(captureInfo.Url));
+            }
         }
 
         /// <summary>
@@ -107,14 +130,22 @@ namespace GearsSportsApi.Tests
         [TestMethod]
         public void ListPlayers()
         {
+            // Note that the authorization header must be added.
             var headers = new Metadata { { "authorization", "Bearer " + GetAuthToken().AccessToken } };
             var client = new PlayerService.PlayerServiceClient(Channel);
             var request = new ListPlayersRequest { PerPage = 2 };
-            var response = client.List(request, headers);
+            // see request.Filters for filtering options.
+            ListPlayersResponse response = client.List(request, headers);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Page > 0, "response.Page > 0");
             Assert.AreEqual(request.PerPage, response.PerPage);
             Assert.IsTrue(response.TotalCount >= response.Players.Count, "response.TotalCount >= response.Players.Count");
+            foreach (var player in response.Players)
+            {
+                Assert.IsNotNull(player);
+                Assert.IsTrue(Guid.TryParse(player.Id, out var playerId));
+                Assert.AreNotEqual(Guid.Empty, playerId);
+            }
         }
     }
 }

@@ -68,8 +68,11 @@ message CaptureInfo {
     .google.protobuf.Timestamp processed_at = 16;
 
     // Url that can be used to download the full capture object.
+    //
     // The file that this url points to will be a serialized instance
     // of [gears.proto.capture.Capture]
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
     string url = 17;
 
 }
