@@ -6,19 +6,22 @@ Our c# example solution contains 3 projects:
 * [GearsSportsApi.Tests](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/) - A unit test project where each test demonstrates some functionality provided by the c# code generated from our .proto files.
 * [BuildProtoFiles](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/BuildProtoFiles/) - Helper project used to work c# code generation from out .proto files into the standard build process.
 
-####(Optional) Setup
+(Optional) Setup
+----------------
 Edit the file [<repo_root>/examples/data/TokenRequest.json](https://github.com/GearsSports/gears-sports-api/tree/master/examples/data/TokenRequest.json) so it has valid api credentials.
 You get valid credentials for both sandbox and production environments by contacting our customer support.
 If you do not complete this step then the server api examples will not work. They are still useful to show how to access our grpc server api however.
 
-####Build (Visual Studio)
+Build (Visual Studio)
+---------------------
 * Load the solution [GearsSportsApi.sln](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.sln)
 * Build solution
 
 The first time you build the solution it will fail as it is generating .cs files from our .proto files.
 Attempting to build to solution will result in success.
 
-####Build (Command line)
+Build (Command line)
+--------------------
 ```sh
 $ # cd to this directory
 $ # restore nuget packages
@@ -30,7 +33,8 @@ $ dotnet build GearsSportsApi/GearsSportsApi.csproj
 
 After building the solution you will find the generated .cs files at <repo_root>/examples/csharp/GearsSportsApi/GearsSportsApi/Gears/Proto/
 
-#### Run Examples
+Run Examples
+------------
 Since the examples take the form of unit tests running them is the same as running any other unit tests.
 ```sh
 $ # from this directory
@@ -46,6 +50,7 @@ To view the examples look at the project [GearsSportsApi.Tests.csproj](https://g
 * [Example of loading a player from a file.](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/LoadPlayer.cs)
 * [Grpc server access examples.](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/ServerApiAccess.cs)
 
-####Useful links:
+Useful links:
+-------------
 * [Protobuf c# documentation](https://developers.google.com/protocol-buffers/docs/csharptutorial)
 * [Grpc c# documentation](https://grpc.io/docs/tutorials/basic/csharp.html)
