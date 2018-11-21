@@ -1,13 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <Authors>Gears Sports</Authors>
-
     <Description>Tests that provide examples of the gears public api usage.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,16 +31,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\public.pem">
+    <None Include="..\..\..\data\Rickie Fowler\2013-10-07\31 Capture.gpcap" Link="ExampleCapture.gpcap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Rickie Fowler\2013-10-07\31 Capture.gpcap">
+    <None Include="..\..\..\data\Rickie Fowler\PlayerInfo.bin" Link="PlayerInfo.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Rickie Fowler\PlayerInfo.bin">
+    <None Include="..\..\..\data\TokenRequest.json" Link="TokenRequest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Data\TokenRequest.json">
+    <None Include="..\..\..\data\public.pem" Link="public.pem">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

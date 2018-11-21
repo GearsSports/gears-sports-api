@@ -25,6 +25,8 @@ message Snapshot {
         bytes file = 4;
 
         // Url to where the snapshot's image can be found.
+        //
+        // Warning: This url should not be saved as it expires after a few minutes.
         string url = 5;
     }
 

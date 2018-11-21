@@ -17,6 +17,10 @@ message Export {
     string capture_id = 2;
 
     // The type of export.
+    //
+    // The type of an export is what determins the content of the exports file.
+    //
+    // See [gears.proto.server.capture.ExportType] info on what each type of export will contain.
     .gears.proto.server.capture.ExportType type = 3;
 
     // When processing of this export was started.
@@ -42,6 +46,8 @@ message Export {
         bytes file = 8;
 
         // Url to where the export content can be found.
+        //
+        // Warning: This url should not be saved as it expires after a few minutes.
         string url = 9;
     }
 
