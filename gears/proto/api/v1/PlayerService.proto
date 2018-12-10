@@ -60,8 +60,11 @@ message ListPlayersFilters {
     // If no items are added to this list then this filter will not be applied.
     repeated .gears.proto.app.GraphicsPackage graphics_packages = 3;
 
-    // Filter players by when they were created.
+    // Filter players by when they were created by the desktop application.
     .gears.proto.server.TimestampRange created_at = 4;
+
+    // Filter players by when they were uploaded to the server.
+    .gears.proto.server.TimestampRange uploaded_at = 12;
 
     // Filter players by when they were last updated.
     .gears.proto.server.TimestampRange updated_at = 5;

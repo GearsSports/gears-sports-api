@@ -48,12 +48,15 @@ message Player {
     // git commit hash from when the player was converted.
     string git_hash = 11;
 
-    // When the player was created.
+    // When the player was created by the desktop application.
     // If this player was converted from a legacy player this will be the
     // time that the player was converted.
     .google.protobuf.Timestamp created_at = 12;
 
     // When the player was last updated.
     .google.protobuf.Timestamp updated_at = 13;
+
+    // When this player was uploaded to the server.
+    .google.protobuf.Timestamp uploaded_at = 14;
 
 }
