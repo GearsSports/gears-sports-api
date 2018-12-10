@@ -58,8 +58,11 @@ message CaptureInfo {
     // was at when this capture was created.
     string git_hash  = 13;
 
-    // When this capture was created.
+    // When this capture was created by the desktop application.
     .google.protobuf.Timestamp created_at = 14;
+
+    // When this capture was uploaded to the server.
+    .google.protobuf.Timestamp uploaded_at = 19;
 
     // When this capture was last updated.
     .google.protobuf.Timestamp updated_at = 15;
