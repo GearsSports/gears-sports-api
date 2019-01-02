@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server.capture";
+option java_outer_classname = "ExportTypeProto";
+option java_multiple_files = true;
 package gears.proto.server.capture;
 
 // Enumerates the types of exports that can be generated for a capture.

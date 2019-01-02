@@ -1,0 +1,16 @@
+# Ignore the directory containing build output.
+build/
+
+# The gradle task copyProtoFilesToJavaProject populates this 
+# directory during the build process.
+src/main/proto/gears/proto/
+
+# The gradle task copySampleData populates this directory
+# during the build process.
+src/test/resources/data/
+
+# Ignore the gradle temp directory
+.gradle/
+
+# Ignore ide files.
+.idea/

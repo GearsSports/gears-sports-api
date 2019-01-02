@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.player";
+option java_outer_classname = "PlayerProto";
+option java_multiple_files = true;
 package gears.proto.player;
 
 import "google/protobuf/timestamp.proto";

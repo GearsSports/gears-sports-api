@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.golf";
+option java_outer_classname = "BodyAnglesProto";
+option java_multiple_files = true;
 package gears.proto.golf;
 
 // ported from ::CBodyAngles

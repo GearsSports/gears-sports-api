@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1.capture";
+option java_outer_classname = "SnapshotServiceProto";
+option java_multiple_files = true;
 package gears.proto.api.v1.capture;
 
 import "gears/proto/server/Filters.proto";
