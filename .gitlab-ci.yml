@@ -25,3 +25,13 @@ test_python:
         - pip install -r requirements.txt
         - python build.py
         - python -m unittest discover -s . --verbose
+
+test_java:
+    image: java:8-jdk
+    stage: test
+    script:
+        - java -version
+        - cd examples/java/public-api
+        - export GRADLE_USER_HOME=`pwd`/.gradle
+        - chmod +x gradlew
+        - ./gradlew test

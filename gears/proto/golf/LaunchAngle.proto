@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.golf";
+option java_outer_classname = "LaunchAngleProto";
+option java_multiple_files = true;
 package gears.proto.golf;
 
 // WARNING: this enum is used in persisted data and should not

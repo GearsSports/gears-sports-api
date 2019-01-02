@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    // ASSUMES GRADLE 2.12 OR HIGHER. Use plugin version 0.7.5 with earlier gradle versions
+    id 'com.google.protobuf' version '0.8.5'
+    // Generate IntelliJ IDEA's .idea & .iml project files
+    id 'idea'
+}
+
+group 'com.gearssports.examples'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+def grpcVersion = '1.17.0' // CURRENT_GRPC_VERSION
+def protobufVersion = '3.5.1'
+def protocVersion = '3.5.1-1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    compile "io.grpc:grpc-protobuf:${grpcVersion}"
+    compile "io.grpc:grpc-stub:${grpcVersion}"
+    compile "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+}
+
+// Configure the protobuf plugin so it will convert our .proto files to native java classes.
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protocVersion}" }
+    //noinspection GroovyAssignabilityCheck
+    plugins { grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" } }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+// Task to copy our proto files from <repo_root>/gears/proto into this example project
+task copyProtoFilesToJavaProject(type: Copy) {
+    from "$rootDir/../../../gears/proto"
+    include "**/*.proto"
+    into "$projectDir/src/main/proto/gears/proto"
+}
+
+// Task to copy the sample data used by our examples.
+task copySampleData(type: Copy) {
+    from "$projectDir/../../data"
+    into "$projectDir/src/test/resources/data"
+    eachFile {
+        if (it.relativePath.getFile(destinationDir).exists()) {
+            it.exclude()
+        }
+    }
+}
+
+gradle.projectsEvaluated {
+    // Make protobuf plugin task that converts .proto files to java classes
+    // depend on our copy task so it will have our .proto files where it expects to.
+    generateProto.dependsOn(copyProtoFilesToJavaProject)
+
+    // Make sure to copy the sample data before we compile the tests as they are included
+    // as resources.
+    compileTestJava.dependsOn(copySampleData)
+}
+
+test {
+    // Configure output for tests
+    testLogging {
+        exceptionFormat = 'full'
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}

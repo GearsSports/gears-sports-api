@@ -2,19 +2,19 @@ C# example
 ----------
 
 Our c# example solution contains 3 projects:
-* [GearsSportsApi](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi/) - Creates a lib containing c# code generated from our .proto files.
-* [GearsSportsApi.Tests](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/) - A unit test project where each test demonstrates some functionality provided by the c# code generated from our .proto files.
-* [BuildProtoFiles](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/BuildProtoFiles/) - Helper project used to work c# code generation from out .proto files into the standard build process.
+* [GearsSportsApi](/examples/csharp/GearsSportsApi/GearsSportsApi/) - Creates a lib containing c# code generated from our .proto files.
+* [GearsSportsApi.Tests](/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/) - A unit test project where each test demonstrates some functionality provided by the c# code generated from our .proto files.
+* [BuildProtoFiles](/examples/csharp/GearsSportsApi/BuildProtoFiles/) - Helper project used to work c# code generation from out .proto files into the standard build process.
 
 (Optional) Setup
 ----------------
-Edit the file [<repo_root>/examples/data/TokenRequest.json](https://github.com/GearsSports/gears-sports-api/tree/master/examples/data/TokenRequest.json) so it has valid api credentials.
+Edit the file [<repo_root>/examples/data/TokenRequest.json](/examples/data/TokenRequest.json) so it has valid api credentials.
 You get valid credentials for both sandbox and production environments by contacting our customer support.
 If you do not complete this step then the server api examples will not work. They are still useful to show how to access our grpc server api however.
 
 Build (Visual Studio)
 ---------------------
-* Load the solution [GearsSportsApi.sln](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.sln)
+* Load the solution [GearsSportsApi.sln](/examples/csharp/GearsSportsApi/GearsSportsApi.sln)
 * Build solution
 
 The first time you build the solution it will fail as it is generating .cs files from our .proto files.
@@ -45,10 +45,10 @@ $ # run the examples/tests
 $ dotnet test
 ```
 
-To view the examples look at the project [GearsSportsApi.Tests.csproj](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/GearsSportsApi.Tests.csproj)
-* [Example of loading a capture from a file.](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/LoadCapture.cs)
-* [Example of loading a player from a file.](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/LoadPlayer.cs)
-* [Grpc server access examples.](https://github.com/GearsSports/gears-sports-api/tree/master/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/ServerApiAccess.cs)
+To view the examples look at the project [GearsSportsApi.Tests.csproj](/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/GearsSportsApi.Tests.csproj)
+* [Example of loading a capture from a file.](/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/LoadCapture.cs)
+* [Example of loading a player from a file.](/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/LoadPlayer.cs)
+* [Grpc server access examples.](/examples/csharp/GearsSportsApi/GearsSportsApi.Tests/ServerApiAccess.cs)
 
 Useful links:
 -------------
