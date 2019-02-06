@@ -1,0 +1,34 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server.capture";
+option java_outer_classname = "CameraVideoProto";
+option java_multiple_files = true;
+package gears.proto.server.capture;
+
+import "google/protobuf/timestamp.proto";
+
+// Information about a video from a camera that is attached to a capture.
+message CameraVideo {
+
+    // Uuid of this camera video.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // Uuid of the capture that the camera video belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 2;
+
+    // Serial number of the camera that this video was created from.
+    int32 camera_serial = 3;
+
+    // When this camera video was created.
+    .google.protobuf.Timestamp created_at = 4;
+
+    // Url to where the camera video can be found.
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
+    string url = 5;
+
+}
