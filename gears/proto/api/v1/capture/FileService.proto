@@ -1,0 +1,211 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1.capture";
+option java_outer_classname = "FileServiceProto";
+option java_multiple_files = true;
+package gears.proto.api.v1.capture;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "gears/proto/server/Filters.proto";
+import "gears/proto/api/error_details.proto";
+import "gears/proto/server/capture/File.proto";
+
+// Rpc service for working with files attached to captures.
+service FileService {
+
+    // Gets a list of files.
+    rpc List(ListFilesRequest) returns (ListFilesResponse) {}
+
+    // Gets a file by id.
+    rpc Get(GetFileRequest) returns (GetFileResponse) {}
+
+    // Creates a new file attached to a capture.
+    rpc Create(CreateFileRequest) returns (CreateFileResponse) {}
+
+    // Updates an existing file.
+    rpc Update(UpdateFileRequest) returns (UpdateFileResponse) {}
+
+    // Deletes an existing file.
+    rpc Delete(DeleteFileRequest) returns (google.protobuf.Empty) {}
+
+}
+
+// Message used to request a list of files.
+message ListFilesRequest {
+
+    // The page of the file result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of files per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of files.
+    ListFilesFilters filters = 3;
+
+}
+
+// Filters that can be used when listing files.
+message ListFilesFilters {
+
+    // Filter files by their mime type.
+    // The comparison is case-sensitive.
+    // If [google.protobuf.StringValue].value has been set then this filter will not be applied.
+    .google.protobuf.StringValue mime_type = 1;
+
+    // Filter files by when they were attached to their capture.
+    .gears.proto.server.TimestampRange created_at = 2;
+
+    // Filter files by when they were last updated.
+    .gears.proto.server.TimestampRange updated_at = 3;
+
+    // Get only files that are in the capture ids provided.
+    //
+    // Each capture id must be a valid uuid or it will be discarded.
+    //
+    // If no capture ids are provided no filtering by capture id will occur.
+    repeated string capture_ids = 4;
+
+    // Get only files that are in the player ids provided.
+    //
+    // Each player id must be a valid uuid or it will be discarded.
+    //
+    // If no player ids are provided no filtering by player id will occur.
+    repeated string player_ids = 5;
+
+    // Get only files that are in the installation ids provided.
+    //
+    // If no installation ids are provided no filtering by installation id will occur.
+    repeated int32 installation_ids = 6;
+
+    // Get only files that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering by organization id will occur.
+    repeated int32 organization_ids = 7;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.FileService].List rpc call.
+message ListFilesResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListFilesRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListFilesRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of files accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of files.
+    //
+    // This will only be present if [gears.proto.api.v1.capture.ListFilesRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.capture.ListFilesRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListFilesFilters filters = 4;
+
+    // The files that were retrieved for the provided:
+    //   - [gears.proto.api.v1.capture.ListFilesResponse].page
+    //   - [gears.proto.api.v1.capture.ListFilesResponse].filters
+    //
+    // The number of files returned will always be less than or
+    // equal to [gears.proto.api.v1.capture.ListFilesResponse].per_page.
+    repeated .gears.proto.server.capture.File files = 5;
+
+}
+
+// Message used get a single file by its primary id.
+message GetFileRequest {
+
+    // Id of the file you want to get.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.FileService].Get rpc call.
+message GetFileResponse {
+
+    // The file requested.
+    .gears.proto.server.capture.File file = 1;
+
+}
+
+// Message used to attach a file to a capture.
+message CreateFileRequest {
+
+    // File to be created.
+    .gears.proto.server.capture.File file = 1;
+
+    // Content of the file to be created.
+    bytes content = 2;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.FileService].Create rpc call.
+message CreateFileResponse {
+
+    // Validation errors that occured during the creation attempt.
+    .gears.proto.api.BadRequest error = 1;
+
+    // The file as it not exists on the server.
+    .gears.proto.server.capture.File file = 2;
+
+}
+
+// Message used to update a file.
+message UpdateFileRequest {
+
+    // Id of the file you want to update.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // The new name that will be set on the file.
+    //
+    // The name of the file will only be updated if [google.protobuf.StringValue].value has been set.
+    .google.protobuf.StringValue name = 2;
+
+    // The new description that will be set on the file.
+    //
+    // The description of the file will only be updated if [google.protobuf.StringValue].value has been set.
+    .google.protobuf.StringValue description = 3;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.FileService].Update rpc call.
+message UpdateFileResponse {
+
+    // Validation errors that occured during the update attempt.
+    .gears.proto.api.BadRequest error = 1;
+
+    // The file as it not exists on the server.
+    .gears.proto.server.capture.File file = 2;
+
+}
+
+// Message used to delete a file.
+message DeleteFileRequest {
+
+    // Id of the file you want to delete.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+}
