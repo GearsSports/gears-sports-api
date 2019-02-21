@@ -51,11 +51,3 @@ message File {
     string url = 8;
 
 }
-
-// Wrapper that holds multiple [gears.proto.server.capture.File] instances.
-message FileList {
-
-    // The files in this list
-    repeated .gears.proto.server.capture.File files = 1;
-
-}
