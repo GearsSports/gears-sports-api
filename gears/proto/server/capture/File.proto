@@ -1,0 +1,53 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server.capture";
+option java_outer_classname = "FileProto";
+option java_multiple_files = true;
+package gears.proto.server.capture;
+
+import "google/protobuf/timestamp.proto";
+
+// Information about a file that has been attached to a capture.
+message File {
+
+    // Uuid of this file.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // Uuid of the capture that this file belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 2;
+
+    // The name of this file. (max 128 characters)
+    //
+    // This field can be updated after creation.
+    string name = 3;
+
+    // The mime type of this file.
+    //
+    // This will be empty until a file has been sent to our servers as we compute this
+    // field by examining the content of the file.
+    //
+    // This field will also be empty if our servers were unable to identify a mime type
+    // from this files content.
+    string mime_type = 4;
+
+    // When this file was attached to its capture.
+    .google.protobuf.Timestamp created_at = 5;
+
+    // The last time this file was updated.
+    .google.protobuf.Timestamp updated_at = 6;
+
+    // Description of this file.
+    //
+    // This field can be updated after creation.
+    string description = 7;
+
+    // Url to where this file can be found.
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
+    string url = 8;
+
+}

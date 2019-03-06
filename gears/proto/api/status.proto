@@ -1,6 +1,9 @@
 ﻿syntax = "proto3";
-package gears.proto.api;
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api";
+option java_outer_classname = "StatusProto";
+option java_multiple_files = true;
+package gears.proto.api;
 
 // This proto file is modeled after the one found in the GoogleApis repo at
 // https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto

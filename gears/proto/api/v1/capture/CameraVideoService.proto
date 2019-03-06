@@ -1,0 +1,132 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1.capture";
+option java_outer_classname = "CameraVideoServiceProto";
+option java_multiple_files = true;
+package gears.proto.api.v1.capture;
+
+import "gears/proto/server/Filters.proto";
+import "gears/proto/server/capture/CameraVideo.proto";
+
+// Rpc service for working with capture camera videos.
+service CameraVideoService {
+
+    // Gets a list of camera videos.
+    rpc List(ListCameraVideosRequest) returns (ListCameraVideosResponse) {}
+
+    // Gets a camera video by its id.
+    rpc Get(GetCameraVideoRequest) returns (GetCameraVideoResponse) {}
+}
+
+// Message used to request a list of camera videos.
+message ListCameraVideosRequest {
+
+    // The page of the camera video result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of camera videos per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of camera videos.
+    ListCameraVideosFilters filters = 3;
+
+}
+
+// Filters that can be used when listing camera videos.
+message ListCameraVideosFilters {
+
+    // Filter camera videos by when they were created.
+    .gears.proto.server.TimestampRange created_at = 1;
+
+    // Get only camera videos that are from the provided cameras.
+    //
+    // If no camera serials are provided no filtering by camera serial will occur.
+    repeated int32 camera_serials = 2;
+
+    // Get only camera videos that are in the capture ids provided.
+    //
+    // Each capture id must be a valid uuid or it will be discarded.
+    //
+    // If no capture ids are provided no filtering by capture id will occur.
+    repeated string capture_ids = 3;
+
+    // Get only camera videos that are in the player ids provided.
+    //
+    // Each player id must be a valid uuid or it will be discarded.
+    //
+    // If no player ids are provided no filtering by player id will occur.
+    repeated string player_ids = 4;
+
+    // Get only camera videos that are in the installation ids provided.
+    //
+    // If no installation ids are provided no filtering by installation id will occur.
+    repeated int32 installation_ids = 5;
+
+    // Get only camera videos that are in the organization ids provided.
+    //
+    // If no organization ids are provided no filtering by organization id will occur.
+    repeated int32 organization_ids = 6;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.CameraVideoService].List rpc call
+message ListCameraVideosResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListCameraVideosRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.capture.ListCameraVideosRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of camera videos accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of camera videos.
+    //
+    // This will only be present if [gears.proto.api.v1.capture.ListCameraVideosRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.capture.ListCameraVideosRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListCameraVideosFilters filters = 4;
+
+    // The camera videos that were retrieved for the provided:
+    //   - [gears.proto.api.v1.capture.ListCameraVideosResponse].page
+    //   - [gears.proto.api.v1.capture.ListCameraVideosResponse].filters
+    //
+    // The number of camera videos returned will always be less than or
+    // equal to [gears.proto.api.v1.capture.ListCameraVideosResponse].per_page
+    repeated .gears.proto.server.capture.CameraVideo camera_videos = 5;
+
+}
+
+// Message used get a single camera video by its primary id.
+message GetCameraVideoRequest {
+
+    // Id of the camera video you want to get.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.CameraVideoService].Get rpc call.
+message GetCameraVideoResponse {
+
+    // The camera video requested
+    .gears.proto.server.capture.CameraVideo camera_video = 1;
+
+}

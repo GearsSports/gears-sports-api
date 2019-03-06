@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server";
+option java_outer_classname = "CaptureInfoProto";
+option java_multiple_files = true;
 package gears.proto.server;
 
 import "google/protobuf/timestamp.proto";
@@ -58,8 +61,11 @@ message CaptureInfo {
     // was at when this capture was created.
     string git_hash  = 13;
 
-    // When this capture was created.
+    // When this capture was created by the desktop application.
     .google.protobuf.Timestamp created_at = 14;
+
+    // When this capture was uploaded to the server.
+    .google.protobuf.Timestamp uploaded_at = 19;
 
     // When this capture was last updated.
     .google.protobuf.Timestamp updated_at = 15;
@@ -68,8 +74,11 @@ message CaptureInfo {
     .google.protobuf.Timestamp processed_at = 16;
 
     // Url that can be used to download the full capture object.
+    //
     // The file that this url points to will be a serialized instance
     // of [gears.proto.capture.Capture]
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
     string url = 17;
 
 }

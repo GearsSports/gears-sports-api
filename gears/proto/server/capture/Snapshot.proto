@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server.capture";
+option java_outer_classname = "SnapshotProto";
+option java_multiple_files = true;
 package gears.proto.server.capture;
 
 import "google/protobuf/timestamp.proto";
@@ -25,6 +28,8 @@ message Snapshot {
         bytes file = 4;
 
         // Url to where the snapshot's image can be found.
+        //
+        // Warning: This url should not be saved as it expires after a few minutes.
         string url = 5;
     }
 

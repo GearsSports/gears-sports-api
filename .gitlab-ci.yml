@@ -1,0 +1,37 @@
+stages:
+    - test
+
+before_script:
+    - echo "{\"clientId\":\"$GRPC_CLIENT_ID\",\"clientSecret\":\"$GRPC_CLIENT_SECRET\"}" > examples/data/TokenRequest.json
+    - cat examples/data/TokenRequest.json
+
+test_csharp:
+    image: microsoft/dotnet:latest
+    stage: test
+    script:
+        - cd examples/csharp/GearsSportsApi
+        - dotnet restore
+        - dotnet build GearsSportsApi/GearsSportsApi.csproj
+        - cd GearsSportsApi.Tests
+        - dotnet build GearsSportsApi.Tests.csproj
+        - dotnet test
+
+test_python:
+    image: python:3.6
+    stage: test
+    script:
+        - python -V
+        - cd examples/python/gears_sports_api
+        - pip install -r requirements.txt
+        - python build.py
+        - python -m unittest discover -s . --verbose
+
+test_java:
+    image: java:8-jdk
+    stage: test
+    script:
+        - java -version
+        - cd examples/java/public-api
+        - export GRADLE_USER_HOME=`pwd`/.gradle
+        - chmod +x gradlew
+        - ./gradlew test

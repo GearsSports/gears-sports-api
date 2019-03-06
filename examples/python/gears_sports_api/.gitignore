@@ -1,0 +1,12 @@
+## Ignore python temporary files and build results.
+__pycache__/
+*.pyc
+
+# python virtual environment.
+venv/
+
+# generated python code from .proto files.
+gears/
+
+# PyCharm ide files
+.idea/

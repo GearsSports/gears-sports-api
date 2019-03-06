@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1";
+option java_outer_classname = "CaptureServiceProto";
+option java_multiple_files = true;
 package gears.proto.api.v1;
 
 import "gears/proto/golf/Club.proto";
@@ -92,8 +95,11 @@ message ListCapturesFilters {
     // If this field is not set then the filter will not be applied.
     .google.protobuf.BoolValue processing_complete = 4;
 
-    // Filter captures by when they were created.
+    // Filter captures by when they were created by the desktop application.
     .gears.proto.server.TimestampRange created_at = 5;
+
+    // Filter captures by when they were uploaded to the server.
+    .gears.proto.server.TimestampRange uploaded_at = 11;
 
     // Filter captures by when they were last updated.
     .gears.proto.server.TimestampRange updated_at = 6;

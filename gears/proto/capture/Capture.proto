@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.capture";
+option java_outer_classname = "CaptureProto";
+option java_multiple_files = true;
 package gears.proto.capture;
 
 import "gears/proto/actor/Actor.proto";
@@ -10,6 +13,7 @@ import "gears/proto/capture/Frame.proto";
 import "gears/proto/manual/Capture.proto";
 import "gears/proto/capture/CaptureType.proto";
 import "gears/proto/capture/CaptureSubType.proto";
+import "gears/proto/server/capture/CameraVideo.proto";
 
 // Message that holds all data needed to replay a capture.
 message Capture {
@@ -56,4 +60,17 @@ message Capture {
 
     // The frame data for this capture.
     repeated Frame frames = 15;
+
+    // Videos created from 2d cameras that were recording during the capture.
+    //
+    // Note: [gears.proto.server.capture.CameraVideo].url holds the absolute path to the video's file
+    // and not a url for all instances in this list.  This means that if you are accessing a
+    // capture object on a system other that the one it was recorded on the path will not be valid.
+    //
+    // To access the videos of a capture from a system other than the one it was recorded on
+    // see the grpc service [gears.proto.api.v1.capture.CameraVideoService].
+    // All [gears.proto.server.capture.CameraVideo] instances returned by its methods
+    // will contain a valid url.
+    repeated .gears.proto.server.capture.CameraVideo camera_videos = 16;
+
 }

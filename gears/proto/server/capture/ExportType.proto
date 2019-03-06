@@ -1,5 +1,8 @@
 syntax = "proto3";
 option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server.capture";
+option java_outer_classname = "ExportTypeProto";
+option java_multiple_files = true;
 package gears.proto.server.capture;
 
 // Enumerates the types of exports that can be generated for a capture.
@@ -13,32 +16,50 @@ enum ExportType {
     EXPORT_TYPE_UNKNOWN = 0;
 
     // A video of a capture from the front perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_FRONT = 1;
 
     // A video of a capture from the left perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_LEFT = 2;
 
     // A video of a capture from the right perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_RIGHT = 3;
 
     // A video of a capture from the back perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_BACK = 4;
 
     // A video of a capture from the top perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_TOP = 5;
 
     // A video of a capture from the bottom perspective.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_BOTTOM = 6;
 
     // A video of a capture from the user perspective.
     //
     // This is the default perspective seen in the gears desktop application.
+    //
+    // Export will contain a .mp4 video.
     EXPORT_TYPE_VIDEO_USER = 7;
 
     // Exports c3d data for a capture.
+    //
+    // Export will contain a .c3d file with 3d point data.
     EXPORT_TYPE_C3D = 8;
 
     // Exports the csv summary for a capture.
+    //
+    // Export will contain the summary csv from the gears desktop application.
     EXPORT_TYPE_CSV_SUMMARY = 9;
 
     // Minimal data needed to display graphs extracted from a capture.
