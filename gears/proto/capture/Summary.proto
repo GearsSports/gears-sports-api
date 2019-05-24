@@ -38,6 +38,6 @@ message Summary {
         gears.proto.golf.Summary golf = 17;
 
         // Capture specific summary data for a baseball swing capture.
-        gears.proto.baseball.swing.Summary baseball = 18;
+        gears.proto.baseball.swing.Summary baseball_swing = 18;
     }
 }

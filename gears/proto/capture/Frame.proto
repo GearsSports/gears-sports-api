@@ -27,7 +27,7 @@ message Frame {
         gears.proto.golf.Frame golf = 3;
 
         // Frame data specific to a baseball swing capture.
-        gears.proto.baseball.swing.Frame baseball = 4;
+        gears.proto.baseball.swing.Frame baseball_swing = 4;
     }
 
     // All markers observed for this frame.

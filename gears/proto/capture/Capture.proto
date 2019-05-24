@@ -56,7 +56,7 @@ message Capture {
         gears.proto.golf.Capture golf = 9;
 
         // Data specific to a baseball swing capture that exists once per capture.
-        gears.proto.baseball.swing.Capture baseball = 11;
+        gears.proto.baseball.swing.Capture baseball_swing = 11;
     }
 
     // The actors that exist in this capture.
