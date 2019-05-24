@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "CaptureProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+import "gears/proto/baseball/bat/Definition.proto";
+
+// Hold baseball swing specific data that exist once per capture.
+// @TODO add data members
+message Capture {
+
+    // The baseball bat used for this capture.
+    .gears.proto.baseball.bat.Definition bat = 1;
+
+}

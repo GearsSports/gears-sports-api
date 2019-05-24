@@ -228,4 +228,61 @@ enum CaptureSubType {
     //   - Ribcage lift, sway, thrust
     CAPTURE_SUB_TYPE_FRONT_PLANK_HOLD = 18;
 
+    // Represents a baseball swing capture with a bat of an unknown material.
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_UNKNOWN
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_UNKNOWN = 19;
+
+    // Represents a baseball swing capture with a bat of a material that
+    // not covered by one of the other materials.
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_OTHER
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_OTHER = 20;
+
+    // Represents a baseball swing capture with a bat made of some alloy.
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_ALLOY
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_ALLOY = 21;
+
+    // Represents a baseball swing capture with a bat made from some composite material(s).
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_COMPOSITE
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_COMPOSITE = 22;
+
+    // Represents a baseball swing capture with a bat made from wood.
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_WOOD
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_WOOD = 23;
+
+    // Represents a baseball swing capture with a bat made from some hybrid material(s).
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_HYBRID
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_HYBRID = 24;
+
+    // Represents a baseball swing capture with a bat made from plastic.
+    //
+    // This subtype indicates a baseball swing with a bat material of
+    // [gears.proto.baseball.bat.Material].MATERIAL_PLASTIC
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
+    CAPTURE_SUB_TYPE_BASEBALL_SWING_PLASTIC = 25;
+
 }

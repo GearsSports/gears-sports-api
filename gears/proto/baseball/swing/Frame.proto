@@ -1,0 +1,12 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "FrameProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+// Hold baseball swing specific data that exist once per frame.
+// @TODO add data members
+message Frame {
+
+}

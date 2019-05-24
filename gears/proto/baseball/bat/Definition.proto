@@ -1,0 +1,70 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.bat";
+option java_outer_classname = "DefinitionProto";
+option java_multiple_files = true;
+package gears.proto.baseball.bat;
+
+import "gears/proto/Vector3.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "gears/proto/baseball/bat/Material.proto";
+
+// Holds data about a baseball bat that has been calibrated.
+message Definition {
+
+    // Id of the baseball bat.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // The install id of the installation that created the baseball bat.
+    int32 install_id = 2;
+
+    // The Uuid of the capture that this baseball bat has been attached to.
+    //
+    // If this baseball bat is not attached to a capture then this field will be empty.
+    //
+    // If not empty this value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 3;
+
+    // The git commit hash when the baseball bat was created.
+    string git_hash = 4;
+
+    // When the baseball bat was created.
+    .google.protobuf.Timestamp created_at = 5;
+
+    // When the baseball bat was last updated.
+    .google.protobuf.Timestamp updated_at = 6;
+
+    // The length of the baseball bat in meters.
+    //
+    // This is set during the calibration process by finding the distance between
+    // the two markers that are farthest apart.
+    float calibrated_length = 7;
+
+    // The marker postions from the calibration process.
+    repeated .gears.proto.Vector3 markers = 8;
+
+    // The name of the baseball bat set by the user during the calibration process.
+    string name = 9;
+
+    // The company that made the baseball bat.
+    string brand = 10;
+
+    // The material this bat is made from.
+    .gears.proto.baseball.bat.Material material = 11;
+
+    // The length of the bat in inches as set by the user during the calibration process.
+    // This field is will be 'null' if not set by the user.
+    .google.protobuf.FloatValue display_length = 12;
+
+    // The weight of the bat in ounces as set by the user during the calibration process.
+    // This field is will be 'null' if not set by the user.
+    .google.protobuf.FloatValue display_weight = 13;
+
+    // The diameter of the bat's barrel in inches as set by the user during the calibration process.
+    // This field is will be 'null' if not set by the user.
+    .google.protobuf.FloatValue display_barel_diameter = 14;
+
+}
