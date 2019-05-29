@@ -65,6 +65,6 @@ message Definition {
 
     // The diameter of the bat's barrel in inches as set by the user during the calibration process.
     // This field is will be 'null' if not set by the user.
-    .google.protobuf.FloatValue display_barel_diameter = 14;
+    .google.protobuf.FloatValue display_barrel_diameter = 14;
 
 }
