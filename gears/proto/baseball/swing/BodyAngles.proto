@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "BodyAnglesProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+// Holds body metrics for a baseball swing capture.
+// @TODO add data members
+message BodyAngles {
+
+    // If we have valid tracking for the players skeleton for this frame.
+    bool tracked = 1;
+
+}

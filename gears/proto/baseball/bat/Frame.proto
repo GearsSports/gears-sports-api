@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.bat";
+option java_outer_classname = "FrameProto";
+option java_multiple_files = true;
+package gears.proto.baseball.bat;
+
+import "gears/proto/baseball/bat/Solution.proto";
+
+// Holds per-frame bat metrics for a baseball swing capture.
+message Frame {
+
+    // Info about the grip rigid body for this frame.
+    .gears.proto.baseball.bat.Solution grip = 1;
+
+    // Info about the barrel rigid body for this frame.
+    .gears.proto.baseball.bat.Solution barrel = 2;
+
+}
