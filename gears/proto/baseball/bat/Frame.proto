@@ -5,6 +5,7 @@ option java_outer_classname = "FrameProto";
 option java_multiple_files = true;
 package gears.proto.baseball.bat;
 
+import "gears/proto/Vector3.proto";
 import "gears/proto/baseball/bat/Solution.proto";
 
 // Holds per-frame bat metrics for a baseball swing capture.
@@ -15,5 +16,8 @@ message Frame {
 
     // Info about the barrel rigid body for this frame.
     .gears.proto.baseball.bat.Solution barrel = 2;
+
+    .gears.proto.Vector3 center_line_0 = 3;
+    .gears.proto.Vector3 center_line_1 = 4;
 
 }

@@ -50,6 +50,15 @@ message Definition {
     // the center line of the bat.
     float calibrated_barrel_diameter = 8;
 
+    // The calibration marker on the end of the baseball bat.
+    .gears.proto.Vector3 grip_end = 9;
+
+    // The center of the grip jig.
+    .gears.proto.Vector3 grip_center = 10;
+
+    // The center of the barrel jig.
+    .gears.proto.Vector3 barrel_center = 11;
+
     // Internally the Gears desktop application stores the grip/barrel markers in fixed size arrays,
     // but since protobuf does not have a fixed size list we have decided to store them as individual
     // members of this data structure.
@@ -57,52 +66,52 @@ message Definition {
     // The grip marker at index 0.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 grip_marker_0 = 9;
+    .gears.proto.Vector3 grip_marker_0 = 12;
 
     // The grip marker at index 1.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 grip_marker_1 = 10;
+    .gears.proto.Vector3 grip_marker_1 = 13;
 
     // The grip marker at index 2.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 grip_marker_2 = 11;
+    .gears.proto.Vector3 grip_marker_2 = 14;
 
     // The barrel marker at index 0.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 barrel_marker_0 = 12;
+    .gears.proto.Vector3 barrel_marker_0 = 15;
 
     // The barrel marker at index 1.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 barrel_marker_1 = 13;
+    .gears.proto.Vector3 barrel_marker_1 = 16;
 
     // The barrel marker at index 2.
     //
     // This is set during the calibration process and a baseball bat definition is not valid without it.
-    .gears.proto.Vector3 barrel_marker_2 = 14;
+    .gears.proto.Vector3 barrel_marker_2 = 17;
 
     // The name of the baseball bat set by the user during the calibration process.
-    string name = 15;
+    string name = 18;
 
     // The company that made the baseball bat.
-    string brand = 16;
+    string brand = 19;
 
     // The material this bat is made from.
-    .gears.proto.baseball.bat.Material material = 17;
+    .gears.proto.baseball.bat.Material material = 20;
 
     // The length of the bat in inches as set by the user during the calibration process.
     // This field is will be 'null' if not set by the user.
-    .google.protobuf.FloatValue display_length = 18;
+    .google.protobuf.FloatValue display_length = 21;
 
     // The weight of the bat in ounces as set by the user during the calibration process.
     // This field is will be 'null' if not set by the user.
-    .google.protobuf.FloatValue display_weight = 19;
+    .google.protobuf.FloatValue display_weight = 22;
 
     // The diameter of the bat's barrel in inches as set by the user during the calibration process.
     // This field is will be 'null' if not set by the user.
-    .google.protobuf.FloatValue display_barrel_diameter = 20;
+    .google.protobuf.FloatValue display_barrel_diameter = 23;
 
 }

@@ -5,6 +5,8 @@ option java_outer_classname = "CaptureProto";
 option java_multiple_files = true;
 package gears.proto.baseball.swing;
 
+import "gears/proto/Vector3.proto";
+import "gears/proto/baseball/swing/Frame.proto";
 import "gears/proto/baseball/bat/Definition.proto";
 
 // Hold baseball swing specific data that exist once per capture.
@@ -13,5 +15,14 @@ message Capture {
 
     // The baseball bat used for this capture.
     .gears.proto.baseball.bat.Definition bat = 1;
+
+    // The position of the baseball.
+    .gears.proto.Vector3 ball_position = 2;
+
+    // The impact frame.  The data in this frame is interpolated.
+    .gears.proto.baseball.swing.Frame impact_frame = 3;
+
+    // Time in seconds from the start of the capture that the impact frame exists.
+    float impact_time = 4;
 
 }
