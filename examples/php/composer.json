@@ -1,0 +1,15 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gears\\": "Compiled/Gears/",
+            "GPBMetadata\\": "Compiled/GPBMetadata/"
+        }
+    },
+    "require": {
+        "google/protobuf": "^3.9",
+        "grpc/grpc": "^1.22"
+    }
+}
