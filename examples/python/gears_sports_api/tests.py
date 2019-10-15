@@ -2,11 +2,13 @@ import os
 import grpc
 import uuid
 import unittest
+import urllib.request
 
 from google.protobuf.json_format import Parse
 from gears.proto.capture import CaptureType_pb2
 from gears.proto.player.Player_pb2 import Player
 from gears.proto.capture.Capture_pb2 import Capture
+from gears.proto.capture.GraphFrame_pb2 import GraphFrameCollection
 from gears.proto.player import Gender_pb2, Handed_pb2
 from gears.proto.server.CaptureInfo_pb2 import CaptureInfo
 from gears.proto.api.v1.AuthService_pb2_grpc import AuthServiceStub
@@ -67,6 +69,16 @@ class TestLoading(unittest.TestCase):
         self.assertEqual(Handed_pb2.RIGHT_HANDED, player.handedness)
         self.assertIsNotNone(player.created_at)
         self.assertIsNotNone(player.updated_at)
+
+    def test_load_graph_data(self):
+        # This example shows how to load graph data from a file
+        graphs_file = os.path.join(test_data_folder, 'Rickie Fowler', '2013-10-07', '48208_10.graphs')
+        self.assertTrue(graphs_file)
+        graph_frame_collection = GraphFrameCollection()
+        with open(graphs_file, 'rb') as f:
+            graph_frame_collection.ParseFromString(f.read())
+
+        self.assertGreaterEqual(len(graph_frame_collection.frames), 1)
 
 
 class TestServerApiAccess(unittest.TestCase):
@@ -141,6 +153,11 @@ class TestServerApiAccess(unittest.TestCase):
             # If you want the full capture object you can download it using the url in capture_info.url.
             # The url in capture_info.url should not be stored as it will expire a few minutes after it is generated.
             self.assertIsNotNone(capture_info.url)
+
+            capture = Capture()
+            f = urllib.request.urlopen(capture_info.url)
+            capture.ParseFromString(f.read())
+            self.assertIsNotNone(capture.id)
 
 
 if __name__ == '__main__':

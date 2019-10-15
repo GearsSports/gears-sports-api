@@ -10,6 +10,7 @@ use Gears\Proto\Api\V1\PlayerServiceClient;
 use Gears\Proto\Api\V1\CaptureServiceClient;
 use Gears\Proto\Api\V1\ListPlayersRequest;
 use Gears\Proto\Api\V1\ListCapturesRequest;
+use Gears\Proto\Capture\Capture;
 use Gears\Proto\Player\Player;
 use Gears\Proto\Server\CaptureInfo;
 
@@ -129,7 +130,19 @@ class ServerApiAccessTest extends TestCase {
         foreach($captures as $capture) {
             $this->assertInstanceOf(CaptureInfo::class,$capture);
             $this->assertNotNull($capture->getId());
+
+            // A CaptureInfo instance only contains basic info about a capture.
+            // If you want the full capture object you can download it using the url returned by captureInfo.getUrl().
+            // The url returned by captureInfo.getUrl() should not be stored as it will expire a few minutes after it is generated.
+            // This file is usually large and can take some time to deserialize - so only load it as needed
+            $url = $capture->getUrl();
+            $this->assertNotNull($url);
+
+            $capture = new Capture();
+            $capture->mergeFromString(file_get_contents($url));
+            $this->assertNotNull($capture->getId());
         }
+
     }
 
     private function getServiceOptions($token)

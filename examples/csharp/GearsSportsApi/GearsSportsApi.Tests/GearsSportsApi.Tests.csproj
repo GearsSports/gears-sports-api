@@ -34,6 +34,9 @@
     <None Include="..\..\..\data\Rickie Fowler\2013-10-07\31 Capture.gpcap" Link="ExampleCapture.gpcap">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\..\..\data\Rickie Fowler\2013-10-07\48208_10.graphs" Link="GraphCollection.graphs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\..\data\Rickie Fowler\PlayerInfo.bin" Link="PlayerInfo.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using Gears.Proto.Api.V1;
 using Gears.Proto.Server;
+using Gears.Proto.Capture;
 using Grpc.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -121,6 +123,21 @@ namespace GearsSportsApi.Tests
                 // If you want the full capture object you can download it using the url in captureInfo.Url.
                 // The url in captureInfo.Url should not be stored as it will expire a few minutes after it is generated.
                 Assert.IsFalse(string.IsNullOrWhiteSpace(captureInfo.Url));
+
+                try
+				{
+					HttpWebRequest aRequest = (HttpWebRequest)WebRequest.Create(captureInfo.Url);
+					HttpWebResponse aResponse = (HttpWebResponse)aRequest.GetResponse();
+
+					Capture capture;
+					capture = Capture.Parser.ParseFrom(aResponse.GetResponseStream());
+					Assert.IsNotNull(capture);
+					aResponse.Dispose();
+				}
+				catch(Exception)
+				{
+
+				}
             }
         }
 
