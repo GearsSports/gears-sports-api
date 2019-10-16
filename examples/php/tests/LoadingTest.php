@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 use Gears\Proto\Capture\Capture;
 use Gears\Proto\Capture\CaptureType;
+use Gears\Proto\Capture\GraphFrameCollection;
 use Gears\Proto\Player\Player;
 use Gears\Proto\Player\Gender;
 use Gears\Proto\Player\Handed;
@@ -47,5 +48,17 @@ class LoadingTest extends TestCase {
         $this->assertEquals(Handed::RIGHT_HANDED,$player->getHandedness());
         $this->assertNotNull($player->getCreatedAt());
         $this->assertNotNull($player->getUpdatedAt());
+    }
+
+    public function testLoadGraphData()
+    {
+        // This example shows how to load the graph data from a file
+        $file = $this->testFolder . "Rickie Fowler/2013-10-07/48208_10.graphs";
+        $this->assertTrue(file_exists($file));
+
+        $graphFrameCollection = new GraphFrameCollection();
+        $graphFrameCollection->mergeFromString(file_get_contents($file));
+
+        $this->assertGreaterThanOrEqual(1,$graphFrameCollection->getFrames()->count());
     }
 }
