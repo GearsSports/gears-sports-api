@@ -125,19 +125,19 @@ namespace GearsSportsApi.Tests
                 Assert.IsFalse(string.IsNullOrWhiteSpace(captureInfo.Url));
 
                 try
-				{
-					HttpWebRequest aRequest = (HttpWebRequest)WebRequest.Create(captureInfo.Url);
-					HttpWebResponse aResponse = (HttpWebResponse)aRequest.GetResponse();
+                {
+                    HttpWebRequest aRequest = (HttpWebRequest)WebRequest.Create(captureInfo.Url);
+                    HttpWebResponse aResponse = (HttpWebResponse)aRequest.GetResponse();
 
-					Capture capture;
-					capture = Capture.Parser.ParseFrom(aResponse.GetResponseStream());
-					Assert.IsNotNull(capture);
-					aResponse.Dispose();
-				}
-				catch(Exception)
-				{
-
-				}
+                    Capture capture;
+                    capture = Capture.Parser.ParseFrom(aResponse.GetResponseStream());
+                    Assert.IsNotNull(capture);
+                    aResponse.Dispose();
+                }
+                catch(Exception)
+                {
+                    //Error handling
+                }
             }
         }
 

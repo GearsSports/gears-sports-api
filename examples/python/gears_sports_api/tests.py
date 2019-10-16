@@ -158,6 +158,7 @@ class TestServerApiAccess(unittest.TestCase):
             f = urllib.request.urlopen(capture_info.url)
             capture.ParseFromString(f.read())
             self.assertIsNotNone(capture.id)
+            f.close()
 
 
 if __name__ == '__main__':
