@@ -23,3 +23,7 @@ message Matrix {
     // The values in the matrix.
     repeated float values = 1;
 }
+
+message Matrixd {
+    repeated double values = 1;
+}
