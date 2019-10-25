@@ -35,3 +35,26 @@ test_java:
         - export GRADLE_USER_HOME=`pwd`/.gradle
         - chmod +x gradlew
         - ./gradlew test
+
+test_php:
+    image: git.modernizedmedia.com:5001/gears/web-locker-base:master
+    stage: test
+    script:
+        # Need to download the protoc compiler
+        - php -v
+        - apk add git
+        - apk add composer
+        - apk add make
+        - apk add autoconf
+        - apk add automake
+        - apk add libc-dev
+        - apk add g++
+        - git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
+        - cd grpc
+        - git submodule update --init
+        - make grpc_php_plugin
+        - mv bins/opt/grpc_php_plugin ../examples/php/bins/
+        - cd ../examples/php
+        - composer install
+        - php proto-build.php
+        - vendor/bin/phpunit tests

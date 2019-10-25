@@ -1,3 +1,4 @@
 vendor/*
 bins/*
-Compiled/*
+Compiled/Gears/*
+Compiled/GPBMetadata/*
