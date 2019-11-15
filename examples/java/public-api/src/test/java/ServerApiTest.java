@@ -1,6 +1,8 @@
 import com.gearssports.protobuf.api.v1.*;
 import com.gearssports.protobuf.player.Player;
+import com.gearssports.protobuf.capture.Capture;
 import com.gearssports.protobuf.server.CaptureInfo;
+import com.gearssports.protobuf.capture.GraphFrameCollection;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 import io.grpc.ManagedChannel;
@@ -14,6 +16,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.net.ssl.SSLException;
+import javax.net.ssl.HttpsURLConnection;
+import java.net.URL;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Scanner;
@@ -205,6 +209,27 @@ public class ServerApiTest {
             // If you want the full capture object you can download it using the url returned by captureInfo.getUrl().
             // The url returned by captureInfo.getUrl() should not be stored as it will expire a few minutes after it is generated.
             assertNotNull(captureInfo.getUrl());
+
+            //Load the full capture object from the captureInfo url
+            try {
+                URL url = new URL(captureInfo.getUrl());
+                HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Content-Type", "application/x-protobuf");
+                conn.connect();
+
+                InputStream is = conn.getInputStream();
+                Capture capture = Capture.parseFrom(is);
+
+                conn.disconnect();
+
+                assertNotNull(capture.getId());
+            }
+            catch(Exception ex)
+            {
+                assertTrue(false);
+            }
+
         }
     }
 }

@@ -90,42 +90,55 @@ message BodyAngles {
     float torso_lateral_tilt = 27;
 
     // was fXFactor
+    // in radians
     float x_factor = 28;
 
     // was fHipSway
+    // in meters
     float hip_sway = 29;
 
     // was fTorsoSway
+    // in meters
     float torso_sway = 30;
 
     // was fHipThrust
+    // in meters
     float hip_thrust = 31;
 
     // was fTorsoThrust
+    // in meters
     float torso_thrust = 32;
 
     // was fHipLift
+    // in meters
     float hip_lift = 33;
 
     // was fTorsoLift
+    // in meters
     float torso_lift = 34;
 
     // was fHipTurn
+    // in meters
     float hip_turn = 35;
 
     // was fTorsoTurn
+    // in radians
     float torso_turn = 36;
 
     // was fHipBend
+    // in radians
     float hip_bend = 37;
 
     // was fTorsoBend
+    // in radians
     float torso_bend = 38;
 
     // was fHipSideBend
+    // in radians
     float hip_side_bend = 39;
 
     // was fTorsoSideBend
+    // in radians
     float torso_side_bend = 40;
 
     // was fLeadShoulderAdduction
