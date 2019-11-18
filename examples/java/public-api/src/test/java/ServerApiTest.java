@@ -1,8 +1,7 @@
 import com.gearssports.protobuf.api.v1.*;
-import com.gearssports.protobuf.player.Player;
 import com.gearssports.protobuf.capture.Capture;
+import com.gearssports.protobuf.player.Player;
 import com.gearssports.protobuf.server.CaptureInfo;
-import com.gearssports.protobuf.capture.GraphFrameCollection;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.JsonFormat;
 import io.grpc.ManagedChannel;
@@ -16,9 +15,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.net.ssl.SSLException;
-import javax.net.ssl.HttpsURLConnection;
-import java.net.URL;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.UUID;
@@ -211,25 +211,17 @@ public class ServerApiTest {
             assertNotNull(captureInfo.getUrl());
 
             //Load the full capture object from the captureInfo url
-            try {
-                URL url = new URL(captureInfo.getUrl());
-                HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
-                conn.setRequestMethod("GET");
-                conn.setRequestProperty("Content-Type", "application/x-protobuf");
-                conn.connect();
-
-                InputStream is = conn.getInputStream();
-                Capture capture = Capture.parseFrom(is);
-
-                conn.disconnect();
-
-                assertNotNull(capture.getId());
+            try (BufferedInputStream in = new BufferedInputStream(new URL(captureInfo.getUrl()).openStream())) {
+                Capture capture = Capture.parseFrom(in);
+                assertNotNull(capture);
+                assertEquals(captureId, UUID.fromString(capture.getId()));
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new Error(
+                        "No exception should have been thrown, but an error " +
+                                "here could be a transient failure.", e
+                );
             }
-            catch(Exception ex)
-            {
-                assertTrue(false);
-            }
-
         }
     }
 }
