@@ -8,9 +8,9 @@ package gears.proto.baseball.swing;
 import "gears/proto/Vector3.proto";
 import "gears/proto/baseball/swing/Frame.proto";
 import "gears/proto/baseball/bat/Definition.proto";
+import "gears/proto/baseball/swing/ImpactInfo.proto";
 
 // Hold baseball swing specific data that exist once per capture.
-// @TODO add data members
 message Capture {
 
     // The baseball bat used for this capture.
@@ -24,5 +24,8 @@ message Capture {
 
     // Time in seconds from the start of the capture that the impact frame exists.
     float impact_time = 4;
+
+    // Extra info related to impact.
+    .gears.proto.baseball.swing.ImpactInfo impact_info = 5;
 
 }

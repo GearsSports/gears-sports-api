@@ -1,0 +1,39 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "ImpactInfoProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+// Holds extra info related to impact.
+message ImpactInfo {
+
+    // Point of impact along x axis of the bat with zero being at the 'sweet spot'.
+    //
+    // Measured in meters.
+    float strike_x = 1;
+
+    // Point of impact along y axis of the bat with zero being at the 'sweet spot'.
+    //
+    // Measured in meters.
+    float strike_y = 2;
+
+    // The vertical angle of the bat in relation to the horizontal
+    // plane at the time of impact.
+    //
+    // Measured in radians.
+    float bat_elevation_angle = 3;
+
+    // The instantaneous movement angle of the bat at the time of contact
+    // in the XY plane (vertical line and trajectory line).
+    //
+    // Measured in radians.
+    float bat_attack_angle = 4;
+
+    // The vertical angle of the ball in relation to the horizontal plane
+    // immediately after impact.
+    //
+    // Measured in radians.
+    float ball_launch_angle = 5;
+
+}

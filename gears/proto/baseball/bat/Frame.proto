@@ -20,4 +20,41 @@ message Frame {
     .gears.proto.Vector3 center_line_0 = 3;
     .gears.proto.Vector3 center_line_1 = 4;
 
+    // The instantaneous linear velocity of the bat at the 'sweet spot'.
+    //
+    // Measured in meters per second.
+    float sweet_spot_speed = 5;
+
+    // The forwards/backwards movement of the tip of the bat relative to the
+    // handle in the vertical axis.
+    //
+    // Measured in meters.
+    float deflection = 6;
+
+    // The forwards/backwards movement of the tip of the bat relative to the
+    // handle from a down the line view.
+    //
+    // Measured in meters.
+    float droop = 7;
+
+    // Bat flex.
+    //
+    // Measured in meters.
+    float flex = 8;
+
+    // Bat twist.
+    //
+    // Measured in radians.
+    float twist = 9;
+
+    // Bat rate of twist.
+    //
+    // Measured in radians per second.
+    float rate_of_twist = 10;
+
+    // Kinematic sequence of the baseball bat measured at the sweet spot.
+    //
+    // Measured in radians per second.
+    float kinematic_sequence = 11;
+
 }
