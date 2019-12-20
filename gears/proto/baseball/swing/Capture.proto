@@ -28,4 +28,10 @@ message Capture {
     // Extra info related to impact.
     .gears.proto.baseball.swing.ImpactInfo impact_info = 5;
 
+    // The diameter of the ball used for the capture.
+    // Measured in meters.
+    //
+    // This value is provided by the user and NOT something we measure.
+    float ball_diameter = 6;
+
 }
