@@ -168,4 +168,10 @@ message BodyAngles {
     // was fTrailWristSpination
     float trail_wrist_spination = 49;
 
+    // Rotation of the left thigh relative to the hips in radians.
+    float hip_to_left_thigh_rotation = 50;
+
+    // Rotation of the right thigh relative to the hips in radians.
+    float hip_to_right_thigh_rotation = 51;
+
 }
