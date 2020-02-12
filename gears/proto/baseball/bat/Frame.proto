@@ -25,14 +25,14 @@ message Frame {
     // Measured in meters per second.
     float sweet_spot_speed = 5;
 
-    // The forwards/backwards movement of the tip of the bat relative to the
-    // handle in the vertical axis.
+    // The displacement of the barrel of the bat relative to the
+    // grip in the bat vertical axis.
     //
     // Measured in meters.
     float deflection = 6;
 
-    // The forwards/backwards movement of the tip of the bat relative to the
-    // handle from a down the line view.
+    // The displacement of the barrel of the bat relative to the
+    // grip in the bat horizontal axis.
     //
     // Measured in meters.
     float droop = 7;
