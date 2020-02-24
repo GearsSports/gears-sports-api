@@ -1,0 +1,70 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "KeyBodyMetricsProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+// Contains body metrics that are measured once per capture
+message KeyBodyMetrics {
+    // The distance between feet as a fraction of height
+    // measured prior at setup
+    //
+    // unitless (1 = same as player height)
+    float setup_stance_width = 1;
+
+    // The angle of the foot to batters box
+    // (0 = to home plate, Pi/2 = to mound)
+    //
+    // in radians
+    float setup_back_foot_angle = 2;
+
+    // The angle of the foot to batters box
+    // (0 = to home plate, Pi/2 = to mound)
+    //
+    // in radians
+    float setup_lead_foot_angle = 3;
+
+    // The distance of the pelvis from back foot as a fraction of setup stance width
+    // (1 = directly over back foot, 0 = directly over lead)
+    //
+    // unitless
+    float setup_pelvis_position = 4;
+
+    // The distance between feet as a fraction of player height
+    // measured after stride foot lands
+    //
+    // unitless
+    float stride_stance_width = 5;
+
+    // The angle of the back foot after stride
+    //
+    // in radians
+    float stride_back_foot_angle = 6;
+
+    // The angle of the lead foot after stride
+    //
+    // in radians
+    float stride_lead_foot_angle = 7;
+
+    // The angle between the stance (line between feet) and target line (home to mound)
+    // (negative implies closed stance, positive open stance)
+    //
+    // in radians
+    float stride_stance_angle = 8;
+
+    // The distance of the pelvis from back foot as a fraction of stride stance width
+    //
+    // unitless
+    float stride_pelvis_position = 9;
+
+    // angle of shoulder line (line connecting both shoulders) with respect to horizontal plane
+    //
+    // in radians
+    float shoulder_drop = 10;
+
+    // angle of lead upper arm with respect to sagittal plane
+    //
+    // in radians
+    float lead_shoulder_drawback = 11;
+}

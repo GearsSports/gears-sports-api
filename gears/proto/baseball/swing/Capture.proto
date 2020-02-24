@@ -9,6 +9,7 @@ import "gears/proto/Vector3.proto";
 import "gears/proto/baseball/swing/Frame.proto";
 import "gears/proto/baseball/bat/Definition.proto";
 import "gears/proto/baseball/swing/ImpactInfo.proto";
+import "gears/proto/baseball/swing/KeyBodyMetrics.proto";
 
 // Hold baseball swing specific data that exist once per capture.
 message Capture {
@@ -28,10 +29,12 @@ message Capture {
     // Extra info related to impact.
     .gears.proto.baseball.swing.ImpactInfo impact_info = 5;
 
+	// once-per-capture body metrics
+	.gears.proto.baseball.swing.KeyBodyMetrics key_body_metrics = 6;
+
     // The diameter of the ball used for the capture.
     // Measured in meters.
     //
     // This value is provided by the user and NOT something we measure.
-    float ball_diameter = 6;
-
+    float ball_diameter = 7;
 }

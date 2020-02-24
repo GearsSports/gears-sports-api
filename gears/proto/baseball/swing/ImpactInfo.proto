@@ -8,12 +8,12 @@ package gears.proto.baseball.swing;
 // Holds extra info related to impact.
 message ImpactInfo {
 
-    // Point of impact along x axis of the bat with zero being at the 'sweet spot'.
+    // Point of impact along the x axis of the bat
     //
     // Measured in meters.
     float strike_x = 1;
 
-    // Point of impact along y axis of the bat with zero being at the 'sweet spot'.
+    // Point of impact along axis orthogonal to bat x axis closest to global y
     //
     // Measured in meters.
     float strike_y = 2;
@@ -30,10 +30,15 @@ message ImpactInfo {
     // Measured in radians.
     float bat_attack_angle = 4;
 
-    // The vertical angle of the ball in relation to the horizontal plane
-    // immediately after impact.
+    // The bat flex in the "grip  global z" direction
+    // (the axis orthogonal to grip x and global y)
     //
-    // Measured in radians.
-    float ball_launch_angle = 5;
+    // Measured in meters
+    float bat_deflection = 5;
 
+	// The bat flex in the "grip  global y" direction
+	// (the axis orthogonal to grip x and global z)
+	//
+	// Measured in meters
+	float bat_droop = 6;
 }
