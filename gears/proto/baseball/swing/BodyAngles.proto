@@ -48,46 +48,41 @@ message BodyAngles {
 
     // @TODO(alan) add description
     //
-    // Measured in radians.
-    float pelvis_torso_separation = 9;
-
-    // @TODO(alan) add description
-    //
     // Measured in meters.
-    float pelvis_sway = 10;
+    float pelvis_sway = 9;
 
     // @TODO(alan) add description
     //
     // Measured in radians.
-    float pelvis_rotation = 11;
+    float pelvis_rotation = 10;
 
     // @TODO(alan) add description
     //
     // Measured in radians.
-    float left_elbow_flexion = 12;
+    float left_elbow_flexion = 11;
 
     // @TODO(alan) add description
     //
     // Measured in radians.
-    float right_elbow_flexion = 13;
+    float right_elbow_flexion = 12;
 
     // @TODO(alan) add description
     //
     // Measured in radians.
-    float left_knee_flexion = 14;
+    float left_knee_flexion = 13;
 
     // @TODO(alan) add description
     //
     // Measured in radians.
-    float right_knee_flexion = 15;
+    float right_knee_flexion = 14;
 
     // The rate of change of left knee angle.
     //
     // Measured in radians per second.
-    float left_knee_extension_velocity = 16;
+    float left_knee_extension_velocity = 15;
 
     // The rate of change of right knee angle.
     //
     // Measured in radians per second.
-    float right_knee_extension_velocity = 17;
+    float right_knee_extension_velocity = 16;
 }
