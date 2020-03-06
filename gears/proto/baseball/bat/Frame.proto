@@ -17,30 +17,27 @@ message Frame {
     // Info about the barrel rigid body for this frame.
     .gears.proto.baseball.bat.Solution barrel = 2;
 
-    .gears.proto.Vector3 center_line_0 = 3;
-    .gears.proto.Vector3 center_line_1 = 4;
-
     // The instantaneous linear velocity of the bat at the 'sweet spot'.
     //
     // Measured in meters per second.
-    float sweet_spot_speed = 5;
+    float sweet_spot_speed = 3;
 
     // Bat flex (deformation of vibration).
-    gears.proto.Vector3 flex = 6;
+    gears.proto.Vector3 flex = 4;
 
     // Bat twist.
     //
     // Measured in radians.
-    float twist = 7;
+    float twist = 5;
 
     // Bat rate of twist.
     //
     // Measured in radians per second.
-    float rate_of_twist = 8;
+    float rate_of_twist = 6;
 
     // Kinematic sequence of the baseball bat measured at the sweet spot.
     //
     // Measured in radians per second.
-    float kinematic_sequence = 9;
+    float kinematic_sequence = 7;
 
 }
