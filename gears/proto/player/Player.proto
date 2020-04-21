@@ -18,6 +18,11 @@ message Player {
     // This value must be a valid string representation of a rfc 4122 uuid.
     string id = 1;
 
+    // Id of the player that this player was copied from.
+    //
+    // Will be empty if this player is not a copy.
+    string copied_from_id = 16;
+
     // The players email.
     string email = 2;
 
