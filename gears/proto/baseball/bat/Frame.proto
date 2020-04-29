@@ -1,0 +1,43 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.bat";
+option java_outer_classname = "FrameProto";
+option java_multiple_files = true;
+package gears.proto.baseball.bat;
+
+import "gears/proto/Vector3.proto";
+import "gears/proto/baseball/bat/Solution.proto";
+
+// Holds per-frame bat metrics for a baseball swing capture.
+message Frame {
+
+    // Info about the grip rigid body for this frame.
+    .gears.proto.baseball.bat.Solution grip = 1;
+
+    // Info about the barrel rigid body for this frame.
+    .gears.proto.baseball.bat.Solution barrel = 2;
+
+    // The instantaneous linear velocity of the bat at the 'sweet spot'.
+    //
+    // Measured in meters per second.
+    float sweet_spot_speed = 3;
+
+    // Bat flex (deformation of vibration).
+    gears.proto.Vector3 flex = 4;
+
+    // Bat twist.
+    //
+    // Measured in radians.
+    float twist = 5;
+
+    // Bat rate of twist.
+    //
+    // Measured in radians per second.
+    float rate_of_twist = 6;
+
+    // Kinematic sequence of the baseball bat measured at the sweet spot.
+    //
+    // Measured in radians per second.
+    float kinematic_sequence = 7;
+
+}

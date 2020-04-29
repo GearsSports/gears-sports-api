@@ -1,0 +1,35 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.bat";
+option java_outer_classname = "MaterialProto";
+option java_multiple_files = true;
+package gears.proto.baseball.bat;
+
+// Defines the different materials a baseball bat may be made from.
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed.
+enum Material {
+
+    // Indicates that no material was selected.
+    MATERIAL_UNKNOWN = 0;
+
+    // A bat made from a material not covered by one of the other materials.
+    MATERIAL_OTHER = 1;
+
+    // A bat made from some alloy.
+    MATERIAL_ALLOY = 2;
+
+    // A bat made from some composite material(s).
+    MATERIAL_COMPOSITE = 3;
+
+    // A bat made from wood.
+    MATERIAL_WOOD = 4;
+
+    // A bat made from some hybrid material(s).
+    MATERIAL_HYBRID = 5;
+
+    // A bat made from plastic.
+    MATERIAL_PLASTIC = 6;
+
+}

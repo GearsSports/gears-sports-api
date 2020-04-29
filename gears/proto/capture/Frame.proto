@@ -5,10 +5,11 @@ option java_outer_classname = "FrameProto";
 option java_multiple_files = true;
 package gears.proto.capture;
 
+import "gears/proto/actor/Pose.proto";
 import "gears/proto/golf/Frame.proto";
 import "gears/proto/manual/Frame.proto";
-import "gears/proto/actor/Pose.proto";
 import "gears/proto/capture/MarkerFrame.proto";
+import "gears/proto/baseball/swing/Frame.proto";
 
 // Message that holds data from a single frame in a capture.
 message Frame {
@@ -24,6 +25,9 @@ message Frame {
 
         // Frame data specific to a golf capture.
         gears.proto.golf.Frame golf = 3;
+
+        // Frame data specific to a baseball swing capture.
+        gears.proto.baseball.swing.Frame baseball_swing = 4;
     }
 
     // All markers observed for this frame.

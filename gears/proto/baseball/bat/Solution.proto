@@ -1,0 +1,40 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.bat";
+option java_outer_classname = "SolutionProto";
+option java_multiple_files = true;
+package gears.proto.baseball.bat;
+
+import "gears/proto/Marker.proto";
+import "gears/proto/Vector3.proto";
+import "gears/proto/Quaternion.proto";
+
+// Holds the tracking solution for one of the two rigid bodies we use for bat tracking.
+message Solution {
+
+    // If tracking was successful or not.
+    bool tracked = 1;
+
+    // Position of this rigid body.
+    .gears.proto.Vector3 position = 2;
+
+    // Orientation of this rigid body.
+    .gears.proto.Quaternion orientation = 3;
+
+    // Internally Gears stores marker_0, marker_1, and marker_2 as fixed size array,
+    // but since protobuf does not have a fixed size list we have decided to store
+    // them as individual members of this data structure.
+
+    // The marker at index 0.
+    .gears.proto.Marker marker_0 = 4;
+
+    // The marker at index 1.
+    .gears.proto.Marker marker_1 = 5;
+
+    // The marker at index 1.
+    .gears.proto.Marker marker_2 = 6;
+
+    // The speed of this rigid body in meters per second.
+    float speed = 7;
+
+}

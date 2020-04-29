@@ -1,0 +1,88 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "BodyAnglesProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+// Holds body metrics for a baseball swing capture.
+message BodyAngles {
+
+    // If we have valid tracking for the players skeleton for this frame.
+    bool tracked = 1;
+
+    // Angle of the left upper arm and side of body in the body side-to-side plane
+    //
+    // Measured in radians.
+    float left_shoulder_abduction = 2;
+
+    // Angle of the right upper arm and side of body in the body side-to-side plane
+    //
+    // Measured in radians.
+    float right_shoulder_abduction = 3;
+
+    // Angle of the left upper arm and side of body in the body front-to-back plane
+    //
+    // Measured in radians.
+    float left_shoulder_flexion = 4;
+
+    // Angle of the right upper arm and side of body in the body front-to-back plane
+    //
+    // Measured in radians.
+    float right_shoulder_flexion = 5;
+
+    // Angle of turn of ribcage with respect to the pelvis.
+    //
+    // Measured in radians.
+    float x_factor = 6;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float torso_rotation = 7;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float torso_extension = 8;
+
+    // @TODO(alan) add description
+    //
+    // Measured in meters.
+    float pelvis_sway = 9;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float pelvis_rotation = 10;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float left_elbow_flexion = 11;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float right_elbow_flexion = 12;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float left_knee_flexion = 13;
+
+    // @TODO(alan) add description
+    //
+    // Measured in radians.
+    float right_knee_flexion = 14;
+
+    // The rate of change of left knee angle.
+    //
+    // Measured in radians per second.
+    float left_knee_extension_velocity = 15;
+
+    // The rate of change of right knee angle.
+    //
+    // Measured in radians per second.
+    float right_knee_extension_velocity = 16;
+}

@@ -21,4 +21,7 @@ enum CaptureType {
 
     // represents a golf capture.
     GOLF = 2;
+
+    // represents a baseball swing capture.
+    BASEBALL_SWING = 3;
 }

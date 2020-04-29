@@ -12,6 +12,7 @@ import "google/protobuf/timestamp.proto";
 import "gears/proto/capture/Frame.proto";
 import "gears/proto/manual/Capture.proto";
 import "gears/proto/capture/CaptureType.proto";
+import "gears/proto/baseball/swing/Capture.proto";
 import "gears/proto/capture/CaptureSubType.proto";
 import "gears/proto/server/capture/CameraVideo.proto";
 
@@ -22,6 +23,11 @@ message Capture {
     //
     // This value must be a valid string representation of a rfc 4122 uuid.
     string id        = 1;
+
+    // Id of the capture that this capture was copied from.
+    //
+    // Will be empty if this capture is not a copy.
+    string copied_from_id = 17;
 
     // Id of the installation where this capture was created.
     int32 install_id = 2;
@@ -53,6 +59,9 @@ message Capture {
 
         // Data specific to a golf capture that exists once per capture.
         gears.proto.golf.Capture golf = 9;
+
+        // Data specific to a baseball swing capture that exists once per capture.
+        gears.proto.baseball.swing.Capture baseball_swing = 11;
     }
 
     // The actors that exist in this capture.

@@ -19,6 +19,11 @@ message CaptureInfo {
     // This value must be a valid string representation of a rfc 4122 uuid.
     string id = 1;
 
+    // Id of the capture that this capture was copied from.
+    //
+    // Will be empty if this capture is not a copy.
+    string copied_from_id = 20;
+
     // Id of the player that this capture belongs to.
     //
     // This value must be a valid string representation of a rfc 4122 uuid.

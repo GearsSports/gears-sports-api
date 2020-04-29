@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.baseball.swing";
+option java_outer_classname = "FrameProto";
+option java_multiple_files = true;
+package gears.proto.baseball.swing;
+
+import "gears/proto/baseball/bat/Frame.proto";
+import "gears/proto/baseball/swing/BodyAngles.proto";
+
+// Hold baseball swing specific data that exist once per frame.
+message Frame {
+
+    // Bat metrics for this frame.
+    .gears.proto.baseball.bat.Frame bat = 1;
+
+    // Body metrics for this frame.
+    //
+    // Will only be populated if there is a skeleton for this capture and
+    // we tracked it successfully for this frame.
+    .gears.proto.baseball.swing.BodyAngles body_angles = 2;
+
+    // The angle between the bat vector and the arm vector
+    // (line connecting the mid shoulders to the mid wrists)
+    // around the vertical axis.
+    //
+    // Measured in radians.
+    float bat_lag_angle = 3;
+
+}
