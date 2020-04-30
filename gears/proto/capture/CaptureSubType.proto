@@ -228,6 +228,97 @@ enum CaptureSubType {
     //   - Ribcage lift, sway, thrust
     CAPTURE_SUB_TYPE_FRONT_PLANK_HOLD = 18;
 
+    // Represents the movement by which the subject is instructed to stand still in a comfortable
+    // position not trying to hold any specific posture. Represents their natural stance.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Left and right ankle flexion, eversion, rotation
+    //   - Left and right shoulder flexion, abduction, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_POSTURE = 26;
+
+    // Represents the movement by which the subject stands with feet together and legs straight.
+    // They bend down to try to touch their toes while keeping their legs straight. They briefly
+    // pause at the bottom and slowly come back up to starting position.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right hip flexion, abduction, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_STANDING_TOE_TOUCH = 27;
+
+    // Represents the movement by which the subject is instructed to stand tall with arms straight
+    // and then extend their arms backwards as far as possible while keeping arms straight and an
+    // upright posture. Then slowly returning to starting position.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right shoulder flexion, abduction, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    //   - Shoulder Rotation
+    //   - Shoulder Abduction
+    CAPTURE_SUB_TYPE_SHOULDER_HYPEREXTENSION = 28;
+
+    // Represents the movement by which the subject is instructed to stand with arms at their sides
+    // with elbows bent to 90 degrees. They then rotate their upper arm inward as far as possible,
+    // pause briefly, then rotate their upper arms outward as far as possible. The upper arm should
+    // stay relatively still except for rotation, and the forearm should visibly rotate around the
+    // vertical axis, representing the upper arm rotation movement.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right shoulder flexion, abduction, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_SHOULDER_ROTATION = 29;
+
+    // Represents the movement by which the subject is instructed to stand with arms straight at their
+    // sides, palms facing their body, then lift arms up sideways as high as possible while keeping
+    // their arms straight and palms remaining in the same orientation (no pronation or supination).
+    // Pause briefly at the top and slowly return to starting position.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - Left and right shoulder flexion, abduction, rotation
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    CAPTURE_SUB_TYPE_SHOULDER_ABDUCTION = 30;
+
+    // Represents the movement by which the subject is instructed to stand in a half-squat with arm
+    // held loosely in front. They are then instructed to twist their torso as far to the right as
+    // they can, followed by the same movement to the left.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    //
+    // Related metrics:
+    //   - X-factor, trunk lateral tilt, trunk tilt
+    //   - Ribcage flexion (frontal bend), lateral tilt (side bend), rotation (turn)
+    //   - Pelvis anterior tilt, lateral tilt, rotation
+    //   - Pelvis lift, sway, thrust
+    //   - Ribcage lift, sway, thrust
+    //   - left knee angle, right knee angle
+    //   - left hip angle, right hip angle
+    //   - left hip rotation, right hip rotation
+    CAPTURE_SUB_TYPE_TRUNK_ROTATION = 31;
+
     // Represents a baseball swing capture with a bat of an unknown material.
     //
     // This subtype indicates a baseball swing with a bat material of

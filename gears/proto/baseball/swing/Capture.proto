@@ -29,12 +29,13 @@ message Capture {
     // Extra info related to impact.
     .gears.proto.baseball.swing.ImpactInfo impact_info = 5;
 
-	// once-per-capture body metrics
-	.gears.proto.baseball.swing.KeyBodyMetrics key_body_metrics = 6;
+    // once-per-capture body metrics
+    .gears.proto.baseball.swing.KeyBodyMetrics key_body_metrics = 6;
 
     // The diameter of the ball used for the capture.
     // Measured in meters.
     //
     // This value is provided by the user and NOT something we measure.
     float ball_diameter = 7;
+
 }
