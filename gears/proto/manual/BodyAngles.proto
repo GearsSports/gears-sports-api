@@ -102,4 +102,28 @@ message BodyAngles {
     // Neck flexion in radians
     float neck_rotation = 51;
 
+    // Flexion measured from the ab bone to the hip bone in radians.
+    float ab_to_hip_flexion = 52;
+
+    // Flexion measured from the chest bone to the ab bone in radians.
+    float chest_to_ab_flexion = 53;
+
+    // Flexion measured from the chest bone to the left upper arm bone in radians.
+    float chest_to_left_upper_arm_flexion = 54;
+
+    // Rotation measured from the chest bone to the left upper arm bone in radians.
+    float chest_to_left_upper_arm_rotation = 55;
+
+    // Flexion measured from the chest bone to the right upper arm bone in radians.
+    float chest_to_right_upper_arm_flexion = 56;
+
+    // Rotation measured from the chest bone to the right upper arm bone in radians.
+    float chest_to_right_upper_arm_rotation = 57;
+
+    // Flexion of the left wrist in radians.
+    float left_wrist_flexion = 58;
+
+    // Flexion of the left wrist in radians.
+    float right_wrist_flexion = 59;
+
 }
