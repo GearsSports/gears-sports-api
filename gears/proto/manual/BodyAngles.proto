@@ -123,7 +123,13 @@ message BodyAngles {
     // Flexion of the left wrist in radians.
     float left_wrist_flexion = 58;
 
-    // Flexion of the left wrist in radians.
+    // Flexion of the right wrist in radians.
     float right_wrist_flexion = 59;
+
+    // Flexion measured from the left thigh bone to the hip bone in radians.
+    float left_thigh_to_hip_flexion = 60;
+
+    // Flexion measured from the right thigh bone to the hip bone in radians.
+    float right_thigh_to_hip_flexion = 61;
 
 }
