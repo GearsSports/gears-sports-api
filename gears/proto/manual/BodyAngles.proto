@@ -108,28 +108,34 @@ message BodyAngles {
     // Flexion measured from the chest bone to the ab bone in radians.
     float chest_to_ab_flexion = 53;
 
-    // Flexion measured from the chest bone to the left upper arm bone in radians.
-    float chest_to_left_upper_arm_flexion = 54;
+    // Rotation measure from chest bone to left upper arm bone in radians.
+    float chest_to_left_upper_arm_rotation = 54;
 
-    // Rotation measured from the chest bone to the left upper arm bone in radians.
-    float chest_to_left_upper_arm_rotation = 55;
+    // Rotation measure from chest bone to right upper arm bone in radians.
+    float chest_to_right_upper_arm_rotation = 55;
 
-    // Flexion measured from the chest bone to the right upper arm bone in radians.
-    float chest_to_right_upper_arm_flexion = 56;
+    // Abduction measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_abduction = 56;
 
-    // Rotation measured from the chest bone to the right upper arm bone in radians.
-    float chest_to_right_upper_arm_rotation = 57;
+    // Flexion measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_flexion = 57;
 
-    // Flexion of the left wrist in radians.
-    float left_wrist_flexion = 58;
-
-    // Flexion of the right wrist in radians.
-    float right_wrist_flexion = 59;
+    // Rotation measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_rotation = 58;
 
     // Flexion measured from the left thigh bone to the hip bone in radians.
-    float left_thigh_to_hip_flexion = 60;
+    float left_thigh_to_hip_flexion = 59;
+
+    // Abduction measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_abduction = 60;
+
+    // Flexion measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_flexion = 61;
+
+    // Rotation measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_rotation = 62;
 
     // Flexion measured from the right thigh bone to the hip bone in radians.
-    float right_thigh_to_hip_flexion = 61;
+    float right_thigh_to_hip_flexion = 63;
 
 }
