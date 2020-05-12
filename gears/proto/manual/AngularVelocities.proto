@@ -1,0 +1,98 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.manual";
+option java_outer_classname = "BodyAnglesProto";
+option java_multiple_files = true;
+package gears.proto.manual;
+
+// Holds angular velocities in radians per second.
+message AngularVelocities {
+
+    // Calculated using the left_foot_to_left_shin_flexion relationship.
+    float left_ankle_flexion = 1;
+
+    // Calculated using the left_forearm_to_left_upper_arm_flexion relationship.
+    float left_elbow_flexion = 2;
+
+    // Calculated using the hip_to_left_thigh_abduction relationship.
+    float left_hip_abduction = 3;
+
+    // Calculated using the hip_to_left_thigh_flexion relationship.
+    float left_hip_flexion = 4;
+
+    // Calculated using the hip_to_left_thigh_rotation relationship.
+    float left_hip_rotation = 5;
+
+    // Calculated using the left_shin_to_left_thigh_flexion relationship.
+    float left_knee_flexion = 6;
+
+    // Calculated using the chest_to_left_upper_arm_flexion relationship.
+    float left_shoulder_flexion = 7;
+
+    // Calculated using the chest_to_left_upper_arm_rotation relationship.
+    float left_shoulder_rotation = 8;
+
+    // Calculated using the left_hand_to_left_forearm_flexion relationship.
+    float left_wrist_flexion = 9;
+
+    // Calculated using the left_hand_to_left_forearm_rotation relationship.
+    float left_wrist_rotation = 10;
+
+    // Calculated using the pelvis_bend metric.
+    float pelvis_flexion = 11;
+
+    // Calculated using the pelvis_side_bend metric.
+    float pelvis_lateral_tilt = 12;
+
+    // Calculated using the pelvis_turn metric.
+    float pelvis_rotation = 13;
+
+    // Calculated using the right_foot_to_right_shin_flexion relationship.
+    float right_ankle_flexion = 14;
+
+    // Calculated using the right_forearm_to_right_upper_arm_flexion relationship.
+    float right_elbow_flexion = 15;
+
+    // Calculated using the hip_to_right_thigh_abduction relationship.
+    float right_hip_abduction = 16;
+
+    // Calculated using the hip_to_right_thigh_flexion relationship.
+    float right_hip_flexion = 17;
+
+    // Calculated using the hip_to_right_thigh_rotation relationship.
+    float right_hip_rotation = 18;
+
+    // Calculated using the right_shin_to_right_thigh_flexion relationship.
+    float right_knee_flexion = 19;
+
+    // Calculated using the chest_to_right_upper_arm_flexion relationship.
+    float right_shoulder_flexion = 20;
+
+    // Calculated using the chest_to_right_upper_arm_rotation relationship.
+    float right_shoulder_rotation = 21;
+
+    // Calculated using the right_hand_to_left_forearm_flexion relationship.
+    float right_wrist_flexion = 22;
+
+    // Calculated using the left_hand_to_right_forearm_rotation relationship.
+    float right_wrist_rotation = 23;
+
+    // Calculated using the ribcage_bend metric.
+    float torso_global_flexion = 24;
+
+    // Calculated using the ribcage_side_bend metric.
+    float torso_global_lateral_tilt = 25;
+
+    // Calculated using the ribcage_turn metric.
+    float torso_global_rotation = 26;
+
+    // Calculated using the chest_to_hip_flexion relationship.
+    float torso_pelvis_flexion = 27;
+
+    // Calculated using the chest_to_hip_abduction relationship.
+    float torso_pelvis_lateral_tilt = 28;
+
+    // Calculated using the x-factor metric.
+    float torso_pelvis_rotation = 29;
+
+}
