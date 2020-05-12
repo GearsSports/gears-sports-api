@@ -6,10 +6,12 @@ option java_multiple_files = true;
 package gears.proto.manual;
 
 import "gears/proto/manual/BodyAngles.proto";
+import "gears/proto/manual/SegmentVelocities.proto";
 
 // Hold manual capture specific data that exist once per frame.
 message Frame {
 
     .gears.proto.manual.BodyAngles body_angles = 1;
+    .gears.proto.manual.SegmentVelocities segment_velocities = 2;
 
 }
