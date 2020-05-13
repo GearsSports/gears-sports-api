@@ -71,7 +71,7 @@ message AngularVelocities {
     // Calculated using the chest_to_right_upper_arm_rotation relationship.
     float right_shoulder_rotation = 21;
 
-    // Calculated using the right_hand_to_left_forearm_flexion relationship.
+    // Calculated using the right_hand_to_right_forearm_flexion relationship.
     float right_wrist_flexion = 22;
 
     // Calculated using the left_hand_to_right_forearm_rotation relationship.
