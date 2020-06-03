@@ -138,4 +138,7 @@ message BodyAngles {
     // Flexion measured from the right thigh bone to the hip bone in radians.
     float right_thigh_to_hip_flexion = 63;
 
+    // Angle of turn of ribcage with respect to the pelvis in radians.
+    float x_factor = 64;
+
 }
