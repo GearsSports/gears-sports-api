@@ -1,0 +1,60 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.integrations";
+option java_outer_classname = "QuinticDataProto";
+option java_multiple_files = true;
+package gears.proto.integrations;
+
+import "google/protobuf/timestamp.proto";
+import "gears/proto/integrations/QuinticTableData.proto";
+
+message QuinticData
+{
+    //Quintic data
+    float impact_club_speed = 1;
+
+    string pre_impact_speed = 2;
+    
+    float shaft_angle = 3;
+
+    float attack_angle = 4;
+
+    float face_angle = 5;
+
+    float face_rotation = 6;
+
+    float lie_angle = 7;
+
+    float club_twist_opening = 8;
+
+    float path_square = 9;
+
+    float impact_ball_speed = 10;
+
+    float launch_angle = 11;
+
+    float cut_hook_spin = 12;
+
+    float forward_back_spin = 13;
+    
+    float start_of_forward_rotation = 14;
+
+    float zero_skid_after = 15;
+
+    float time_to_zero_skid = 16;
+
+    float impact_ratio = 17;
+
+    repeated gears.proto.integrations.QuinticTableData distance_table_data = 18;
+
+    repeated gears.proto.integrations.QuinticTableData frame_table_data = 19;
+
+    //meta data
+    string id = 20;
+
+    string capture_id = 21;
+
+    .google.protobuf.Timestamp created_at = 22;
+
+    .google.protobuf.Timestamp added_at = 23;
+}
