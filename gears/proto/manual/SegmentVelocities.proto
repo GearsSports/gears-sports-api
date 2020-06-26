@@ -1,0 +1,43 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.manual";
+option java_outer_classname = "SegmentVelocitiesProto";
+option java_multiple_files = true;
+package gears.proto.manual;
+
+import "gears/proto/Vector3.proto";
+
+// Velocities of body segments.
+message SegmentVelocities {
+
+    // Velocity of the chest bone in meters per second.
+    .gears.proto.Vector3 chest = 1;
+
+    // Velocity of the hip bone in meters per second.
+    .gears.proto.Vector3 hip = 2;
+
+    // Velocity of the left foot bone in meters per second.
+    .gears.proto.Vector3 left_foot = 3;
+
+    // Velocity of the left forearm bone in meters per second.
+    .gears.proto.Vector3 left_forearm = 4;
+
+    // Velocity of the left hand bone in meters per second.
+    .gears.proto.Vector3 left_hand = 5;
+
+    // Velocity of the left shin bone in meters per second.
+    .gears.proto.Vector3 left_shin = 6;
+
+    // Velocity of the right foot bone in meters per second.
+    .gears.proto.Vector3 right_foot = 7;
+
+    // Velocity of the right forearm bone in meters per second.
+    .gears.proto.Vector3 right_forearm = 8;
+
+    // Velocity of the right hand bone in meters per second.
+    .gears.proto.Vector3 right_hand = 9;
+
+    // Velocity of the right shin bone in meters per second.
+    .gears.proto.Vector3 right_shin = 10;
+
+}

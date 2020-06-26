@@ -36,9 +36,10 @@ message ImpactInfo {
     // Measured in meters
     float bat_deflection = 5;
 
-	// The bat flex in the "grip  global y" direction
-	// (the axis orthogonal to grip x and global z)
-	//
-	// Measured in meters
-	float bat_droop = 6;
+    // The bat flex in the "grip  global y" direction
+    // (the axis orthogonal to grip x and global z)
+    //
+    // Measured in meters
+    float bat_droop = 6;
+
 }

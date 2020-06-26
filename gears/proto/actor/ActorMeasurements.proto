@@ -1,0 +1,42 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.actor";
+option java_outer_classname = "ActorMeasurementsProto";
+option java_multiple_files = true;
+package gears.proto.actor;
+
+// Various measurements of an actor.
+// Recorded when a skeleton is fit.
+message ActorMeasurements {
+
+    // Height of the actor in meters.
+    float height = 1;
+
+    // This is the distance in meters from the neck bone to the hip bone.
+    float torso_length = 2;
+
+    // This is the distance in meters from the left upper arm bone to the left forearm bone.
+    float left_upper_arm_length = 3;
+
+    // This is the distance in meters from the left forearm bone to the left hand bone.
+    float left_forearm_length = 4;
+
+    // This is the distance in meters from the left thigh bone to the left shin bone.
+    float left_thigh_length = 5;
+
+    // This is the distance in meters from the left shin bone to the left foot bone.
+    float left_shin_length = 6;
+
+    // This is the distance in meters from the right upper arm bone to the right forearm bone.
+    float right_upper_arm_length = 7;
+
+    // This is the distance in meters from the right forearm bone to the right hand bone.
+    float right_forearm_length = 8;
+
+    // This is the distance in meters from the right thigh bone to the right shin bone.
+    float right_thigh_length = 9;
+
+    // This is the distance in meters from the right shin bone to the right foot bone.
+    float right_shin_length = 10;
+
+}

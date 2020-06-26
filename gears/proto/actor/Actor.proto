@@ -5,6 +5,8 @@ option java_outer_classname = "ActorProto";
 option java_multiple_files = true;
 package gears.proto.actor;
 
+import "gears/proto/actor/ActorMeasurements.proto";
+
 // Represents a fitted skeleton
 message Actor {
 
@@ -16,4 +18,9 @@ message Actor {
     // libraries serialization functionality to persist the data.  This means
     // that this data can not be accessed outside our application.
     bytes skeleton_definition = 2;
+
+    // Various measurements of an actor.
+    // Recorded when a skeleton is fit.
+    .gears.proto.actor.ActorMeasurements measurements = 3;
+
 }

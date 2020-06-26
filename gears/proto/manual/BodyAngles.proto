@@ -102,4 +102,43 @@ message BodyAngles {
     // Neck flexion in radians
     float neck_rotation = 51;
 
+    // Flexion measured from the ab bone to the hip bone in radians.
+    float ab_to_hip_flexion = 52;
+
+    // Flexion measured from the chest bone to the ab bone in radians.
+    float chest_to_ab_flexion = 53;
+
+    // Rotation measure from chest bone to left upper arm bone in radians.
+    float chest_to_left_upper_arm_rotation = 54;
+
+    // Rotation measure from chest bone to right upper arm bone in radians.
+    float chest_to_right_upper_arm_rotation = 55;
+
+    // Abduction measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_abduction = 56;
+
+    // Flexion measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_flexion = 57;
+
+    // Rotation measure from left hand bone to left forearm bone in radians.
+    float left_hand_to_left_forearm_rotation = 58;
+
+    // Flexion measured from the left thigh bone to the hip bone in radians.
+    float left_thigh_to_hip_flexion = 59;
+
+    // Abduction measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_abduction = 60;
+
+    // Flexion measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_flexion = 61;
+
+    // Rotation measure from right hand bone to right forearm bone in radians.
+    float right_hand_to_right_forearm_rotation = 62;
+
+    // Flexion measured from the right thigh bone to the hip bone in radians.
+    float right_thigh_to_hip_flexion = 63;
+
+    // Angle of turn of ribcage with respect to the pelvis in radians.
+    float x_factor = 64;
+
 }
