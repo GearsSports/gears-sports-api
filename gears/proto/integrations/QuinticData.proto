@@ -57,4 +57,7 @@ message QuinticData
     .google.protobuf.Timestamp created_at = 22;
 
     .google.protobuf.Timestamp added_at = 23;
+
+    //the ids of associated images, used to request from server
+    repeated string image_ids = 24;
 }
