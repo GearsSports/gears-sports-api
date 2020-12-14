@@ -1,0 +1,42 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1.capture";
+option java_outer_classname = "QuinticIntegrationServiceProto";
+option java_multiple_files = true;
+package gears.proto.api.v1.capture;
+
+import "gears/proto/integrations/QuinticData.proto";
+import "gears/proto/integrations/QuinticImage.proto";
+
+service QuinticIntegrationService {
+
+    rpc Get(GetQuinticRequest) returns (GetQuinticResponse) {}
+
+    rpc GetImage(GetQuinticImageRequest) returns (GetQuinticImageResponse) {}
+
+    rpc GetImageList(GetQuinticImageListRequest) returns (GetQuinticImageListResponse) {}
+}
+
+message GetQuinticRequest {
+    string capture_id = 1;
+}
+
+message GetQuinticResponse {
+    .gears.proto.integrations.QuinticData data = 1;
+}
+
+message GetQuinticImageRequest {
+    string image_id = 1;
+}
+
+message GetQuinticImageResponse {
+    .gears.proto.integrations.QuinticImage image_data = 1;
+}
+
+message GetQuinticImageListRequest {
+    string capture_id = 1;
+}
+
+message GetQuinticImageListResponse {
+    repeated .gears.proto.integrations.QuinticImage image_data = 1;
+}
