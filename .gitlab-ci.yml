@@ -37,7 +37,7 @@ test_java:
         - ./gradlew test
 
 test_php:
-    image: git.modernizedmedia.com:5001/gears/web-locker-base:master
+    image: registry.gitlab.com/gears-sports/web-locker-base:master
     stage: test
     script:
         # Need to download the protoc compiler
