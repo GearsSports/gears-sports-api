@@ -41,8 +41,13 @@ message Frame {
     // was m_fGripSpeed
     float grip_speed = 9;
 
-    // was m_fTorque
-    float torque = 10;
+    oneof shaft_twist
+    {
+	    // was m_fTorque
+	    float torque = 10;
+
+	    float shaft_torsion = 37;
+    }
 
     // was m_fGripRoll
     float grip_roll = 11;
