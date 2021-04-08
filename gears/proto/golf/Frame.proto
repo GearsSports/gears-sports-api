@@ -43,10 +43,10 @@ message Frame {
 
     oneof shaft_twist
     {
-	    // was m_fTorque
-	    float torque = 10;
+        // was m_fTorque
+        float torque = 10;
 
-	    float shaft_torsion = 37;
+        float shaft_torsion = 37;
     }
 
     // was m_fGripRoll
