@@ -127,4 +127,29 @@ message Frame {
     // was m_fTaylormadeClosureRate
     float taylormade_closure_rate = 36;
 
+    // Metrics that used to be computed every time a capture was loaded.
+    FrameUiMetrics ui_metrics = 38;
+
+}
+
+// Metrics that used to be computed every time a capture was loaded.
+//
+// These metrics were placed in their own protobuf message so it would be
+// easy to check and see if a capture had them or if we needed to calculate
+// them.  It also saves us a few bytes per frame when serializing a capture
+// due to the space needed to add new fields to .gears.proto.golf.Frame
+message FrameUiMetrics {
+
+    // Loft angle in radians.
+    float loft_angle = 1;
+
+    // Face angle in radians.
+    float face_angle = 2;
+
+    // Angle of attack in radians.
+    float path_up_down = 3;
+
+    // Club path left/right in radians.
+    float path_in_out = 4;
+
 }
