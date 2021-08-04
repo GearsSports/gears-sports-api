@@ -43,7 +43,6 @@ test_php:
         # Need to download the protoc compiler
         - php -v
         - time apk add git composer make autoconf automake libc-dev g++ linux-headers
-        # - time git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
         - time git clone -b v1.17.0 https://github.com/grpc/grpc
         - cd grpc
         - time git submodule update --init
