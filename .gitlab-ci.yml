@@ -42,13 +42,13 @@ test_php:
     script:
         # Need to download the protoc compiler
         - php -v
-        - apk add git composer make autoconf automake libc-dev g++ linux-headers
-        - git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
+        - time apk add git composer make autoconf automake libc-dev g++ linux-headers
+        - time git clone -b v1.17.0 https://github.com/grpc/grpc
         - cd grpc
-        - git submodule update --init
-        - make grpc_php_plugin
+        - time git submodule update --init
+        - time make grpc_php_plugin
         - mv bins/opt/grpc_php_plugin ../examples/php/bins/
         - cd ../examples/php
-        - composer install
+        - time composer install
         - php proto-build.php
         - vendor/bin/phpunit tests
