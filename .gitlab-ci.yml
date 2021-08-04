@@ -44,7 +44,7 @@ test_php:
         - php -v
         - time apk add git composer make autoconf automake libc-dev g++ linux-headers
         # - time git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
-        - time git clone -b v1.39.0 https://github.com/grpc/grpc
+        - time git clone -b v1.17.0 https://github.com/grpc/grpc
         - cd grpc
         - time git submodule update --init
         - time make grpc_php_plugin
