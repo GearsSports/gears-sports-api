@@ -28,4 +28,7 @@ enum HandPose {
     // Hand is closed.
     HAND_CLOSED = 4;
 
+    // Hand posed as if it is gripping a baseball bat.
+    HAND_GRIP_BASEBALL_BAT = 5;
+
 }
