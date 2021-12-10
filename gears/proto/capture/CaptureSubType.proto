@@ -319,6 +319,12 @@ enum CaptureSubType {
     //   - left hip rotation, right hip rotation
     CAPTURE_SUB_TYPE_TRUNK_ROTATION = 31;
 
+    // Using as many steps as needed, run and jump as high as possible while
+    // remaining in the capture area.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].MANUAL
+    CAPTURE_SUB_TYPE_APPROACH_JUMP = 32;
+
     // Represents a baseball swing capture with a bat of an unknown material.
     //
     // This subtype indicates a baseball swing with a bat material of
