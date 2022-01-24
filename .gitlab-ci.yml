@@ -6,7 +6,7 @@ before_script:
     - cat examples/data/TokenRequest.json
 
 test_csharp:
-    image: microsoft/dotnet:latest
+    image: mcr.microsoft.com/dotnet/sdk:6.0
     stage: test
     script:
         - cd examples/csharp/GearsSportsApi

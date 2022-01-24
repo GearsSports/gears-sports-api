@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Gears Sports</Authors>
     <Description>Generates c# code from .proto files.</Description>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -19,7 +19,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Tools" Version="1.16.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.43.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Diagnostics.Process" Version="4.3.0" />
   </ItemGroup>
 
