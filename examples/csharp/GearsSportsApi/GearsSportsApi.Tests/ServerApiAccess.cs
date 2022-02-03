@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Gears.Proto.Api.V1;
 using Gears.Proto.Server;
 using Gears.Proto.Capture;
@@ -101,14 +102,14 @@ namespace GearsSportsApi.Tests
         ///     Example of getting a list of captures from the server.
         /// </summary>
         [TestMethod]
-        public void ListCaptures()
+        public async Task ListCaptures()
         {
             // Note that the authorization header must be added.
             var headers = new Metadata { { "authorization", "Bearer " + GetAuthToken().AccessToken } };
             var client = new CaptureService.CaptureServiceClient(Channel);
             var request = new ListCapturesRequest { PerPage = 2 };
             // see request.Filters for filtering options.
-            ListCapturesResponse response = client.List(request, headers);
+            ListCapturesResponse response = await client.ListAsync(request, headers);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Page > 0, "response.Page > 0");
             Assert.AreEqual(request.PerPage, response.PerPage);
@@ -126,13 +127,10 @@ namespace GearsSportsApi.Tests
 
                 try
                 {
-                    HttpWebRequest aRequest = (HttpWebRequest)WebRequest.Create(captureInfo.Url);
-                    HttpWebResponse aResponse = (HttpWebResponse)aRequest.GetResponse();
-
-                    Capture capture;
-                    capture = Capture.Parser.ParseFrom(aResponse.GetResponseStream());
+                    using var httpClient = new HttpClient();
+                    await using var stream = await httpClient.GetStreamAsync(captureInfo.Url);
+                    var capture = Capture.Parser.ParseFrom(stream);
                     Assert.IsNotNull(capture);
-                    aResponse.Dispose();
                 }
                 catch(Exception)
                 {
