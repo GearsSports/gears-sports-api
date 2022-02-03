@@ -174,4 +174,19 @@ message BodyAngles {
     // Rotation of the right thigh relative to the hips in radians.
     float hip_to_right_thigh_rotation = 51;
 
+    // Rotation of the lead forearm (left forearm for right handed golfers,
+    // right forearm for left handed golfers) measured by the relation
+    // between the lead forearm bone of the skeleton and the grip
+    // of the golf club.  Inward rotation (clockwise on left arm) is
+    // negative so during the backswing this is a negative value.
+    //
+    // Only available when using the basic 28 marker skeleton.
+    //
+    // The metrics is effectively lead wrist rotation, but since we
+    // calculated it using the club shaft we need to name it differently
+    // to avoid academic criticism.
+    //
+    // Measured in radians.
+    float lead_forearm_rotation = 52;
+
 }
