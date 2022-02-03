@@ -8,6 +8,7 @@ package gears.proto.golf;
 import "gears/proto/Vector3.proto";
 import "gears/proto/golf/Club.proto";
 import "gears/proto/golf/Frame.proto";
+import "google/protobuf/wrappers.proto";
 import "gears/proto/golf/StrikeInfo.proto";
 import "gears/proto/golf/AddressInfo.proto";
 
@@ -91,5 +92,15 @@ message Capture {
 
     // was CSwingStream::m_TrajHeight
     repeated float traj_height = 26;
+
+    // Peak twist of the club head after impact in radians.
+    //
+    // Found by taking the club head twist at impact and then
+    // finding the absolute difference of each frame until
+    // one of the following conditions is meet:
+    //   1) The end of the capture is reached.
+    //   2) The club moves more than 1ft from the point of impact.
+    // Then this field is set with the max value in that range.
+    .google.protobuf.FloatValue peak_face_angle_change = 27;
 
 }
