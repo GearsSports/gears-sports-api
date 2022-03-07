@@ -5,8 +5,33 @@ option java_outer_classname = "SummaryProto";
 option java_multiple_files = true;
 package gears.proto.baseball.swing;
 
+import "gears/proto/Vector3.proto";
+import "gears/proto/baseball/swing/Frame.proto";
+import "gears/proto/baseball/swing/ImpactInfo.proto";
+import "gears/proto/baseball/swing/KeyBodyMetrics.proto";
+
 // Hold baseball swing specific summary data.
-// @TODO add data members
 message Summary {
+
+    // Time in seconds from the start of the capture that the impact frame exists.
+    float impact_time = 1;
+
+    // The impact frame.  The data in this frame is interpolated.
+    .gears.proto.baseball.swing.Frame impact_frame = 2;
+
+    // Extra info related to impact.
+    .gears.proto.baseball.swing.ImpactInfo impact_info = 3;
+
+    //body metrics at key frames
+    .gears.proto.baseball.swing.KeyBodyMetrics key_body_metrics = 4;
+
+    // The diameter of the ball used for the capture.
+    // Measured in meters.
+    //
+    // This value is provided by the user and NOT something we measure.
+    float ball_diameter = 5;
+
+    // The position of the baseball.
+    .gears.proto.Vector3 ball_position = 6;
 
 }

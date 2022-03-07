@@ -44,7 +44,7 @@ message ListExportsFilters {
 
     // Filter exports by if the server has finished their processing or not.
     //
-    // If an export has not finished processing the file associated with the export will not be availiable.
+    // If an export has not finished processing the file associated with the export will not be available.
     //
     // If this field is not set then the filter will not be applied.
     .google.protobuf.BoolValue completed = 1;

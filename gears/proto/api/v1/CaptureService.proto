@@ -13,6 +13,7 @@ import "gears/proto/api/error_details.proto";
 import "gears/proto/server/CaptureInfo.proto";
 import "gears/proto/capture/CaptureType.proto";
 import "gears/proto/capture/CaptureSubType.proto";
+import "gears/proto/baseball/bat/Definition.proto";
 
 // Rpc service for working with Captures
 service CaptureService {
@@ -29,7 +30,7 @@ service CaptureService {
     // Gets the golf club associated with a capture.
     //
     // If the post processing of a new capture has not been completed then the golf
-    //   club for a given capture may not be availiable yet.
+    //   club for a given capture may not be available yet.
     //
     // This rpc will return a status code of NOT_FOUND if the capture
     //   for the provided id does not have a golf club.
@@ -38,10 +39,22 @@ service CaptureService {
     //   for the provided id is NOT a golf capture.
     rpc GetGolfClub(GetGolfClubRequest) returns (GetGolfClubResponse) {}
 
+    // Gets the baseball bat associated with a capture.
+    //
+    // If the post processing of a new capture has not been completed then
+    //   the baseball bat for a given capture may not be available yet.
+    //
+    // This rpc will return a status code of NOT_FOUND if the capture
+    //   for the provided id does not have a baseball bat.
+    //
+    // This rpc will return a status code of INVALID_ARGUMENT if the capture
+    //   for the provided id is NOT a baseball swing capture.
+    rpc GetBaseballBat(GetBaseballBatRequest) returns (GetBaseballBatResponse) {}
+
     // Gets the summary for a capture
     //
     // If the post processing of a new capture has not been completed then the summary
-    //   for a given capture may not be availiable yet and a status code of
+    //   for a given capture may not be available yet and a status code of
     //   NOT_FOUND will be returned.
     rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {}
 
@@ -190,7 +203,7 @@ message UpdateCaptureRequest {
 
     // The data to update the capture with.
     //
-    // Only the following fields are availiable for update:
+    // Only the following fields are available for update:
     //   - [gears.proto.server.CaptureInfo].name
     //   - [gears.proto.server.CaptureInfo].notes
     //   - [gears.proto.server.CaptureInfo].favorite
@@ -225,6 +238,23 @@ message GetGolfClubResponse {
 
     // The golf club used by the capture.
     .gears.proto.golf.Club club = 1;
+
+}
+
+// Message used to get the baseball bat of a baseball swing capture.
+message GetBaseballBatRequest {
+
+    // The id of the capture for which you want to get its baseball bat.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.CaptureService].GetBaseballBat rpc call.
+message GetBaseballBatResponse {
+
+    // The baseball bat used by the capture.
+    .gears.proto.baseball.bat.Definition bat = 1;
 
 }
 

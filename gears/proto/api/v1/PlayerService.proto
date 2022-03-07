@@ -172,7 +172,7 @@ message UpdatePlayerRequest {
 
     // The data to update the player with.
     //
-    // Only the following fields are availiable for update:
+    // Only the following fields are available for update:
     //   - [gears.proto.player.Player].email
     //   - [gears.proto.player.Player].first_name
     //   - [gears.proto.player.Player].middle_name
