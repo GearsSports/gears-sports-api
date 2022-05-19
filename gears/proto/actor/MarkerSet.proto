@@ -1,0 +1,47 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.actor";
+option java_outer_classname = "MarkerSetProto";
+option java_multiple_files = true;
+package gears.proto.actor;
+
+// Represents the marker sets that are considered valid by gears.
+//
+// Note: Gears does not support all marker sets.
+//
+// Note: Elements other than MARKER_SET_UNKNOWN MUST have a value that
+//       matches an element from ::SkeletonSolver::CSkeleton::eMarkerSetType.
+//
+// WARNING: This enum is used in persisted and should not have
+//          the names or values of it's elements changed.
+enum MarkerSet {
+
+    // Added because protobuf requires the first element to be zero.
+    //
+    // If this value is encountered then something has gone wrong.
+    MARKER_SET_UNKNOWN = 0;
+
+    // Gears golf 28 marker skeleton with 4 waist markers.
+    //
+    // This is the default marker set.
+    //
+    // Matches ::SkeletonSolver::CSkeleton::eMarkerSetType::e28MarkerSkeleton
+    GEARS_28 = 28;
+
+    // Gears golf 34 marker skeleton with 4 waist markers, two on wrist,
+    // one on hand and three on upper arm, plus use of calibration markers.
+    //
+    // Matches ::SkeletonSolver::CSkeleton::eMarkerSetType::e34GMarkerSkeleton
+    GEARS_34 = 1034;
+
+    // Baseline (37). Marker skeleton, chest marker, square waist.
+    //
+    // Matches ::SkeletonSolver::CSkeleton::eMarkerSetType::e37SqWaistMarkerSkeleton
+    NP_37_SQUARE_WAIST = -37;
+
+    // Baseline + Hinged Toe (41). Marker skeleton, chest marker, square waist.
+    //
+    // Matches ::SkeletonSolver::CSkeleton::eMarkerSetType::e41SqWaistMarkerSkeleton
+    NP_41_SQUARE_WAIST = -41;
+
+}
