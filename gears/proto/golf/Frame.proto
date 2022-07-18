@@ -24,15 +24,19 @@ message Frame {
     bool head_tracked = 3;
 
     // was m_fShaftPathDeflection
+    // Distance in meters on the z axis between where the club head would be if the shaft were straight and where the club head actually is.
     float shaft_path_deflection = 4;
 
     // was m_fShaftFaceDeflection
+    // The magnitude of the deflection in the direction of the club face (corrected for static loft).
     float shaft_face_deflection = 5;
 
     // was m_fShaftPathDroop
+    // Distance in meters on the x axis between where the club head would be if the shaft were straight and where the club head actually is.
     float shaft_path_droop = 6;
 
     // was m_fShaftFaceDroop
+    // The magnitude of the deflection in the direction of 'club face cross product shaft' (corrected for static loft).
     float shaft_face_droop = 7;
 
     // was m_fClubHeadSpeed
@@ -46,6 +50,7 @@ message Frame {
         // was m_fTorque
         float torque = 10;
 
+        // Twist from grip to head along the shaft in radians.
         float shaft_torsion = 37;
     }
 
@@ -80,18 +85,23 @@ message Frame {
     .gears.proto.Vector3 head_path_dir = 20;
 
     // was m_vGrip
+    // Position of the club grip rigid body.
     .gears.proto.Vector3 grip_vector = 21;
 
     // was m_vShaftBase
+    // Location of the base of the club shaft (hosel).
     .gears.proto.Vector3 shaft_base = 22;
 
     // was m_vShaftGrip
+    // Location of the grip end of the club shaft.
     .gears.proto.Vector3 shaft_grip = 23;
 
     // was m_vShaftGripBase
+    // Location of shaft base (hosel) based on the location of the grip rigid body.
     .gears.proto.Vector3 shaft_grip_base = 24;
 
     // was m_vShaftGripGrip
+    // Location of the grip end of shaft based on location of the grip rigid body.
     .gears.proto.Vector3 shaft_grip_grip = 25;
 
     // was m_vHead1
@@ -110,9 +120,11 @@ message Frame {
     .gears.proto.Vector3 visual_path_base = 30;
 
     // was m_vVisualPathGrip
+    // Smoothed location of the grip end of the club shaft.
     .gears.proto.Vector3 visual_path_grip = 31;
 
     // was m_vVisualHandPath
+    // Smoothed location of the center of the grip.
     .gears.proto.Vector3 visual_hand_path = 32;
 
     // was CBodyAngles m_BodyAngles
