@@ -1,0 +1,116 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "KeyTimesProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+import "google/protobuf/wrappers.proto";
+
+// Specific times of interest that were detected in the capture.
+//
+// In general the fields appear in the order we expect the events
+// to happen within the capture, but there is some wiggle room.
+//
+// A field that is a float is required for a volleyball attack
+// capture to be considered as valid.
+//
+// A field that is a [google.protobuf.FloatValue] should be there but
+// if we fail to detect it then we don't prevent the capture from
+// being saved.
+//
+// While a capture is not valid if all float fields are not present,
+// internally we need to account for the field not being present 'yet'.
+// To that end, if a capture somehow gets saved without all those
+// fields then they will be set to NaN.  This shouldn't occur and
+// if it does it indicates that something went very wrong.
+message KeyTimes {
+
+    // Time that the player first starts moving towards where they
+    // hit the ball.
+    //
+    // We limit this to a configurable number of seconds before [ball_impact].
+    //
+    // This is equal to the time of the first frame in the capture.
+    float first_forward_movement = 1;
+
+    // First ground contact of the second-last step before [takeoff].
+    .google.protobuf.FloatValue orientation_step = 2;
+    .google.protobuf.FloatValue left_foot_orientation_step = 3;
+    .google.protobuf.FloatValue right_foot_orientation_step = 4;
+
+    // First ground contact of the last step before [takeoff].
+    .google.protobuf.FloatValue planting_step = 5;
+    .google.protobuf.FloatValue left_foot_planting_step = 6;
+    .google.protobuf.FloatValue right_foot_planting_step = 7;
+
+    // Minimum center of mass position between [planting_step] and [takeoff].
+    .google.protobuf.FloatValue upward_drive = 8;
+
+    // Left foot leaves the ground.
+    float left_foot_takeoff = 10;
+
+    // Right foot leaves the ground.
+    float right_foot_takeoff = 11;
+
+    // Both left and right feet have now off the ground.
+    //
+    // Will be equal to which ever of [left_foot_takeoff] or [right_foot_takeoff]
+    // is closer in time to impact.
+    float takeoff = 9;
+
+    // Attacking arm starts winding up to hit the ball.
+    .google.protobuf.FloatValue attacking_arm_wind_up = 12;
+
+    // Attacking arm is back as far as it is going to go and is
+    // now starting to move towards impact with the ball.
+    .google.protobuf.FloatValue attacking_arm_initiation = 13;
+
+    // Attacking arm hits the ball.
+    //
+    // Since we don't track the volleyball we detect this by looking
+    // for the player to have both feet of
+    //
+    // Ball impact is defined as the first frame in the capture in which ALL
+    // of the following are true:
+    //   - Both feet are off the ground.
+    //   - The attacking hand is above the neck.
+    //   - The attacking hand has a speed that is above a configurable threshold.
+    //     The default threshold is @TODO(alan) insert default [gears.volleyball.attack.Settings].min_attacking_hand_speed
+    //   - The attacking hand has a percentage decrease in speed relative to the previous frame.
+    //     The percentage is configurable.
+    //
+    // Put more simply we detect impact by looking for the player's attacking hand to suddenly
+    // slow down as a result of hitting the ball.
+    float ball_impact = 14;
+
+    // Time of the peak of the players jump.
+    //
+    // The position of the hips is used to determine the jump height.
+    .google.protobuf.FloatValue peak_vertical_jump = 15;
+
+    // Left foot is back on the ground.
+    .google.protobuf.FloatValue left_foot_landing = 16;
+
+    // Right foot is back on the ground.
+    .google.protobuf.FloatValue right_foot_landing = 17;
+
+    // Both left and right feet are now back on the ground.
+    //
+    // Will be equal to to which ever of [left_foot_landing] or
+    // [right_foot_landing] happen first.
+    float landing = 18;
+
+    // Time of the first center of mass acceleration value above zero.
+    float initial_landing = 19;
+
+    .google.protobuf.FloatValue peak_landing_force = 20;
+
+    // When the player has stood back up after landing from there jump.
+    //
+    // We limit this to a configurable number of seconds after [ball_impact].
+    //
+    // This is equal to the time of the last frame in the capture.
+    float recovery = 21;
+
+}

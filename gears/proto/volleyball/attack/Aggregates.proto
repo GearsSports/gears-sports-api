@@ -1,0 +1,221 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "AggregatesProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+// Holds metric values from a specific point in time or some
+// aggregation of a frame metric within a specific time period.
+message Aggregates {
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].ribcage_bend between
+    // [gears.proto.volleyball.attack.KeyTimes].first_forward_movement and
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step.
+    // Measured in radians.
+    float approach_peak_ribcage_bend = 1;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].left_thigh_to_hip_flexion between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_left_thigh_to_hip_flexion = 2;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].right_thigh_to_hip_flexion between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_right_thigh_to_hip_flexion = 3;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].left_knee_angle between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_left_knee_angle = 4;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].right_knee_angle between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_right_knee_angle = 5;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].left_foot_angle between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_left_foot_angle = 6;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].right_foot_angle between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_right_foot_angle = 7;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].ribcage_bend between
+    // [gears.proto.volleyball.attack.KeyTimes].orientation_step and
+    // [gears.proto.volleyball.attack.KeyTimes].takeoff.
+    // Measured in radians.
+    float plant_peak_ribcage_bend = 8;
+
+    // Max [gears.proto.volleyball.attack.Frame].center_of_mass_vertical_acceleration between
+    // [gears.proto.volleyball.attack.KeyTimes].planting_step and
+    // [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in meters per second^2.
+    float push_off_peak_center_of_mass_vertical_acceleration = 9;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].left_hip_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_left_hip_flexion = 10;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].right_hip_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_right_hip_flexion = 11;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].left_knee_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_left_knee_flexion = 12;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].right_knee_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_right_knee_flexion = 13;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].left_ankle_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_left_ankle_flexion = 14;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].right_ankle_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_right_ankle_flexion = 15;
+
+    // Max [gears.proto.volleyball.attack.AngularVelocities].left_shoulder_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_left_shoulder_flexion = 16;
+
+    // Max [gears.proto.volleyball.attack.AngularVelocities].right_shoulder_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_right_shoulder_flexion = 17;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].torso_global_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in radians per second.
+    float push_off_peak_torso_global_flexion = 18;
+
+    // Max [gears.proto.volleyball.attack.Frame].hip_velocity.y
+    // between [gears.proto.volleyball.attack.KeyTimes].planting_step
+    // and [gears.proto.volleyball.attack.KeyTimes].peak_vertical_jump.
+    // Measured in meters per second.
+    float push_off_peak_hip_vertical_velocity = 19;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].attacking_elbow_angle
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    float wind_up_peak_attacking_elbow_angle = 20;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.BodyAngles].ribcage_bend
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    float wind_up_peak_ribcage_bend = 21;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].ribcage_side_bend
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    float wind_up_peak_ribcage_side_bend = 22;
+
+    // Max [gears.proto.manual.BodyAngles].torso_frontal_bend
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    //
+    // [gears.proto.manual.BodyAngles].torso_frontal_bend was not needed
+    // on a per-frame basis so it was not included in
+    // [gears.proto.volleyball.attack.BodyAngles]
+    float wind_up_peak_torso_frontal_bend = 23;
+
+    // Max [gears.proto.manual.BodyAngles].torso_lateral_tilt
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    //
+    // [gears.proto.manual.BodyAngles].torso_lateral_tilt was not needed
+    // on a per-frame basis so it was not included in
+    // [gears.proto.volleyball.attack.BodyAngles]
+    float wind_up_peak_torso_lateral_tilt = 24;
+
+    // Max absolute value of [gears.proto.volleyball.attack.BodyAngles].x_factor
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation.
+    // Measured in radians.
+    float wind_up_peak_x_factor = 25;
+
+    // Max [gears.proto.volleyball.attack.BodyAngles].[left/right]_knee_angle
+    // between [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation
+    // and [gears.proto.volleyball.attack.KeyTimes].ball_impact.
+    // The knee on the same side as the hand hitting the ball will be chosen.
+    // Measured in radians.
+    float initiation_peak_attacking_knee_angle = 26;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].pelvis_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation
+    // and [gears.proto.volleyball.attack.KeyTimes].ball_impact.
+    // Measured in radians per second.
+    float initiation_peak_pelvis_flexion = 27;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].torso_pelvis_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation
+    // and [gears.proto.volleyball.attack.KeyTimes].ball_impact.
+    // Measured in radians per second.
+    float initiation_peak_torso_pelvis_flexion = 28;
+
+    // Absolute value of the min of [gears.proto.volleyball.attack.AngularVelocities].attacking_elbow_flexion
+    // between [gears.proto.volleyball.attack.KeyTimes].strike_arm_initiation
+    // and [gears.proto.volleyball.attack.KeyTimes].ball_impact.
+    // Measured in radians per second.
+    float initiation_peak_attacking_elbow_flexion = 29;
+
+    // Max [gears.proto.volleyball.attack.Frame].vertical_height
+    // between [gears.proto.volleyball.attack.KeyTimes].takeoff
+    // and [gears.proto.volleyball.attack.KeyTimes].landing.
+    // Measured in meters.
+    float jump_peak_vertical_height = 30;
+
+    // Min [gears.proto.volleyball.attack.Frame].center_of_mass_vertical_acceleration
+    // between [gears.proto.volleyball.attack.KeyTimes].landing
+    // and [gears.proto.volleyball.attack.KeyTimes].recovery.
+    // Measured in radians per second^2.
+    float landing_peak_center_of_mass_vertical_deceleration = 31;
+
+    // The left/right rotation of the orientation step where 0 degrees
+    // means the foot is pointed toward the net.
+    // Measured in radians.
+    float global_orientation_step_angle = 32;
+
+    // The left/right rotation of the plant step where 0 degrees
+    // means the foot is pointed toward the net.
+    // Measured in radians.
+    float global_plant_step_angle = 33;
+
+    // Distance between the orientation step and planting step.
+    // Measured in meters.
+    float distance_between_orientation_and_plant_steps = 34;
+
+}

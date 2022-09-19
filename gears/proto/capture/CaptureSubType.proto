@@ -382,4 +382,14 @@ enum CaptureSubType {
     // Valid for captures of type: [gears.proto.capture.CaptureType].BASEBALL_SWING
     CAPTURE_SUB_TYPE_BASEBALL_SWING_PLASTIC = 25;
 
+    // Represents a volleyball attack.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].VOLLEYBALL_ATTACK
+    CAPTURE_SUB_TYPE_VOLLEYBALL_ATTACK = 33;
+
+    // Represents a volleyball jump serve.
+    //
+    // Valid for captures of type: [gears.proto.capture.CaptureType].VOLLEYBALL_ATTACK
+    CAPTURE_SUB_TYPE_VOLLEYBALL_JUMP_SERVE = 34;
+
 }

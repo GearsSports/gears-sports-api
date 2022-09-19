@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "CaptureProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+import "google/protobuf/any.proto";
+import "gears/proto/volleyball/attack/KeyTimes.proto";
+import "gears/proto/volleyball/attack/Aggregates.proto";
+
+// Hold volleyball attack specific data that exist once per capture.
+message Capture {
+
+    // First forward movement
+    float start_time = 1;
+
+    // Player has recovered
+    float end_time = 2;
+
+    // Specific times of interest detected within the capture.
+    .gears.proto.volleyball.attack.KeyTimes key_times = 13;
+
+    // Metric values from a specific point in time or some
+    // aggregation of a frame metric within a specific time period.
+    .gears.proto.volleyball.attack.Aggregates aggregates = 14;
+
+    // Settings used while recording the capture.
+    // This is internal data and really only added at assist with debugging.
+    .google.protobuf.Any settings = 1000;
+
+}

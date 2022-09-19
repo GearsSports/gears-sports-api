@@ -1,0 +1,59 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "FrameProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+import "gears/proto/Vector3.proto";
+import "gears/proto/volleyball/attack/BodyAngles.proto";
+import "gears/proto/volleyball/attack/AngularVelocities.proto";
+
+// Hold volleyball attack specific data that exist once per frame.
+message Frame {
+
+    // The position of the player's center of mass projected onto the floor
+    // and compared to where it falls between the left and right feet. Display
+    // as a percent where 0 is balanced (exactly between the feet) and 100%
+    // left/right means on top of foot.
+    //
+    // A value of 0 indicates that the center of mass is exactly between the feet.
+    // A value of 1 indicates that the center of mass is over the left foot.
+    // A value of -1 indicates that the center of mass is over the right foot.
+    // A value of NaN indicates that we could not calculate the center of mass for this frame.
+    //
+    // Metric is only valid between [gears.proto.volleyball.attack.KeyTimes].upward_drive and
+    // [gears.proto.volleyball.attack.KeyTimes].recovery.
+    float center_of_mass_lateral_position = 1;
+
+    // Acceleration of the center of mass along y axis in meters per second^2.
+    float center_of_mass_vertical_acceleration = 2;
+
+    // Center of mass.
+    .gears.proto.Vector3 center_of_mass = 3;
+
+    // Speed of the hand hitting the ball in meters per second.
+    float attacking_hand_speed = 4;
+
+    // Position of the hand hitting the ball in meters.
+    .gears.proto.Vector3 attacking_hand_position = 5;
+
+    // Velocity of the hips in meters per second.
+    //
+    // Used for:
+    //   - Positional pelvis forward velocity
+    //   - Positional pelvis vertical velocity
+    .gears.proto.Vector3 hip_velocity = 6;
+
+    // Height of the hips relative to where they are at takeoff in meters.
+    // A positive value indicates that the hips are currently above where they were at takeoff.
+    // A negative value indicates that the hips are currently below where they were at takeoff.
+    float vertical_height = 7;
+
+    // Body angles at the time of this frame.
+    .gears.proto.volleyball.attack.BodyAngles body_angles = 8;
+
+    // Velocities at the time of this frame.
+    .gears.proto.volleyball.attack.AngularVelocities angular_velocities = 9;
+
+}
