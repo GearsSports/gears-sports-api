@@ -21,6 +21,11 @@ service SampleService {
     // Gets a list of sample captures.
     rpc ListCaptures(ListSampleCapturesRequest) returns (ListSampleCapturesResponse) {}
 
+    // Gets a stream of sample captures.
+    rpc StreamCaptures(ListSampleCapturesFilters) returns (
+        stream .gears.proto.server.SampleCapture
+    ) {}
+
 }
 
 // Message used to request a list of sample captures.
@@ -89,6 +94,11 @@ message ListSampleCapturesFilters {
 
     // Filter sample captures by their duration.
     .gears.proto.server.DurationRange duration = 10;
+
+    // Filter sample captures by their id.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated int32 ids = 11;
 
 }
 

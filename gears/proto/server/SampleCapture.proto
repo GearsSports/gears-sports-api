@@ -78,3 +78,11 @@ message SampleCapture {
     string url = 15;
 
 }
+
+// A list of sample captures.
+message SampleCaptureList {
+
+    // Sample captures in the list.
+    repeated SampleCapture samples = 1;
+
+}
