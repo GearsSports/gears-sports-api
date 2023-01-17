@@ -1,0 +1,143 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1";
+option java_outer_classname = "SampleServiceProto";
+option java_multiple_files = true;
+package gears.proto.api.v1;
+
+import "gears/proto/golf/ClubType.proto";
+import "gears/proto/player/Gender.proto";
+import "gears/proto/player/Handed.proto";
+import "gears/proto/server/Filters.proto";
+import "gears/proto/actor/MarkerSet.proto";
+import "gears/proto/app/GraphicsPackage.proto";
+import "gears/proto/capture/CaptureType.proto";
+import "gears/proto/server/SampleCapture.proto";
+import "gears/proto/capture/CaptureSubType.proto";
+
+// Rpc service for working with samples.
+service SampleService {
+
+    // Gets a list of sample captures.
+    rpc ListCaptures(ListSampleCapturesRequest) returns (ListSampleCapturesResponse) {}
+
+    // Gets a stream of sample captures.
+    rpc StreamCaptures(ListSampleCapturesFilters) returns (
+        stream .gears.proto.server.SampleCapture
+    ) {}
+
+}
+
+// Message used to request a list of sample captures.
+message ListSampleCapturesRequest {
+
+    // The page of the sample capture result set you want to retrieve.
+    //
+    // A value of 1 and NOT 0 is used to represent the first page.
+    uint32 page = 1;
+
+    // The number of sample captures per page.
+    //
+    // This value must be in the range [1, 100]
+    uint32 per_page = 2;
+
+    // The filters you would like to apply to the list of sample captures.
+    ListSampleCapturesFilters filters = 3;
+
+}
+
+// Filters that can be used when listing sample captures.
+message ListSampleCapturesFilters {
+
+    // Filter sample captures by the provided capture types.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.capture.CaptureType types = 1;
+
+    // Filter sample captures by the provided capture sub-types.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.capture.CaptureSubType sub_types = 2;
+
+    // Filter sample captures by the provided capture marker sets.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.actor.MarkerSet marker_sets = 3;
+
+    // Filter sample captures by gender.
+    //
+    // This filter will only be applied if the provided gender does NOT
+    // equal [gears.proto.player.Gender].GENDER_UNKNOWN.
+    .gears.proto.player.Gender gender = 4;
+
+    // Filter sample captures by handedness.
+    //
+    // This filter will only be applied if the provided handedness does
+    // NOT equal [gears.proto.player.Handed].UNKNOWN_HANDEDNESS.
+    .gears.proto.player.Handed handedness = 5;
+
+    // Filter sample captures by their graphics packages.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.app.GraphicsPackage graphics_packages = 6;
+
+    // Filter sample captures by their golf club types.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated .gears.proto.golf.ClubType club_types = 7;
+
+    // Filter sample captures by when they were added to the server.
+    .gears.proto.server.TimestampRange created_at = 8;
+
+    // Filter sample captures by when they were last modified on the server.
+    .gears.proto.server.TimestampRange updated_at = 9;
+
+    // Filter sample captures by their duration.
+    .gears.proto.server.DurationRange duration = 10;
+
+    // Filter sample captures by their id.
+    //
+    // If no items are added to this list then this filter will not be applied.
+    repeated int32 ids = 11;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.SampleService].ListCaptures rpc call
+message ListSampleCapturesResponse {
+
+    // The page of the list that is being returned.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListSampleCapturesRequest].page
+    // unless something was wrong with it.
+    uint32 page = 1;
+
+    // The number of results per page.
+    //
+    // This value will equal the value [gears.proto.api.v1.ListSampleCapturesRequest].per_page
+    // unless something was wrong with it.
+    uint32 per_page = 2;
+
+    // The total number of sample captures accounting for provided filters if any.
+    //
+    // This value is intended to let you know if there are additional pages that can be retrieved.
+    // If total_count is greater than page * per_page then there are more pages.
+    uint32 total_count = 3;
+
+    // The filters that were applied to the list of sample captures.
+    //
+    // This will only be present if [gears.proto.api.v1.ListSampleCapturesRequest].filters was present.
+    //
+    // The values in the filter object are the cleaned/validated values that were actually applied so
+    // if there is a difference between this object and [gears.proto.api.v1.ListSampleCapturesRequest].filters
+    // for a request then one or more of the filters was not valid.
+    ListSampleCapturesFilters filters = 4;
+
+    // The sample captures that were retrieved for the provided:
+    //   - [gears.proto.api.v1.ListSampleCapturesRequest].page
+    //   - [gears.proto.api.v1.ListSampleCapturesRequest].filters
+    //
+    // The number of sample captures returned will always be less than or
+    // equal to [gears.proto.api.v1.ListSampleCapturesRequest].per_page
+    repeated .gears.proto.server.SampleCapture samples = 5;
+
+}

@@ -5,6 +5,7 @@ option java_outer_classname = "FiltersProto";
 option java_multiple_files = true;
 package gears.proto.server;
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 // A message used to filter a rpc List method.
@@ -20,5 +21,21 @@ message TimestampRange {
     // Filter by a [google.protobuf.Timestamp] that is less that
     // or equal to the value in this field.
     .google.protobuf.Timestamp end = 2;
+
+}
+
+// A message used to filter a rpc List method.
+//
+// The fields min and max are not required, but at least one
+// must be provided or this filter will be ignored.
+message DurationRange {
+
+    // Filter by a [google.protobuf.Duration] that is greater that
+    // or equal to the value in this field.
+    .google.protobuf.Duration min = 1;
+
+    // Filter by a [google.protobuf.Duration] that is less that
+    // or equal to the value in this field.
+    .google.protobuf.Duration max = 2;
 
 }

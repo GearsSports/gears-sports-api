@@ -1,0 +1,88 @@
+syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.server";
+option java_outer_classname = "SampleCaptureProto";
+option java_multiple_files = true;
+package gears.proto.server;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "gears/proto/golf/ClubType.proto";
+import "gears/proto/player/Gender.proto";
+import "gears/proto/player/Handed.proto";
+import "gears/proto/actor/MarkerSet.proto";
+import "gears/proto/app/GraphicsPackage.proto";
+import "gears/proto/capture/CaptureType.proto";
+import "gears/proto/capture/CaptureSubType.proto";
+
+// Info about a sample capture.
+message SampleCapture {
+
+    // Id of the sample.
+    //
+    // NOTE: this is not the id of the capture pointed to by [SampleCapture].url
+    int32 id = 1;
+
+    // Type of capture.
+    .gears.proto.capture.CaptureType type = 2;
+
+    // Sub-type of capture.
+    .gears.proto.capture.CaptureSubType sub_type = 3;
+
+    // How long the capture is.
+    .google.protobuf.Duration duration = 4;
+
+    // Number of frames in the capture.
+    uint32 num_frames = 5;
+
+    // Marker set used by the capture.
+    //
+    // NOTE: Will be equal to [gears.proro.actor.MarkerSet].MARKER_SET_UNKNOWN if
+    // the capture does NOT have a skeleton.
+    .gears.proto.actor.MarkerSet marker_set = 6;
+
+    // Gender of the player.
+    .gears.proto.player.Gender gender = 7;
+
+    // Handedness of the player.
+    .gears.proto.player.Handed handedness = 8;
+
+    // Graphics package of the capture.
+    .gears.proto.app.GraphicsPackage graphics_package = 9;
+
+    // Type of golf club used in the capture.
+    //
+    // NOTE: Will only be populated for golf captures.  For other
+    // capture types this field will be equal to
+    // [gears.proto.golf.ClubType].UNKNOWN
+    .gears.proto.golf.ClubType club_type = 10;
+
+    // When the sample capture was uploaded to our servers.
+    .google.protobuf.Timestamp created_at = 11;
+
+    // When the sample capture was last modified.
+    .google.protobuf.Timestamp updated_at = 12;
+
+    // Title given to the sample capture.
+    string title = 13;
+
+    // Description of what this capture is a good example of.
+    string description = 14;
+
+    // Url that can be used to download the full capture object.
+    //
+    // The file that this url points to will be a serialized instance
+    // of [gears.proto.capture.Capture]
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
+    string url = 15;
+
+}
+
+// A list of sample captures.
+message SampleCaptureList {
+
+    // Sample captures in the list.
+    repeated SampleCapture samples = 1;
+
+}
