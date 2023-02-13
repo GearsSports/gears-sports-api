@@ -91,13 +91,13 @@ message QuinticCapture {
     // Average clubhead Acceleration of the pre impact zone in miles per hour per second.
     //
     // Measured in: miles per hour per second
-    .google.protobuf.FloatValue pre_impact_speed = 9;
+    .google.protobuf.FloatValue pre_impact_acceleration = 9;
 
-    // (+) Acceleration (-) Deceleration or Constant Speed
-    .google.protobuf.StringValue pre_impact_speed_prefix = 10;
+    // (+) Acceleration (-) Deceleration or Constant Acceleration
+    .google.protobuf.StringValue pre_impact_acceleration_kind = 10;
 
-    // Expected to be the units that pre_impact_speed were exported in.
-    .google.protobuf.StringValue pre_impact_speed_suffix = 11;
+    // Expected to be the units that pre_impact_acceleration were exported in.
+    .google.protobuf.StringValue pre_impact_acceleration_unit = 11;
 
     // Shaft Angle at Impact  (-) Shaft Forwards (+) Shaft Backwards.
     //
@@ -134,8 +134,8 @@ message QuinticCapture {
     // Measured in: degrees
     .google.protobuf.FloatValue club_twist = 17;
 
-    // (+) Opening (-) Closing
-    .google.protobuf.StringValue club_twist_prefix = 18;
+    // Direction of club twist.  (+) Opening (-) Closing.
+    .google.protobuf.StringValue club_twist_direction = 18;
 
     // The direction the putter head is moving at the point of impact, relative to the ball-to-target line.
     // (+) In to Out / Square / (-) Out to In.
@@ -143,8 +143,8 @@ message QuinticCapture {
     // Measured in: degrees
     .google.protobuf.FloatValue path = 19;
 
-    // (+) In to Out / Square / (-) Out to In.
-    .google.protobuf.StringValue path_prefix = 20;
+    // Direction of path angle.  (+) In to Out / Square / (-) Out to In.
+    .google.protobuf.StringValue path_direction = 20;
 
     // The speed of the ball immediately after impact.
     //
