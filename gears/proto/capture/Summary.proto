@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 import "gears/proto/golf/Summary.proto";
 import "gears/proto/manual/Summary.proto";
 import "gears/proto/baseball/swing/Summary.proto";
+import "gears/proto/volleyball/attack/Summary.proto";
 
 // A summary of a capture.
 //
@@ -39,5 +40,8 @@ message Summary {
 
         // Capture specific summary data for a baseball swing capture.
         gears.proto.baseball.swing.Summary baseball_swing = 18;
+
+        // Capture specific summary data for a volleyball attack capture.
+        gears.proto.volleyball.attack.Summary volleyball_attack = 19;
     }
 }

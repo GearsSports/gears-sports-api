@@ -1,0 +1,197 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.golf";
+option java_outer_classname = "QuinticCaptureProto";
+option java_multiple_files = true;
+package gears.proto.golf;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+// Raw metrics as parsed from the .xls export.
+//
+// Quintic organizes these metrics as 3 cells on the same row,
+// which are in the order:
+//   - Name
+//   - Value
+//   - Unit of measure.
+message QuinticMetric {
+
+    // Value of the name cell.
+    string name = 1;
+
+    // Value of the unit cell.
+    string unit = 2;
+
+    // Value of the value cell.  If the value cell
+    // contains a number that then float_value will
+    // be set, otherwise string_value will be set.
+    //
+    // This message is considered invalid if neither is set.
+    oneof value_data {
+
+        // Numeric value contained in the value cell.
+        float float_value = 3;
+
+        // Fallback if the value cell is not a number.
+        string string_value = 4;
+
+    }
+
+}
+
+// A single column in the ball tracking table.
+message QuinticTableColumn {
+
+    // Name of the column
+    string name = 1;
+
+    // Unit of measure the values are in.
+    string unit = 2;
+
+    // Values for the column.
+    repeated float values = 3;
+
+}
+
+// Quintic data taken from their .xls export.
+message QuinticCapture {
+
+    // Id of this quintic capture data.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string id = 1;
+
+    // Id of the capture this quintic data belongs to.
+    //
+    // This value must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 2;
+
+    // When this data was parsed from the .xls file provided by quintic.
+    .google.protobuf.Timestamp created_at = 3;
+
+    // A string representing the version that the desktop application
+    // was at when this capture was created.
+    string git_hash = 4;
+
+    // If markers were used on the ball or not.
+    bool has_ball_markers = 5;
+
+    // If markers were used on the club or not.
+    bool has_club_markers = 6;
+
+    // Who/what the capture came from.
+    .google.protobuf.StringValue result_for = 7;
+
+    // Speed of the club head at impact.
+    //
+    // Measured in: miles per hour
+    .google.protobuf.FloatValue impact_club_speed = 8;
+
+    // Average clubhead Acceleration of the pre impact zone in miles per hour per second.
+    //
+    // Measured in: miles per hour per second
+    .google.protobuf.FloatValue pre_impact_acceleration = 9;
+
+    // (+) Acceleration (-) Deceleration or Constant Acceleration
+    .google.protobuf.StringValue pre_impact_acceleration_kind = 10;
+
+    // Expected to be the units that pre_impact_acceleration were exported in.
+    .google.protobuf.StringValue pre_impact_acceleration_unit = 11;
+
+    // Shaft Angle at Impact  (-) Shaft Forwards (+) Shaft Backwards.
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue shaft_angle = 12;
+
+    // Attack Angle (Rise Angle) at Impact (+) upward angle (-) downward angle.
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue attack_angle = 13;
+
+    // Face Angle at Impact (-) Closed  (+) Open.
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue face_angle = 14;
+
+    // Face rotation is the rate at which the club face opens or closes before/after impact.
+    // It is calculated on the average of available frames prior to and after impact.
+    //
+    // Measured in: degrees per second
+    .google.protobuf.FloatValue face_rotation = 15;
+
+    // Lie Angle at Impact (-) indicates the toe of the putter has gone up in the air
+    // (heel down/hands lower) (+) indicates the toe of the putter has gone down
+    // (heel up/hands higher).
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue lie_angle = 16;
+
+    // The amount the club face twist as a result of the impact collision with the golf ball
+    // (+) Opens  (-) Closes (Club Twist is calculated as the difference between the predicted
+    // and real face angle for the first frame after impact).
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue club_twist = 17;
+
+    // Direction of club twist.  (+) Opening (-) Closing.
+    .google.protobuf.StringValue club_twist_direction = 18;
+
+    // The direction the putter head is moving at the point of impact, relative to the ball-to-target line.
+    // (+) In to Out / Square / (-) Out to In.
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue path = 19;
+
+    // Direction of path angle.  (+) In to Out / Square / (-) Out to In.
+    .google.protobuf.StringValue path_direction = 20;
+
+    // The speed of the ball immediately after impact.
+    //
+    // Measured in: miles per hour
+    .google.protobuf.FloatValue impact_ball_speed = 21;
+
+    // The launch angle of the golf immediately after impact, (+) positive launch (-) negative launch.
+    //
+    // Measured in: degrees
+    .google.protobuf.FloatValue launch_angle = 22;
+
+    // Cut Spin (+) or Hook Spin (-)
+    //
+    // Measured in: rpm
+    .google.protobuf.FloatValue cut_hook_spin = 23;
+
+    // Forward Spin (+) or negative rotation/Back Spin (-).
+    //
+    // Measured in: rpm
+    .google.protobuf.FloatValue forward_back_spin = 24;
+
+    // The point at which the golf ball starts to rotate forwards.
+    //
+    // Measured in: inches
+    .google.protobuf.FloatValue start_of_forward_rotation = 25;
+
+    // Zero skid / true roll is the point where all skid has been eliminated from the golf
+    // ball's roll (the ball will rotate 360 degrees across a distance equivalent to the
+    // circumference of the golf ball approx. 5.25 inches).
+    //
+    // Measured in: inches
+    .google.protobuf.FloatValue zero_skid_after = 26;
+
+    // The time taken to reach the point of Zero Skid.
+    //
+    // Measured in: seconds
+    .google.protobuf.FloatValue time_to_zero_skid = 27;
+
+    // (Ball Speed / Clubhead Speed) = Impact Ratio
+    .google.protobuf.FloatValue impact_ratio = 28;
+
+    // Raw non-table metrics parsed from the .xls file.
+    repeated .gears.proto.golf.QuinticMetric metrics = 100;
+
+    // Raw ball tracking metrics from each frame.
+    //
+    // Each element of this list is a single column.
+    repeated .gears.proto.golf.QuinticTableColumn ball_tracking = 101;
+
+}

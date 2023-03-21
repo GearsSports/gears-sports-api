@@ -24,4 +24,8 @@ enum CaptureType {
 
     // represents a baseball swing capture.
     BASEBALL_SWING = 3;
+
+    // represents a volleyball attach/jump serve
+    VOLLEYBALL_ATTACK = 4;
+
 }

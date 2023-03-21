@@ -1,0 +1,41 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.api.v1.capture";
+option java_outer_classname = "QuinticServiceProto";
+option java_multiple_files = true;
+package gears.proto.api.v1.capture;
+
+import "gears/proto/golf/QuinticCapture.proto";
+
+// Rpc service for getting Quintic capture data associated with a Gears capture.
+service QuinticService {
+
+    // Gets Quintic capture data by Gears capture id.
+    rpc Get(GetQuinticCaptureRequest) returns (GetQuinticCaptureResponse) {}
+
+}
+
+// Message used get a single Quintic capture by its capture id.
+message GetQuinticCaptureRequest {
+
+    // Id of the Gears capture you want to get the Quintic capture for.
+    //
+    // The provided id must be a valid string representation of a rfc 4122 uuid.
+    string capture_id = 1;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.QuinticService].Get rpc call.
+message GetQuinticCaptureResponse {
+
+    // The Quintic capture requested.
+    .gears.proto.golf.QuinticCapture capture = 1;
+
+    // Url to where the Quintic composite image can be found.
+    // Note: Can be empty if there isn't a composite image associated
+    //       this capture or if it hasn't been uploaded yet.
+    //
+    // Warning: This url should not be saved as it expires after a few minutes.
+    string image_url = 2;
+
+}

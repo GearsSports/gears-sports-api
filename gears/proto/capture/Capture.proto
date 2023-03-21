@@ -14,6 +14,7 @@ import "gears/proto/manual/Capture.proto";
 import "gears/proto/capture/CaptureType.proto";
 import "gears/proto/baseball/swing/Capture.proto";
 import "gears/proto/capture/CaptureSubType.proto";
+import "gears/proto/volleyball/attack/Capture.proto";
 import "gears/proto/server/capture/CameraVideo.proto";
 
 // Message that holds all data needed to replay a capture.
@@ -62,6 +63,9 @@ message Capture {
 
         // Data specific to a baseball swing capture that exists once per capture.
         gears.proto.baseball.swing.Capture baseball_swing = 11;
+
+        // Data specific to a volleyball attack capture that exists once per capture.
+        .gears.proto.volleyball.attack.Capture volleyball_attack = 12;
     }
 
     // The actors that exist in this capture.

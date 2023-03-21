@@ -1,0 +1,48 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "AngularVelocitiesProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+// Holds angular velocities in radians per second.
+message AngularVelocities {
+
+    // Calculated using the chest to hip flexion relationship.
+    float torso_pelvis_flexion = 1;
+
+    // Calculated using the BodyAngles.torso_global_flexion metric.
+    float torso_global_flexion = 2;
+
+    float pelvis_flexion = 3;
+
+    // Calculated using the hip_to_left_thigh_flexion relationship.
+    float left_hip_flexion = 4;
+
+    // Calculated using the hip_to_right_thigh_flexion relationship.
+    float right_hip_flexion = 5;
+
+    // Calculated using the left_shin_to_left_thigh_flexion relationship.
+    float left_knee_flexion = 6;
+
+    // Calculated using the right_shin_to_right_thigh_flexion relationship.
+    float right_knee_flexion = 7;
+
+    // Calculated using the left_foot_to_left_shin_flexion relationship.
+    float left_ankle_flexion = 8;
+
+    // Calculated using the right_foot_to_right_shin_flexion relationship.
+    float right_ankle_flexion = 9;
+
+    // Calculated using the chest_to_left_upper_arm_flexion relationship.
+    float left_shoulder_flexion = 10;
+
+    // Calculated using the chest_to_right_upper_arm_flexion relationship.
+    float right_shoulder_flexion = 11;
+
+    // Calculated using the left_forearm_to_left_upper_arm_flexion or
+    // right_forearm_to_right_upper_arm_flexion relationship depending
+    // on which arm the player is using to hit the ball.
+    float attacking_elbow_flexion = 12;
+
+}

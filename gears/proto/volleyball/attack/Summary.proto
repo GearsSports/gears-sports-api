@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "SummaryProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+import "gears/proto/volleyball/attack/Frame.proto";
+import "gears/proto/volleyball/attack/KeyTimes.proto";
+import "gears/proto/volleyball/attack/Aggregates.proto";
+
+// Hold volleyball attack specific summary data.
+message Summary {
+
+    // Specific times of interest detected within the capture.
+    .gears.proto.volleyball.attack.KeyTimes key_times = 1;
+
+    // Metric values from a specific point in time or some
+    // aggregation of a frame metric within a specific time period.
+    .gears.proto.volleyball.attack.Aggregates aggregates = 2;
+
+    // The [gears.proto.volleyball.attack.Frame] at
+    // [gears.proto.volleyball.attack.KeyTimes].ball_impact.
+    .gears.proto.volleyball.attack.Frame ball_impact = 3;
+
+    // The [gears.proto.volleyball.attack.Frame] at
+    // [gears.proto.volleyball.attack.KeyTimes].peak_landing_force.
+    .gears.proto.volleyball.attack.Frame peak_landing_force = 4;
+
+}

@@ -8,6 +8,7 @@ package gears.proto.capture;
 import "gears/proto/golf/Frame.proto";
 import "gears/proto/manual/Frame.proto";
 import "gears/proto/baseball/swing/Frame.proto";
+import "gears/proto/volleyball/attack/Frame.proto";
 
 // Message that holds graph data from a single frame in a capture.
 //
@@ -29,6 +30,9 @@ message GraphFrame {
 
         // Frame data specific to a baseball swing capture.
         gears.proto.baseball.swing.Frame baseball_swing = 4;
+
+        // Frame data specific to a volleyball attack capture.
+        gears.proto.volleyball.attack.Frame volleyball_attack = 5;
     }
 }
 

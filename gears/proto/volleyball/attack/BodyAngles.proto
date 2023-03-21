@@ -1,0 +1,51 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.volleyball.attack";
+option java_outer_classname = "BodyAnglesProto";
+option java_multiple_files = true;
+package gears.proto.volleyball.attack;
+
+// Holds angles measured in radians unless otherwise noted.
+message BodyAngles {
+
+    // Angle of turn of ribcage with respect to the pelvis in radians.
+    float x_factor = 1;
+
+    // Measure in radians.
+    float ribcage_bend = 2;
+
+    // Measure in radians.
+    float ribcage_side_bend = 3;
+
+    // Measure in radians.
+    float spine_angle = 4;
+
+    // Measure in radians.
+    float hip_angle = 5;
+
+    // Flexion measured from the left thigh bone to the hip bone in radians.
+    float left_thigh_to_hip_flexion = 6;
+
+    // Flexion measured from the right thigh bone to the hip bone in radians.
+    float right_thigh_to_hip_flexion = 7;
+
+    // Measure in radians.
+    float left_knee_angle = 8;
+
+    // Measure in radians.
+    float right_knee_angle = 9;
+
+    // Measure in radians.
+    float left_foot_angle = 10;
+
+    // Measure in radians.
+    float right_foot_angle = 11;
+
+    // Measure in radians.
+    //
+    // Same as [gears.proto.manual.BodyAngles].left_elbow_angle or
+    // [gears.proto.manual.BodyAngles].right_elbow_angle depending
+    // on which arm the player is using to hit the ball.
+    float attacking_elbow_angle = 12;
+
+}
