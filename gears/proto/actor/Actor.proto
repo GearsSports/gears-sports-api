@@ -24,4 +24,37 @@ message Actor {
     // Recorded when a skeleton is fit.
     .gears.proto.actor.ActorMeasurements measurements = 3;
 
+    // Offsets in radians applied to some wrist related metrics in golf captures.
+    .gears.proto.actor.WristOffsets left_wrist_offsets = 4;
+
+    // Offsets in radians applied to some wrist related metrics in golf captures.
+    .gears.proto.actor.WristOffsets right_wrist_offsets = 5;
+
+}
+
+// Offsets in radians applied to some wrist related metrics in golf captures.
+//
+// As of 2023-03-27 these offsets are only populated for full body golf
+// captures that use the [gears.proto.actor.MarkerSet].GEARS_34 marker set
+// and complete wrist calibration after fitting the skeleton.
+message WristOffsets {
+
+    // Offset subtracted from [gears.proto.golf.BodyAngles].lead_wrist_radial
+    // or [gears.proto.golf.BodyAngles].trail_wrist_radial.
+    //
+    // Measured in radians.
+    float ulnar_radial = 1;
+
+    // Offset subtracted from [gears.proto.golf.BodyAngles].lead_wrist_extension
+    // or [gears.proto.golf.BodyAngles].trail_wrist_extension.
+    //
+    // Measured in radians.
+    float extension_flexion = 2;
+
+    // Offset subtracted from [gears.proto.golf.BodyAngles].lead_wrist_spination
+    // or [gears.proto.golf.BodyAngles].trail_wrist_spination.
+    //
+    // Measured in radians.
+    float pronation_supination = 3;
+
 }
