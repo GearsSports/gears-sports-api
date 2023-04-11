@@ -189,4 +189,68 @@ message BodyAngles {
     // Measured in radians.
     float lead_forearm_rotation = 52;
 
+    // Angle between the following lines projected onto
+    // the YZ plane of the chest bone.
+    //
+    // The first line is from the left upper arm bone to the left forearm bone.
+    // The second line is from the neck bone to the chest bone.
+    //
+    // Measured in radians.
+    float left_shoulder_flexion = 53;
+
+    // Rotation angle of the left upper arm bone to the chest bone.
+    //
+    // Measured in radians.
+    float left_shoulder_rotation = 54;
+
+    // Angle between the following lines projected onto
+    // the XY plane of the chest bone.
+    //
+    // The first line is from the left upper arm bone to the left forearm bone.
+    // The second line is from the neck bone to the chest bone.
+    //
+    // Measured in radians.
+    float left_shoulder_standard_abduction = 55;
+
+    // Angle between the following lines projected onto
+    // the XZ plane of the chest bone.
+    //
+    // The first line is from the left upper arm bone to the left forearm bone.
+    // The second line is from the right upper arm bone to the left upper arm bone.
+    //
+    // Measured in radians.
+    float left_shoulder_horizontal_abduction = 56;
+
+    // Angle between the following lines projected onto
+    // the YZ plane of the chest bone.
+    //
+    // The first line is from the right upper arm bone to the right forearm bone.
+    // The second line is from the neck bone to the chest bone.
+    //
+    // Measured in radians.
+    float right_shoulder_flexion = 57;
+
+    // Rotation angle of the right upper arm bone to the chest bone.
+    //
+    // Measured in radians.
+    float right_shoulder_rotation = 58;
+
+    // Angle between the following lines projected onto
+    // the XY plane of the chest bone.
+    //
+    // The first line is from the right upper arm bone to the right forearm bone.
+    // The second line is from the neck bone to the chest bone.
+    //
+    // Measured in radians.
+    float right_shoulder_standard_abduction = 59;
+
+    // Angle between the following lines projected onto
+    // the XZ plane of the chest bone.
+    //
+    // The first line is from the right upper arm bone to the right forearm bone.
+    // The second line is from the left upper arm bone to the right upper arm bone.
+    //
+    // Measured in radians.
+    float right_shoulder_horizontal_abduction = 60;
+
 }
