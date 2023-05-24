@@ -103,4 +103,25 @@ message Capture {
     // Then this field is set with the max value in that range.
     .google.protobuf.FloatValue peak_face_angle_change = 27;
 
+    // The total distance of the club path from the top of the
+    // backswing to the end of follow through, projected onto
+    // the ground plane.  Only populated for putting captures.
+    //
+    // Measured in meters.
+    .google.protobuf.FloatValue putting_arc_length = 28;
+
+    // The angle created by the intersection of the line from the
+    // chest bone to the ground and the line from the ball to the
+    // chest bone, projected onto the YX plane.  Only populated
+    // for full-body putting captures.
+    //
+    // Measured in meters.
+    .google.protobuf.FloatValue putting_arc_number = 29;
+
+    // Ratio of backswing time (start of swing motion to top of back
+    // swing) to downswing time (start of downswing to impact).
+    //
+    // This is a unitless value.
+    .google.protobuf.FloatValue tempo = 30;
+
 }
