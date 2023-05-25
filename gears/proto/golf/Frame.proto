@@ -9,6 +9,7 @@ import "gears/proto/Marker.proto";
 import "gears/proto/Vector3.proto";
 import "gears/proto/Quaternion.proto";
 import "gears/proto/golf/BodyAngles.proto";
+import "google/protobuf/wrappers.proto";
 
 // hold golf specific data that exist once per frame
 // largely ported from ::CSwingFrame
@@ -141,6 +142,34 @@ message Frame {
 
     // Metrics that used to be computed every time a capture was loaded.
     FrameUiMetrics ui_metrics = 38;
+
+    // The angular rotation velocity of the clubhead face.
+    //
+    // Measured in radians per second.
+    .google.protobuf.FloatValue face_rotation_velocity = 39;
+
+    // Acceleration of the club head.
+    //
+    // Measured in meters per second^2.
+    .google.protobuf.FloatValue club_head_acceleration = 40;
+
+    // Angle between the club face and the putting arc line.
+    //
+    // A positive value indicates the club face is angled
+    // outwards away from the body relative to the putting arc line.
+    //
+    // A negative value indicates the club face is angled
+    // inwards towards from the body relative to the putting arc line.
+    //
+    // Only populated for full body putting captures.
+    //
+    // Measured in radians.
+    .google.protobuf.FloatValue face_to_putting_arc = 41;
+
+    // Change in face_to_putting_arc over time.
+    //
+    // Measured in radians per second.
+    .google.protobuf.FloatValue face_to_putting_arc_velocity = 42;
 
 }
 
