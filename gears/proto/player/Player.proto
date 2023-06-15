@@ -67,4 +67,7 @@ message Player {
     // When this player was uploaded to the server.
     .google.protobuf.Timestamp uploaded_at = 14;
 
+    // The players birthday
+    .google.protobuf.Timestamp birthday = 17;
+
 }
