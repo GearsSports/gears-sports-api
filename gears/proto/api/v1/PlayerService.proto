@@ -72,6 +72,9 @@ message ListPlayersFilters {
     // Filter players by when they were last updated.
     .gears.proto.server.TimestampRange updated_at = 5;
 
+    // Filter players by their birthday.
+    .gears.proto.server.TimestampRange birthday = 13;
+
     // Filter players by their email containing the provided value.
     // The comparison is case-sensitive.
     // If no value is provided then this filter will not be applied.
@@ -180,6 +183,7 @@ message UpdatePlayerRequest {
     //   - [gears.proto.player.Player].gender
     //   - [gears.proto.player.Player].handedness
     //   - [gears.proto.player.Player].graphics_package
+    //   - [gears.proto.player.Player].birthday
     .gears.proto.player.Player player = 2;
 
 }
