@@ -171,6 +171,21 @@ message Frame {
     // Measured in radians per second.
     .google.protobuf.FloatValue face_to_putting_arc_velocity = 42;
 
+    // Acceleration of the club grip
+    //
+    // Measured in meters per second^2
+    .google.protobuf.FloatValue grip_acceleration = 43;
+
+    // Angular rotation acceleration of the clubhead face
+    //
+    // Measured in radians per second^2
+    .google.protobuf.FloatValue face_rotation_acceleration = 44;
+
+    // Change in face_to_putting_arc_velocity over time
+    //
+    // Measured in radians per second^2
+    .google.protobuf.FloatValue face_to_putting_arc_acceleration = 45;
+
 }
 
 // Metrics that used to be computed every time a capture was loaded.
