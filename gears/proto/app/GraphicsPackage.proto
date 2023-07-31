@@ -12,4 +12,5 @@ enum GraphicsPackage {
     COBRA       = 1;
     NIKE        = 2;
     TAYLORMADE  = 3;
+    CUSTOM      = 4;
 }
