@@ -45,4 +45,16 @@ message AngularVelocities {
     // on which arm the player is using to hit the ball.
     float attacking_elbow_flexion = 12;
 
+    // Calculated by...
+    float hip_global_angular_velocity = 13;
+
+    // Calculated by...
+    float torso_global_angular_velocity = 14;
+
+    // Calculated by...
+    float left_forearm_global_angular_velocity = 15;
+
+    // Calculated by...
+    float right_forearm_global_angular_velocity = 16;
+
 }
