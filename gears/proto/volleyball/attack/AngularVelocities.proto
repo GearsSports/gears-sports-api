@@ -45,16 +45,20 @@ message AngularVelocities {
     // on which arm the player is using to hit the ball.
     float attacking_elbow_flexion = 12;
 
-    // Calculated by...
+    // Calculated by measuring the change in angle over time between the world z-axis and the hip z-axis
+    // after accounting for difference in the y-axis.
     float hip_global_angular_velocity = 13;
 
-    // Calculated by...
+    // Calculated by measuring the change in angle over time between the world z-axis and the torso z-axis
+    // after accounting for difference in the y-axis.
     float torso_global_angular_velocity = 14;
 
-    // Calculated by...
+    // Calculated by measuring the change in angle over time between the world y-axis and the left hand y-axis
+    // after accounting for difference in the x-axis.
     float left_forearm_global_angular_velocity = 15;
 
-    // Calculated by...
+    // Calculated by measuring the change in angle over time between the world y-axis and the right hand y-axis
+    // after accounting for difference in the x-axis.
     float right_forearm_global_angular_velocity = 16;
 
 }
