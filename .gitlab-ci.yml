@@ -16,15 +16,15 @@ test_csharp:
         - dotnet build GearsSportsApi.Tests.csproj
         - dotnet test
 
-#test_python:
-#    image: python:3.6
-#    stage: test
-#    script:
-#        - python -V
-#        - cd examples/python/gears_sports_api
-#        - pip install -r requirements.txt
-#        - python build.py
-#        - python -m unittest discover -s . --verbose
+test_python:
+    image: python:3
+    stage: test
+    script:
+        - python -V
+        - cd examples/python/gears_sports_api
+        - pip install -r requirements.txt
+        - python build.py
+        - python -m unittest discover -s . --verbose
 
 #test_java:
 #    image: java:8-jdk
