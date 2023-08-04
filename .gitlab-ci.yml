@@ -26,29 +26,29 @@ test_python:
         - python build.py
         - python -m unittest discover -s . --verbose
 
-#test_java:
-#    image: java:8-jdk
-#    stage: test
-#    script:
-#        - java -version
-#        - cd examples/java/public-api
-#        - export GRADLE_USER_HOME=`pwd`/.gradle
-#        - chmod +x gradlew
-#        - ./gradlew test
+test_java:
+    image: java:8-jdk
+    stage: test
+    script:
+        - java -version
+        - cd examples/java/public-api
+        - export GRADLE_USER_HOME=`pwd`/.gradle
+        - chmod +x gradlew
+        - ./gradlew test
 
-#test_php:
-#    image: registry.gitlab.com/gears-sports/web-locker-base:master
-#    stage: test
-#    script:
-#        # Need to download the protoc compiler
-#        - php -v
-#        - time apk add git composer make autoconf automake libc-dev g++ linux-headers
-#        - time git clone -b v1.17.0 https://github.com/grpc/grpc
-#        - cd grpc
-#        - time git submodule update --init
-#        - time make grpc_php_plugin
-#        - mv bins/opt/grpc_php_plugin ../examples/php/bins/
-#        - cd ../examples/php
-#        - time composer install
-#        - php proto-build.php
-#        - vendor/bin/phpunit tests
+test_php:
+    image: registry.gitlab.com/gears-sports/web-locker-base:master
+    stage: test
+    script:
+        # Need to download the protoc compiler
+        - php -v
+        - time apk add git composer make autoconf automake libc-dev g++ linux-headers
+        - time git clone -b v1.17.0 https://github.com/grpc/grpc
+        - cd grpc
+        - time git submodule update --init
+        - time make grpc_php_plugin
+        - mv bins/opt/grpc_php_plugin ../examples/php/bins/
+        - cd ../examples/php
+        - time composer install
+        - php proto-build.php
+        - vendor/bin/phpunit tests
