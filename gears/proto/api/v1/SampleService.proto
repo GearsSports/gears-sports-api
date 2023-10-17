@@ -5,6 +5,7 @@ option java_outer_classname = "SampleServiceProto";
 option java_multiple_files = true;
 package gears.proto.api.v1;
 
+import "google/protobuf/wrappers.proto";
 import "gears/proto/golf/ClubType.proto";
 import "gears/proto/player/Gender.proto";
 import "gears/proto/player/Handed.proto";
@@ -99,6 +100,12 @@ message ListSampleCapturesFilters {
     //
     // If no items are added to this list then this filter will not be applied.
     repeated int32 ids = 11;
+
+    // Filter sample captures by if they can be used as a target capture in our
+    // training recommendations system.
+    //
+    // If this field is not set then the filter will not be applied.
+    .google.protobuf.BoolValue is_training_target = 12;
 
 }
 
