@@ -124,4 +124,15 @@ message Capture {
     // This is a unitless value.
     .google.protobuf.FloatValue tempo = 30;
 
+    // Percent of frames that the face to arc metric is within
+    // putting_arc_efficiency_threshold of zero.
+    //
+    // Range: [0, 1] (0%, 100%)
+    .google.protobuf.FloatValue putting_arc_efficiency = 31;
+
+    // Angle that putting face to arc must be within to be considered ok.
+    //
+    // Measured in radians.
+    .google.protobuf.FloatValue putting_arc_efficiency_threshold = 32;
+
 }
