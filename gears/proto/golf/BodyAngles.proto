@@ -39,19 +39,19 @@ message BodyAngles {
     float club_kinematic_sequence = 10;
 
     // was fWristCockAngle
-    float wrist_cock_angle = 11;
+    float wrist_cock_angle = 11 [deprecated = true];
 
     // was fLeftWristFlexion
-    float left_wrist_flexion = 12;
+    float left_wrist_flexion = 12 [deprecated = true];
 
     // was fRightWristFlexion
-    float right_wrist_flexion = 13;
+    float right_wrist_flexion = 13 [deprecated = true];
 
     // was fLeftWristPronation
-    float left_wrist_pronation = 14;
+    float left_wrist_pronation = 14 [deprecated = true];
 
     // was fRightWristPronation
-    float right_wrist_pronation = 15;
+    float right_wrist_pronation = 15 [deprecated = true];
 
     // was fLeftAnkleAngle
     float left_ankle_angle = 16;
