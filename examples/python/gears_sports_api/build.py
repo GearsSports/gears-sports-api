@@ -47,7 +47,8 @@ def proto_build(proto_file: str):
         check=True
     )
     if len(result.stderr) > 0 or len(result.stdout) > 0:
-        raise Exception(result)
+        sys.stdout.write('error: %s\n' % result)
+        sys.stdout.flush()
 
 
 num_built = 0
