@@ -23,6 +23,7 @@ test_python:
         - python -V
         - cd examples/python/gears_sports_api
         - pip install -r requirements.txt
+        - pip list -v --format=columns
         - python build.py
         - python -m unittest discover -s . --verbose
 
