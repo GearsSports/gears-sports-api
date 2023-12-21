@@ -5,6 +5,7 @@ option java_outer_classname = "PlayerProto";
 option java_multiple_files = true;
 package gears.proto.player;
 
+import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 import "gears/proto/player/Gender.proto";
 import "gears/proto/player/Handed.proto";
@@ -69,5 +70,10 @@ message Player {
 
     // The players birthday
     .google.protobuf.Timestamp birthday = 17;
+
+    // The players weight in kilograms.
+    //
+    // Must be greater than zero if set.
+    .google.protobuf.FloatValue weight = 18;
 
 }

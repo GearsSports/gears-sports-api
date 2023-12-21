@@ -184,6 +184,7 @@ message UpdatePlayerRequest {
     //   - [gears.proto.player.Player].handedness
     //   - [gears.proto.player.Player].graphics_package
     //   - [gears.proto.player.Player].birthday
+    //   - [gears.proto.player.Player].weight
     .gears.proto.player.Player player = 2;
 
 }

@@ -6,6 +6,7 @@ option java_multiple_files = true;
 package gears.proto.actor;
 
 import "gears/proto/Matrix.proto";
+import "gears/proto/Vector3.proto";
 import "gears/proto/Transform.proto";
 import "gears/proto/actor/HandPose.proto";
 
@@ -66,5 +67,20 @@ message Pose {
     // Transforms applied to produce the this pose
     // ::SkeletonSolver::CPose::m_Transforms
     repeated .gears.proto.Transform transforms = 15;
+
+    // Center of mass in meters.
+    .gears.proto.Vector3 center_of_mass = 16;
+
+    // Velocity of center of mass in meters per second.
+    .gears.proto.Vector3 center_of_mass_velocity = 17;
+
+    // Acceleration of center of mass in meters per second^2.
+    .gears.proto.Vector3 center_of_mass_acceleration = 18;
+
+    // Center of mass times actors mass measured in newtons.
+    //
+    // The actors mass is provided by the user and not something we measure
+    // so this metric will be wrong if the user provides a wrong mass.
+    .gears.proto.Vector3 ground_reaction_force = 19;
 
 }
