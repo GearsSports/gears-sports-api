@@ -34,6 +34,15 @@ message File {
     // from this files content.
     string mime_type = 4;
 
+    // The size of this file in bytes.
+    //
+    // When adding a file to a capture this field is used as the expected size of the
+    // file being uploaded.
+    //
+    // Once it is on our servers this field is the size of the file that can be downloaded
+    // from [gears.proto.server.capture.File].url.
+    uint32 byte_size = 9;
+
     // When this file was attached to its capture.
     .google.protobuf.Timestamp created_at = 5;
 
