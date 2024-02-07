@@ -28,7 +28,7 @@ test_python:
         - python -m unittest discover -s . --verbose
 
 test_java:
-    image: java:8-jdk
+    image: gradle:jdk8
     stage: test
     script:
         - java -version
