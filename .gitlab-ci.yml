@@ -37,19 +37,19 @@ test_java:
         - chmod +x gradlew
         - ./gradlew test
 
-#test_php:
-#    image: registry.gitlab.com/gears-sports/web-locker-base:master
-#    stage: test
-#    script:
-#        # Need to download the protoc compiler
-#        - php -v
-#        - time apk add git composer make autoconf automake libc-dev g++ linux-headers
-#        - time git clone -b v1.17.0 https://github.com/grpc/grpc
-#        - cd grpc
-#        - time git submodule update --init
-#        - time make grpc_php_plugin
-#        - mv bins/opt/grpc_php_plugin ../examples/php/bins/
-#        - cd ../examples/php
-#        - time composer install
-#        - php proto-build.php
-#        - vendor/bin/phpunit tests
+test_php:
+    image: registry.gitlab.com/gears-sports/web-locker-base:master
+    stage: test
+    script:
+        # Need to download the protoc compiler
+        - php -v
+        - time apk add git composer make autoconf automake libc-dev g++ linux-headers
+        - time git clone -b v1.17.0 https://github.com/grpc/grpc
+        - cd grpc
+        - time git submodule update --init
+        - time make grpc_php_plugin
+        - mv bins/opt/grpc_php_plugin ../examples/php/bins/
+        - cd ../examples/php
+        - time composer install
+        - php proto-build.php
+        - vendor/bin/phpunit tests
