@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.camera";
+option java_outer_classname = "VolumeCalibrationProto";
+option java_multiple_files = true;
+package gears.proto.camera;
+
+import "google/protobuf/timestamp.proto";
+import "gears/proto/camera/CalibrationStats.proto";
+import "gears/proto/camera/CameraCalibration.proto";
+
+// Calibration of a capture volume.
+message VolumeCalibration {
+
+    // Id of the calibration
+    string id = 1;
+
+    // When this calibration was created.
+    .google.protobuf.Timestamp created_at = 2;
+
+    // Basic info about the quality of the calibration.
+    .gears.proto.camera.CalibrationStats stats = 3;
+
+    // Cameras involved in the calibration.
+    repeated .gears.proto.camera.CameraCalibration cameras = 15;
+
+}

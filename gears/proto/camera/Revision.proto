@@ -1,0 +1,105 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.camera";
+option java_outer_classname = "RevisionProto";
+option java_multiple_files = true;
+package gears.proto.camera;
+
+// Enum containing camera revisions taken from
+// npoint/apps/cameracommon/camerarevisions.h
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed.
+enum Revision {
+
+    // Not an actual camera revision.  Added because protobuffer
+    // requires enums to have an element with a value of 0;
+    REVISION_UNKNOWN = 0;
+
+    // must match TRACKIR3_REVISION
+    REVISION_TRACKIR3 = 4;
+
+    // must match TRACKIR4_REVISION
+    REVISION_TRACKIR4 = 5;
+
+    // must match C120_REVISION
+    REVISION_C120 = 6;
+
+    // must match V100_REVISION
+    REVISION_V100 = 7;
+
+    // must match V120_REVISION
+    REVISION_V120 = 14;
+
+    // must match V100R2_REVISION
+    REVISION_V100R2 = 12;
+
+    // must match SMARTNAV4_REVISION
+    REVISION_SMARTNAV4 = 8;
+
+    // must match TRACKIR5V2_REVISION
+    REVISION_TRACKIR5V2 = 18;
+
+    // must match TRACKIR5V3_REVISION
+    REVISION_TRACKIR5V3 = 35;
+
+    // must match TBAR3_REVISION
+    REVISION_TBAR3 = 16;
+
+    // must match TBAR2_REVISION
+    REVISION_TBAR2 = 17;
+
+    // must match S250E_REVISION
+    REVISION_S250E = 11;
+
+    // must match PRIME41_REVISION
+    REVISION_PRIME41 = 26;
+
+    // must match PRIME41_REVISION2
+    REVISION_PRIME41_2 = 29;
+
+    // must match PRIME17W_REVISION
+    REVISION_PRIME17W = 30;
+
+    // must match FLEX13_REVISION
+    REVISION_FLEX13 = 21;
+
+    // must match ESYNC_REVISION
+    REVISION_ESYNC = 23;
+
+    // must match PRIME13_REVISION
+    REVISION_PRIME13 = 31;
+
+    // must match PRIME13W_REVISION
+    REVISION_PRIME13W = 32;
+
+    // must match SLIM13E_REVISION
+    REVISION_SLIM13E = 33;
+
+    // must match ESYNC2_REVISION
+    REVISION_ESYNC2 = 34;
+
+    // must match GT_COLOR_REVISION
+    REVISION_GT_COLOR = 36;
+
+    // must match PRIME_COLOR_REVISION
+    REVISION_PRIME_COLOR = 37;
+
+    // must match BASE_STATION_REVISION
+    REVISION_BASE_STATION = 38;
+
+    // must match PRIMEX_41_REVISION
+    REVISION_PRIMEX_41 = 49;
+
+    // must match PRIMEX_13_REVISION
+    REVISION_PRIMEX_13 = 51;
+
+    // must match PRIMEX_13W_REVISION
+    REVISION_PRIMEX_13W = 52;
+
+    // must match SLIMX_13E_REVISION
+    REVISION_SLIMX_13E = 53;
+
+    // must match PRIMEX_22_REVISION
+    REVISION_PRIMEX_22 = 50;
+}

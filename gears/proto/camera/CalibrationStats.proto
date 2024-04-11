@@ -1,0 +1,44 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.camera";
+option java_outer_classname = "CalibrationStatsProto";
+option java_multiple_files = true;
+package gears.proto.camera;
+
+// Calibration result info
+message CalibrationStats {
+
+    // The global reprojection mean pixel error for the camera system.
+    double reprojection_mean_pixel_error = 1;
+
+    // The global triangulation mean residual error for the camera system
+    double triangulation_mean_residual_error = 2;
+
+    // 50% of the triangulation mean residual values are less than this number.
+    double triangulation_mean_residual_error_50_percentile = 3;
+
+    // 95% of the triangulation mean residual values are less than this number.
+    double triangulation_mean_residual_error_95_percentile = 4;
+
+    // 99% of the triangulation mean residual values are less than this number.
+    double triangulation_mean_residual_error_99_percentile = 5;
+
+    // This is the global wand mean error for the system.
+    double wand_mean_error = 6;
+
+    // 50% of the wand mean error values are less than this number.
+    double wand_mean_error_50_percentile = 7;
+
+    // 95% of the wand mean error values are less than this number.
+    double wand_mean_error_95_percentile = 8;
+
+    // 99% of the wand mean error values are less than this number.
+    double wand_mean_error_99_percentile = 9;
+
+    // Length of the wand used for calibration in meters.
+    double wand_length = 10;
+
+    // Amount of offset in the wand's center marker in meters.
+    double wand_center_offset = 11;
+
+}

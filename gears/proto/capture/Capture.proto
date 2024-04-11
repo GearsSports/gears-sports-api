@@ -14,6 +14,7 @@ import "gears/proto/manual/Capture.proto";
 import "gears/proto/capture/CaptureType.proto";
 import "gears/proto/baseball/swing/Capture.proto";
 import "gears/proto/capture/CaptureSubType.proto";
+import "gears/proto/camera/VolumeCalibration.proto";
 import "gears/proto/volleyball/attack/Capture.proto";
 import "gears/proto/server/capture/CameraVideo.proto";
 
@@ -85,5 +86,11 @@ message Capture {
     // All [gears.proto.server.capture.CameraVideo] instances returned by its methods
     // will contain a valid url.
     repeated .gears.proto.server.capture.CameraVideo camera_videos = 16;
+
+    // The calibration used when recording the capture.
+    //
+    // Note: This field was added in April 2024, so you
+    // can't depend on this for older captures.
+    .gears.proto.camera.VolumeCalibration calibration = 18;
 
 }
