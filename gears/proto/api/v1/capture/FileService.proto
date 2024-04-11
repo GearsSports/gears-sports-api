@@ -23,6 +23,21 @@ service FileService {
     // Creates a new file attached to a capture.
     rpc Create(CreateFileRequest) returns (CreateFileResponse) {}
 
+    // Gets basic limitations that the caller needs to be aware of when
+    // calling methods on this service.
+    rpc GetLimits(.google.protobuf.Empty) returns (GetFileLimitsResponse) {}
+
+    // Creates a new file attached to a capture.
+    //
+    // The first [gears.proto.api.v1.capture.CreateFilePartRequest] sent must have
+    // the [gears.proto.api.v1.capture.CreateFilePartRequest].file field set.  That message
+    // MUST have [gears.proto.server.capture.File].byte_size set to the total size of the file
+    // being uploaded.
+    //
+    // Then all others [gears.proto.api.v1.capture.CreateFilePartRequest] sent must have
+    // the [gears.proto.api.v1.capture.CreateFilePartRequest].chunk field set.
+    rpc CreateStream(stream CreateFilePartRequest) returns (CreateFileResponse) {}
+
     // Updates an existing file.
     rpc Update(UpdateFileRequest) returns (UpdateFileResponse) {}
 
@@ -166,6 +181,44 @@ message CreateFileResponse {
 
     // The file as it not exists on the server.
     .gears.proto.server.capture.File file = 2;
+
+}
+
+// Message used to hold the result of a [gears.proto.api.v1.capture.FileService].Create rpc call.
+message GetFileLimitsResponse {
+
+    // Max size in bytes of a file that can be created via a call to
+    // [gears.proto.api.v1.capture.FileService].Create.
+    int32 max_file_size = 1;
+
+    // Max size in bytes of a file that can be created via a call to
+    // [gears.proto.api.v1.capture.FileService].CreateStream.
+    int32 max_file_stream_size = 2;
+
+    // Max size in bytes of a [gears.proto.api.v1.capture.CreateFilePartRequest].chunk.
+    int32 max_chunk_size = 3;
+
+    // Min size in bytes of a [gears.proto.api.v1.capture.CreateFilePartRequest].chunk.
+    //
+    // This limit applies to all chunks unless it is the last chunk.
+    //
+    // The reason for this is to prevent someone sending 1,000,000 1 byte chunks to upload a 1MB file.
+    int32 min_chunk_size = 4;
+
+}
+
+// Message used to upload a file attached to a capture.
+message CreateFilePartRequest {
+
+    oneof data {
+
+        // Info about the file to be created.
+        .gears.proto.server.capture.File file = 1;
+
+        // A chunk of the file being uploaded.
+        bytes chunk = 2;
+
+    }
 
 }
 
