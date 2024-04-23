@@ -1,0 +1,50 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.camera";
+option java_outer_classname = "VideoModeProto";
+option java_multiple_files = true;
+package gears.proto.camera;
+
+// Enum containing camera video modes taken from ::Core::eVideoMode
+//
+// WARNING: this enum is used in persisted data and should not
+// have the names or values of it's elements changed.
+enum VideoMode {
+
+    // matches ::Core::eVideoMode::SegmentMode
+    VIDEO_MODE_SEGMENT = 0;
+
+    // matches ::Core::eVideoMode::GrayscaleMode
+    VIDEO_MODE_GRAYSCALE = 1;
+
+    // matches ::Core::eVideoMode::ObjectMode
+    VIDEO_MODE_OBJECT = 2;
+
+    // matches ::Core::eVideoMode::InterleavedGrayscaleMode
+    VIDEO_MODE_INTERLEAVED_GRAYSCALE = 3;
+
+    // matches ::Core::eVideoMode::PrecisionMode
+    VIDEO_MODE_PRECISION = 4;
+
+    // matches ::Core::eVideoMode::BitPackedPrecisionMode
+    VIDEO_MODE_BIT_PACKED_PRECISION = 5;
+
+    // matches ::Core::eVideoMode::MJPEGMode
+    VIDEO_MODE_MJPEG = 6;
+
+    // matches ::Core::eVideoMode::MJPEGPreviewMode
+    VIDEO_MODE_MJPEG_PREVIEW = 7;
+
+    // matches ::Core::eVideoMode::RawColorMode
+    VIDEO_MODE_RAW_COLOR = 8;
+
+    // matches ::Core::eVideoMode::VideoMode
+    VIDEO_MODE_VIDEO = 9;
+
+    // matches ::Core::eVideoMode::SynchronizationTelemetry
+    VIDEO_MODE_SYNC_TELEMETRY = 99;
+
+    // matches ::Core::eVideoMode::UnknownMode
+    VIDEO_MODE_UNKNOWN = 101;
+
+}
