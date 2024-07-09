@@ -86,3 +86,8 @@ message Club {
     int32 swing_weight = 31;
     float total_weight = 32;
 }
+
+// Wrapper message for a golf club
+message ClubValue {
+    Club club = 1;
+}

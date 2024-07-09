@@ -112,3 +112,8 @@ message Definition {
     .google.protobuf.FloatValue display_barrel_diameter = 22;
 
 }
+
+// Wrapper message for a baseball bat definition
+message DefinitionValue {
+    Definition definition = 1;
+}
