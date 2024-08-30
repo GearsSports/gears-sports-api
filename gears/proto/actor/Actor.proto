@@ -5,6 +5,7 @@ option java_outer_classname = "ActorProto";
 option java_multiple_files = true;
 package gears.proto.actor;
 
+import "google/protobuf/wrappers.proto";
 import "gears/proto/actor/MarkerSet.proto";
 import "gears/proto/actor/ActorMeasurements.proto";
 
@@ -29,6 +30,9 @@ message Actor {
 
     // Offsets in radians applied to some wrist related metrics in golf captures.
     .gears.proto.actor.WristOffsets right_wrist_offsets = 5;
+
+    // @TODO (jaden) re-number this field
+    .google.protobuf.Int32Value ai_model_type = 1000;
 
 }
 
