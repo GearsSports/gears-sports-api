@@ -44,4 +44,7 @@ enum MarkerSet {
     // Matches ::SkeletonSolver::CSkeleton::eMarkerSetType::e41SqWaistMarkerSkeleton
     NP_41_SQUARE_WAIST = -41;
 
+    // A skeleton that was created using an ai model instead of marker tracking.
+    AI_ACTOR = 9000;
+
 }
