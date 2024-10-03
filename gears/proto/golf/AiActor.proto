@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+option cc_enable_arenas = true;
+option java_package = "com.gearssports.protobuf.golf";
+option java_outer_classname = "AiActorProto";
+option java_multiple_files = true;
+package gears.proto.golf;
+
+// Kind ai model used.
+enum AiActorKind {
+
+    AI_ACTOR_KIND_UNKNOWN = 0;
+    AI_ACTOR_KIND_FULL_BODY_V3 = 1;
+    AI_ACTOR_KIND_FULL_BODY_V3_PYTORCH = 2;
+
+}
+
+// Extra data for a golf ai actor.
+message AiActor {
+
+    // Kind ai model used.
+    AiActorKind kind = 1;
+
+}

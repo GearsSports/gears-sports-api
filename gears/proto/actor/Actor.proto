@@ -5,6 +5,7 @@ option java_outer_classname = "ActorProto";
 option java_multiple_files = true;
 package gears.proto.actor;
 
+import "gears/proto/golf/AiActor.proto";
 import "gears/proto/actor/MarkerSet.proto";
 import "gears/proto/actor/ActorMeasurements.proto";
 
@@ -29,6 +30,12 @@ message Actor {
 
     // Offsets in radians applied to some wrist related metrics in golf captures.
     .gears.proto.actor.WristOffsets right_wrist_offsets = 5;
+
+    // Extra data needed if this is an ai actor.
+    //
+    // Warning: This will only be populated if skeleton_type
+    //          is equal to [gears.proto.actor.MarkerSet].AI_ACTOR
+    .gears.proto.golf.AiActor ai_actor = 6;
 
 }
 
