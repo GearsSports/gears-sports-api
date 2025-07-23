@@ -31,4 +31,7 @@ enum HandPose {
     // Hand posed as if it is gripping a baseball bat.
     HAND_GRIP_BASEBALL_BAT = 5;
 
+    // Hand posed as if it is gripping a golf club.
+    HAND_GRIP_GOLF_CLUB = 6;
+
 }
